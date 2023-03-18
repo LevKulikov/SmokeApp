@@ -125,7 +125,6 @@ final class CalendarViewController: UIViewController, CalendarViewControllerProt
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        collectionView.isHidden = true
         collectionView.reloadData()
     }
     
