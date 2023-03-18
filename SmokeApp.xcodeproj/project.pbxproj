@@ -1,0 +1,1088 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		48B4BC6E76D6C29DF79DFC0D /* libPods-SmokeAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4924C7B69BACCDCA80B1BA65 /* libPods-SmokeAppTests.a */; };
+		5FCCFCEDECBB95FB8CE36D8F /* libPods-SmokeApp-SmokeAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1CE2C06CF6A35C0C302C53 /* libPods-SmokeApp-SmokeAppUITests.a */; };
+		733B0F542992ECE900E7EC6D /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0F532992ECE900E7EC6D /* StatisticsViewController.swift */; };
+		733B0F562992F98A00E7EC6D /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0F552992F98A00E7EC6D /* StatisticsViewModel.swift */; };
+		733B0F68299BB91F00E7EC6D /* WideCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0F67299BB91F00E7EC6D /* WideCollectionViewCell.swift */; };
+		733B0F6A299BB9B000E7EC6D /* ChartCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0F69299BB9B000E7EC6D /* ChartCollectionViewCell.swift */; };
+		733B0F6C299BB9DE00E7EC6D /* NarrowCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0F6B299BB9DE00E7EC6D /* NarrowCollectionViewCell.swift */; };
+		733B0F6E299BC12800E7EC6D /* Useful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0F6D299BC12800E7EC6D /* Useful.swift */; };
+		733D5159298FDCF000275130 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733D5158298FDCF000275130 /* WidgetKit.framework */; };
+		733D515B298FDCF000275130 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733D515A298FDCF000275130 /* SwiftUI.framework */; };
+		733D515E298FDCF000275130 /* SmokeWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733D515D298FDCF000275130 /* SmokeWidgetBundle.swift */; };
+		733D5160298FDCF000275130 /* SmokeWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733D515F298FDCF000275130 /* SmokeWidgetLiveActivity.swift */; };
+		733D5162298FDCF000275130 /* SmokeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733D5161298FDCF000275130 /* SmokeWidget.swift */; };
+		733D5165298FDCF200275130 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 733D5164298FDCF200275130 /* Assets.xcassets */; };
+		733D5167298FDCF200275130 /* SmokeWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 733D5163298FDCF000275130 /* SmokeWidget.intentdefinition */; };
+		733D5168298FDCF200275130 /* SmokeWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 733D5163298FDCF000275130 /* SmokeWidget.intentdefinition */; };
+		733D516B298FDCF200275130 /* SmokeWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 733D5157298FDCF000275130 /* SmokeWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		733F4440299FF2D0002E2291 /* TargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F443F299FF2D0002E2291 /* TargetViewController.swift */; };
+		733F4442299FF43C002E2291 /* TargetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F4441299FF43C002E2291 /* TargetViewModel.swift */; };
+		733F444429A01ADD002E2291 /* TargetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F444329A01ADD002E2291 /* TargetModel.swift */; };
+		733F444629A0210D002E2291 /* TargetStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F444529A0210D002E2291 /* TargetStorage.swift */; };
+		734AD6F929AFBAF500F92A0F /* HapticManagere.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734AD6F829AFBAF500F92A0F /* HapticManagere.swift */; };
+		73B7129A29A23293001BF38C /* SmokeItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B7129929A23293001BF38C /* SmokeItemData.swift */; };
+		73B7129B29A232DE001BF38C /* SmokeItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B7129929A23293001BF38C /* SmokeItemData.swift */; };
+		73B712A229A233D2001BF38C /* SmokeItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B712A029A233D2001BF38C /* SmokeItem+CoreDataProperties.swift */; };
+		73B712A329A233D2001BF38C /* SmokeItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B712A129A233D2001BF38C /* SmokeItem+CoreDataClass.swift */; };
+		73D8FABE2987A1220084BE25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FABD2987A1220084BE25 /* AppDelegate.swift */; };
+		73D8FAC02987A1220084BE25 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FABF2987A1220084BE25 /* SceneDelegate.swift */; };
+		73D8FAC22987A1220084BE25 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FAC12987A1220084BE25 /* CalendarViewController.swift */; };
+		73D8FAC82987A1220084BE25 /* SmokeApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FAC62987A1220084BE25 /* SmokeApp.xcdatamodeld */; };
+		73D8FACA2987A1230084BE25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73D8FAC92987A1230084BE25 /* Assets.xcassets */; };
+		73D8FACD2987A1230084BE25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D8FACB2987A1230084BE25 /* LaunchScreen.storyboard */; };
+		73D8FAD82987A1230084BE25 /* SmokeAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FAD72987A1230084BE25 /* SmokeAppTests.swift */; };
+		73D8FAE22987A1230084BE25 /* SmokeAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FAE12987A1230084BE25 /* SmokeAppUITests.swift */; };
+		73D8FAE42987A1230084BE25 /* SmokeAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FAE32987A1230084BE25 /* SmokeAppUITestsLaunchTests.swift */; };
+		73D8FAF52987A53E0084BE25 /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FAF42987A53E0084BE25 /* Assembler.swift */; };
+		73D8FAF72987A8FD0084BE25 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FAF62987A8FD0084BE25 /* Constants.swift */; };
+		73D8FB0A2987B04E0084BE25 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FB092987B04E0084BE25 /* CalendarViewModel.swift */; };
+		73D8FB0C2987B6350084BE25 /* UpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FB0B2987B6350084BE25 /* UpdateViewModel.swift */; };
+		73D8FB0E2987B7100084BE25 /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FB0D2987B7100084BE25 /* DataStorage.swift */; };
+		73D8FB122987F3380084BE25 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FB112987F3380084BE25 /* CalendarCollectionViewCell.swift */; };
+		73D8FB14298A47DA0084BE25 /* DayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FB13298A47DA0084BE25 /* DayViewController.swift */; };
+		73D8FB16298A4A670084BE25 /* DayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FB15298A4A670084BE25 /* DayViewModel.swift */; };
+		D7DA29D9B5928AE3E20A97D3 /* libPods-SmokeApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E6167177A572E2CB3B83415 /* libPods-SmokeApp.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		733D5169298FDCF200275130 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73D8FAB22987A1220084BE25 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 733D5156298FDCF000275130;
+			remoteInfo = SmokeWidgetExtension;
+		};
+		73D8FAD42987A1230084BE25 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73D8FAB22987A1220084BE25 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 73D8FAB92987A1220084BE25;
+			remoteInfo = SmokeApp;
+		};
+		73D8FADE2987A1230084BE25 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73D8FAB22987A1220084BE25 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 73D8FAB92987A1220084BE25;
+			remoteInfo = SmokeApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		733D516C298FDCF200275130 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				733D516B298FDCF200275130 /* SmokeWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0A1CE2C06CF6A35C0C302C53 /* libPods-SmokeApp-SmokeAppUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SmokeApp-SmokeAppUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		261E75E0A6E25E51D8D5AA54 /* Pods-SmokeAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmokeAppTests.debug.xcconfig"; path = "Target Support Files/Pods-SmokeAppTests/Pods-SmokeAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4924C7B69BACCDCA80B1BA65 /* libPods-SmokeAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SmokeAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CDB4753EE8AECCAD3448443 /* Pods-SmokeApp-SmokeAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmokeApp-SmokeAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-SmokeApp-SmokeAppUITests/Pods-SmokeApp-SmokeAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4E6167177A572E2CB3B83415 /* libPods-SmokeApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SmokeApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E8441C6FD1D0C4C3AEE522B /* Pods-SmokeApp-SmokeAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmokeApp-SmokeAppUITests.release.xcconfig"; path = "Target Support Files/Pods-SmokeApp-SmokeAppUITests/Pods-SmokeApp-SmokeAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		733B0F532992ECE900E7EC6D /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		733B0F552992F98A00E7EC6D /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
+		733B0F67299BB91F00E7EC6D /* WideCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WideCollectionViewCell.swift; sourceTree = "<group>"; };
+		733B0F69299BB9B000E7EC6D /* ChartCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCollectionViewCell.swift; sourceTree = "<group>"; };
+		733B0F6B299BB9DE00E7EC6D /* NarrowCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarrowCollectionViewCell.swift; sourceTree = "<group>"; };
+		733B0F6D299BC12800E7EC6D /* Useful.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Useful.swift; sourceTree = "<group>"; };
+		733D5157298FDCF000275130 /* SmokeWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SmokeWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		733D5158298FDCF000275130 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		733D515A298FDCF000275130 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		733D515D298FDCF000275130 /* SmokeWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeWidgetBundle.swift; sourceTree = "<group>"; };
+		733D515F298FDCF000275130 /* SmokeWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeWidgetLiveActivity.swift; sourceTree = "<group>"; };
+		733D5161298FDCF000275130 /* SmokeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeWidget.swift; sourceTree = "<group>"; };
+		733D5163298FDCF000275130 /* SmokeWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = SmokeWidget.intentdefinition; sourceTree = "<group>"; };
+		733D5164298FDCF200275130 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		733D5166298FDCF200275130 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		733D5170298FEF5500275130 /* SmokeApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SmokeApp.entitlements; sourceTree = "<group>"; };
+		733D5171298FEFA700275130 /* SmokeWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SmokeWidgetExtension.entitlements; sourceTree = "<group>"; };
+		733F443F299FF2D0002E2291 /* TargetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetViewController.swift; sourceTree = "<group>"; };
+		733F4441299FF43C002E2291 /* TargetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetViewModel.swift; sourceTree = "<group>"; };
+		733F444329A01ADD002E2291 /* TargetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetModel.swift; sourceTree = "<group>"; };
+		733F444529A0210D002E2291 /* TargetStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetStorage.swift; sourceTree = "<group>"; };
+		734AD6F829AFBAF500F92A0F /* HapticManagere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManagere.swift; sourceTree = "<group>"; };
+		73B7129929A23293001BF38C /* SmokeItemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeItemData.swift; sourceTree = "<group>"; };
+		73B712A029A233D2001BF38C /* SmokeItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SmokeItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		73B712A129A233D2001BF38C /* SmokeItem+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SmokeItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		73D8FABA2987A1220084BE25 /* SmokeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmokeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		73D8FABD2987A1220084BE25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		73D8FABF2987A1220084BE25 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		73D8FAC12987A1220084BE25 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		73D8FAC72987A1220084BE25 /* SmokeApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SmokeApp.xcdatamodel; sourceTree = "<group>"; };
+		73D8FAC92987A1230084BE25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		73D8FACC2987A1230084BE25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		73D8FACE2987A1230084BE25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		73D8FAD32987A1230084BE25 /* SmokeAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmokeAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		73D8FAD72987A1230084BE25 /* SmokeAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeAppTests.swift; sourceTree = "<group>"; };
+		73D8FADD2987A1230084BE25 /* SmokeAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmokeAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		73D8FAE12987A1230084BE25 /* SmokeAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeAppUITests.swift; sourceTree = "<group>"; };
+		73D8FAE32987A1230084BE25 /* SmokeAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		73D8FAF42987A53E0084BE25 /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
+		73D8FAF62987A8FD0084BE25 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		73D8FB092987B04E0084BE25 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		73D8FB0B2987B6350084BE25 /* UpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewModel.swift; sourceTree = "<group>"; };
+		73D8FB0D2987B7100084BE25 /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
+		73D8FB112987F3380084BE25 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		73D8FB13298A47DA0084BE25 /* DayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewController.swift; sourceTree = "<group>"; };
+		73D8FB15298A4A670084BE25 /* DayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewModel.swift; sourceTree = "<group>"; };
+		A8C5959F8690267739B71705 /* Pods-SmokeAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmokeAppTests.release.xcconfig"; path = "Target Support Files/Pods-SmokeAppTests/Pods-SmokeAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		CC64047E8407C351FB0A343D /* Pods-SmokeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmokeApp.debug.xcconfig"; path = "Target Support Files/Pods-SmokeApp/Pods-SmokeApp.debug.xcconfig"; sourceTree = "<group>"; };
+		E5BE3E2BD3411E1D6949AB01 /* Pods-SmokeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmokeApp.release.xcconfig"; path = "Target Support Files/Pods-SmokeApp/Pods-SmokeApp.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		733D5154298FDCF000275130 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				733D515B298FDCF000275130 /* SwiftUI.framework in Frameworks */,
+				733D5159298FDCF000275130 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73D8FAB72987A1220084BE25 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D7DA29D9B5928AE3E20A97D3 /* libPods-SmokeApp.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73D8FAD02987A1230084BE25 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				48B4BC6E76D6C29DF79DFC0D /* libPods-SmokeAppTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73D8FADA2987A1230084BE25 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FCCFCEDECBB95FB8CE36D8F /* libPods-SmokeApp-SmokeAppUITests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05B80DA332DA022506BBF15E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4E6167177A572E2CB3B83415 /* libPods-SmokeApp.a */,
+				0A1CE2C06CF6A35C0C302C53 /* libPods-SmokeApp-SmokeAppUITests.a */,
+				4924C7B69BACCDCA80B1BA65 /* libPods-SmokeAppTests.a */,
+				733D5158298FDCF000275130 /* WidgetKit.framework */,
+				733D515A298FDCF000275130 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		607F8EBAFD2D2BB033DAFD52 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CC64047E8407C351FB0A343D /* Pods-SmokeApp.debug.xcconfig */,
+				E5BE3E2BD3411E1D6949AB01 /* Pods-SmokeApp.release.xcconfig */,
+				4CDB4753EE8AECCAD3448443 /* Pods-SmokeApp-SmokeAppUITests.debug.xcconfig */,
+				6E8441C6FD1D0C4C3AEE522B /* Pods-SmokeApp-SmokeAppUITests.release.xcconfig */,
+				261E75E0A6E25E51D8D5AA54 /* Pods-SmokeAppTests.debug.xcconfig */,
+				A8C5959F8690267739B71705 /* Pods-SmokeAppTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		733B0F66299BB8EB00E7EC6D /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				733B0F67299BB91F00E7EC6D /* WideCollectionViewCell.swift */,
+				733B0F69299BB9B000E7EC6D /* ChartCollectionViewCell.swift */,
+				733B0F6B299BB9DE00E7EC6D /* NarrowCollectionViewCell.swift */,
+			);
+			path = Statistics;
+			sourceTree = "<group>";
+		};
+		733D515C298FDCF000275130 /* SmokeWidget */ = {
+			isa = PBXGroup;
+			children = (
+				733D515D298FDCF000275130 /* SmokeWidgetBundle.swift */,
+				733D515F298FDCF000275130 /* SmokeWidgetLiveActivity.swift */,
+				733D5161298FDCF000275130 /* SmokeWidget.swift */,
+				733D5163298FDCF000275130 /* SmokeWidget.intentdefinition */,
+				733D5164298FDCF200275130 /* Assets.xcassets */,
+				733D5166298FDCF200275130 /* Info.plist */,
+			);
+			path = SmokeWidget;
+			sourceTree = "<group>";
+		};
+		73D8FAB12987A1220084BE25 = {
+			isa = PBXGroup;
+			children = (
+				733D5171298FEFA700275130 /* SmokeWidgetExtension.entitlements */,
+				73D8FABC2987A1220084BE25 /* SmokeApp */,
+				73D8FAD62987A1230084BE25 /* SmokeAppTests */,
+				73D8FAE02987A1230084BE25 /* SmokeAppUITests */,
+				733D515C298FDCF000275130 /* SmokeWidget */,
+				73D8FABB2987A1220084BE25 /* Products */,
+				607F8EBAFD2D2BB033DAFD52 /* Pods */,
+				05B80DA332DA022506BBF15E /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		73D8FABB2987A1220084BE25 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				73D8FABA2987A1220084BE25 /* SmokeApp.app */,
+				73D8FAD32987A1230084BE25 /* SmokeAppTests.xctest */,
+				73D8FADD2987A1230084BE25 /* SmokeAppUITests.xctest */,
+				733D5157298FDCF000275130 /* SmokeWidgetExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		73D8FABC2987A1220084BE25 /* SmokeApp */ = {
+			isa = PBXGroup;
+			children = (
+				733D5170298FEF5500275130 /* SmokeApp.entitlements */,
+				73D8FACE2987A1230084BE25 /* Info.plist */,
+				73D8FAFA2987AF200084BE25 /* DataStructure */,
+				73D8FAF82987AA120084BE25 /* Sources */,
+				73D8FAF32987A52C0084BE25 /* Manageres */,
+				73D8FAF92987AA360084BE25 /* View */,
+				73D8FB082987B0250084BE25 /* ViewModel */,
+			);
+			path = SmokeApp;
+			sourceTree = "<group>";
+		};
+		73D8FAD62987A1230084BE25 /* SmokeAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				73D8FAD72987A1230084BE25 /* SmokeAppTests.swift */,
+			);
+			path = SmokeAppTests;
+			sourceTree = "<group>";
+		};
+		73D8FAE02987A1230084BE25 /* SmokeAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				73D8FAE12987A1230084BE25 /* SmokeAppUITests.swift */,
+				73D8FAE32987A1230084BE25 /* SmokeAppUITestsLaunchTests.swift */,
+			);
+			path = SmokeAppUITests;
+			sourceTree = "<group>";
+		};
+		73D8FAF32987A52C0084BE25 /* Manageres */ = {
+			isa = PBXGroup;
+			children = (
+				73D8FAF42987A53E0084BE25 /* Assembler.swift */,
+				73D8FAF62987A8FD0084BE25 /* Constants.swift */,
+				733B0F6D299BC12800E7EC6D /* Useful.swift */,
+				734AD6F829AFBAF500F92A0F /* HapticManagere.swift */,
+			);
+			path = Manageres;
+			sourceTree = "<group>";
+		};
+		73D8FAF82987AA120084BE25 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				73D8FABD2987A1220084BE25 /* AppDelegate.swift */,
+				73D8FABF2987A1220084BE25 /* SceneDelegate.swift */,
+				73D8FAC92987A1230084BE25 /* Assets.xcassets */,
+				73D8FACB2987A1230084BE25 /* LaunchScreen.storyboard */,
+				73D8FAC62987A1220084BE25 /* SmokeApp.xcdatamodeld */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		73D8FAF92987AA360084BE25 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				73D8FB102987F3170084BE25 /* Views */,
+				73D8FB0F2987F30A0084BE25 /* ViewControllers */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		73D8FAFA2987AF200084BE25 /* DataStructure */ = {
+			isa = PBXGroup;
+			children = (
+				73D8FB0D2987B7100084BE25 /* DataStorage.swift */,
+				733F444529A0210D002E2291 /* TargetStorage.swift */,
+				733F444329A01ADD002E2291 /* TargetModel.swift */,
+				73D8FB0B2987B6350084BE25 /* UpdateViewModel.swift */,
+				73B7129929A23293001BF38C /* SmokeItemData.swift */,
+				73D8FAFB2987AF3D0084BE25 /* Entity */,
+			);
+			path = DataStructure;
+			sourceTree = "<group>";
+		};
+		73D8FAFB2987AF3D0084BE25 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				73B712A129A233D2001BF38C /* SmokeItem+CoreDataClass.swift */,
+				73B712A029A233D2001BF38C /* SmokeItem+CoreDataProperties.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		73D8FB082987B0250084BE25 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				73D8FB092987B04E0084BE25 /* CalendarViewModel.swift */,
+				73D8FB15298A4A670084BE25 /* DayViewModel.swift */,
+				733B0F552992F98A00E7EC6D /* StatisticsViewModel.swift */,
+				733F4441299FF43C002E2291 /* TargetViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		73D8FB0F2987F30A0084BE25 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				73D8FAC12987A1220084BE25 /* CalendarViewController.swift */,
+				73D8FB13298A47DA0084BE25 /* DayViewController.swift */,
+				733B0F532992ECE900E7EC6D /* StatisticsViewController.swift */,
+				733F443F299FF2D0002E2291 /* TargetViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		73D8FB102987F3170084BE25 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				73D8FB112987F3380084BE25 /* CalendarCollectionViewCell.swift */,
+				733B0F66299BB8EB00E7EC6D /* Statistics */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		733D5156298FDCF000275130 /* SmokeWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 733D516F298FDCF200275130 /* Build configuration list for PBXNativeTarget "SmokeWidgetExtension" */;
+			buildPhases = (
+				733D5153298FDCF000275130 /* Sources */,
+				733D5154298FDCF000275130 /* Frameworks */,
+				733D5155298FDCF000275130 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SmokeWidgetExtension;
+			productName = SmokeWidgetExtension;
+			productReference = 733D5157298FDCF000275130 /* SmokeWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		73D8FAB92987A1220084BE25 /* SmokeApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73D8FAE72987A1230084BE25 /* Build configuration list for PBXNativeTarget "SmokeApp" */;
+			buildPhases = (
+				4EC32BD90AF5707430C21022 /* [CP] Check Pods Manifest.lock */,
+				73D8FAB62987A1220084BE25 /* Sources */,
+				73D8FAB72987A1220084BE25 /* Frameworks */,
+				73D8FAB82987A1220084BE25 /* Resources */,
+				733D516C298FDCF200275130 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				733D516A298FDCF200275130 /* PBXTargetDependency */,
+			);
+			name = SmokeApp;
+			packageProductDependencies = (
+			);
+			productName = SmokeApp;
+			productReference = 73D8FABA2987A1220084BE25 /* SmokeApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		73D8FAD22987A1230084BE25 /* SmokeAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73D8FAEA2987A1230084BE25 /* Build configuration list for PBXNativeTarget "SmokeAppTests" */;
+			buildPhases = (
+				C2A2DB08D39CEC8355FFAC85 /* [CP] Check Pods Manifest.lock */,
+				73D8FACF2987A1230084BE25 /* Sources */,
+				73D8FAD02987A1230084BE25 /* Frameworks */,
+				73D8FAD12987A1230084BE25 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				73D8FAD52987A1230084BE25 /* PBXTargetDependency */,
+			);
+			name = SmokeAppTests;
+			productName = SmokeAppTests;
+			productReference = 73D8FAD32987A1230084BE25 /* SmokeAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		73D8FADC2987A1230084BE25 /* SmokeAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73D8FAED2987A1230084BE25 /* Build configuration list for PBXNativeTarget "SmokeAppUITests" */;
+			buildPhases = (
+				4B88CAE2F866BE40033517CE /* [CP] Check Pods Manifest.lock */,
+				73D8FAD92987A1230084BE25 /* Sources */,
+				73D8FADA2987A1230084BE25 /* Frameworks */,
+				73D8FADB2987A1230084BE25 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				73D8FADF2987A1230084BE25 /* PBXTargetDependency */,
+			);
+			name = SmokeAppUITests;
+			productName = SmokeAppUITests;
+			productReference = 73D8FADD2987A1230084BE25 /* SmokeAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		73D8FAB22987A1220084BE25 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					733D5156298FDCF000275130 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					73D8FAB92987A1220084BE25 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					73D8FAD22987A1230084BE25 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 73D8FAB92987A1220084BE25;
+					};
+					73D8FADC2987A1230084BE25 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 73D8FAB92987A1220084BE25;
+					};
+				};
+			};
+			buildConfigurationList = 73D8FAB52987A1220084BE25 /* Build configuration list for PBXProject "SmokeApp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 73D8FAB12987A1220084BE25;
+			packageReferences = (
+			);
+			productRefGroup = 73D8FABB2987A1220084BE25 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				73D8FAB92987A1220084BE25 /* SmokeApp */,
+				73D8FAD22987A1230084BE25 /* SmokeAppTests */,
+				73D8FADC2987A1230084BE25 /* SmokeAppUITests */,
+				733D5156298FDCF000275130 /* SmokeWidgetExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		733D5155298FDCF000275130 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				733D5165298FDCF200275130 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73D8FAB82987A1220084BE25 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73D8FACD2987A1230084BE25 /* LaunchScreen.storyboard in Resources */,
+				73D8FACA2987A1230084BE25 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73D8FAD12987A1230084BE25 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73D8FADB2987A1230084BE25 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4B88CAE2F866BE40033517CE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SmokeApp-SmokeAppUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4EC32BD90AF5707430C21022 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SmokeApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C2A2DB08D39CEC8355FFAC85 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SmokeAppTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		733D5153298FDCF000275130 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				733D5167298FDCF200275130 /* SmokeWidget.intentdefinition in Sources */,
+				733D5162298FDCF000275130 /* SmokeWidget.swift in Sources */,
+				73B7129B29A232DE001BF38C /* SmokeItemData.swift in Sources */,
+				733D5160298FDCF000275130 /* SmokeWidgetLiveActivity.swift in Sources */,
+				733D515E298FDCF000275130 /* SmokeWidgetBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73D8FAB62987A1220084BE25 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73D8FB122987F3380084BE25 /* CalendarCollectionViewCell.swift in Sources */,
+				733B0F6A299BB9B000E7EC6D /* ChartCollectionViewCell.swift in Sources */,
+				73D8FAC22987A1220084BE25 /* CalendarViewController.swift in Sources */,
+				733B0F68299BB91F00E7EC6D /* WideCollectionViewCell.swift in Sources */,
+				73B712A329A233D2001BF38C /* SmokeItem+CoreDataClass.swift in Sources */,
+				73D8FAC82987A1220084BE25 /* SmokeApp.xcdatamodeld in Sources */,
+				734AD6F929AFBAF500F92A0F /* HapticManagere.swift in Sources */,
+				73D8FB0E2987B7100084BE25 /* DataStorage.swift in Sources */,
+				73D8FAF52987A53E0084BE25 /* Assembler.swift in Sources */,
+				733F444429A01ADD002E2291 /* TargetModel.swift in Sources */,
+				733D5168298FDCF200275130 /* SmokeWidget.intentdefinition in Sources */,
+				733B0F542992ECE900E7EC6D /* StatisticsViewController.swift in Sources */,
+				733B0F6C299BB9DE00E7EC6D /* NarrowCollectionViewCell.swift in Sources */,
+				733F4442299FF43C002E2291 /* TargetViewModel.swift in Sources */,
+				73B712A229A233D2001BF38C /* SmokeItem+CoreDataProperties.swift in Sources */,
+				73D8FABE2987A1220084BE25 /* AppDelegate.swift in Sources */,
+				73D8FB0C2987B6350084BE25 /* UpdateViewModel.swift in Sources */,
+				73B7129A29A23293001BF38C /* SmokeItemData.swift in Sources */,
+				733F4440299FF2D0002E2291 /* TargetViewController.swift in Sources */,
+				733F444629A0210D002E2291 /* TargetStorage.swift in Sources */,
+				73D8FB14298A47DA0084BE25 /* DayViewController.swift in Sources */,
+				73D8FAC02987A1220084BE25 /* SceneDelegate.swift in Sources */,
+				73D8FB0A2987B04E0084BE25 /* CalendarViewModel.swift in Sources */,
+				733B0F6E299BC12800E7EC6D /* Useful.swift in Sources */,
+				73D8FAF72987A8FD0084BE25 /* Constants.swift in Sources */,
+				73D8FB16298A4A670084BE25 /* DayViewModel.swift in Sources */,
+				733B0F562992F98A00E7EC6D /* StatisticsViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73D8FACF2987A1230084BE25 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73D8FAD82987A1230084BE25 /* SmokeAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73D8FAD92987A1230084BE25 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73D8FAE42987A1230084BE25 /* SmokeAppUITestsLaunchTests.swift in Sources */,
+				73D8FAE22987A1230084BE25 /* SmokeAppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		733D516A298FDCF200275130 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 733D5156298FDCF000275130 /* SmokeWidgetExtension */;
+			targetProxy = 733D5169298FDCF200275130 /* PBXContainerItemProxy */;
+		};
+		73D8FAD52987A1230084BE25 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 73D8FAB92987A1220084BE25 /* SmokeApp */;
+			targetProxy = 73D8FAD42987A1230084BE25 /* PBXContainerItemProxy */;
+		};
+		73D8FADF2987A1230084BE25 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 73D8FAB92987A1220084BE25 /* SmokeApp */;
+			targetProxy = 73D8FADE2987A1230084BE25 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		73D8FACB2987A1230084BE25 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				73D8FACC2987A1230084BE25 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		733D516D298FDCF200275130 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = SmokeWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5FUKPK9U66;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SmokeWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SmokeWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = someballs.SmokeApp.SmokeWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		733D516E298FDCF200275130 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = SmokeWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5FUKPK9U66;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SmokeWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SmokeWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = someballs.SmokeApp.SmokeWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		73D8FAE52987A1230084BE25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		73D8FAE62987A1230084BE25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		73D8FAE82987A1230084BE25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC64047E8407C351FB0A343D /* Pods-SmokeApp.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SmokeApp/SmokeApp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5FUKPK9U66;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SmokeApp/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = someballs.SmokeApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		73D8FAE92987A1230084BE25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5BE3E2BD3411E1D6949AB01 /* Pods-SmokeApp.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SmokeApp/SmokeApp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5FUKPK9U66;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SmokeApp/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = someballs.SmokeApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		73D8FAEB2987A1230084BE25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 261E75E0A6E25E51D8D5AA54 /* Pods-SmokeAppTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5FUKPK9U66;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = someballs.SmokeAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SmokeApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SmokeApp";
+			};
+			name = Debug;
+		};
+		73D8FAEC2987A1230084BE25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8C5959F8690267739B71705 /* Pods-SmokeAppTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5FUKPK9U66;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = someballs.SmokeAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SmokeApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SmokeApp";
+			};
+			name = Release;
+		};
+		73D8FAEE2987A1230084BE25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4CDB4753EE8AECCAD3448443 /* Pods-SmokeApp-SmokeAppUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5FUKPK9U66;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = someballs.SmokeAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SmokeApp;
+			};
+			name = Debug;
+		};
+		73D8FAEF2987A1230084BE25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E8441C6FD1D0C4C3AEE522B /* Pods-SmokeApp-SmokeAppUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5FUKPK9U66;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = someballs.SmokeAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SmokeApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		733D516F298FDCF200275130 /* Build configuration list for PBXNativeTarget "SmokeWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				733D516D298FDCF200275130 /* Debug */,
+				733D516E298FDCF200275130 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73D8FAB52987A1220084BE25 /* Build configuration list for PBXProject "SmokeApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73D8FAE52987A1230084BE25 /* Debug */,
+				73D8FAE62987A1230084BE25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73D8FAE72987A1230084BE25 /* Build configuration list for PBXNativeTarget "SmokeApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73D8FAE82987A1230084BE25 /* Debug */,
+				73D8FAE92987A1230084BE25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73D8FAEA2987A1230084BE25 /* Build configuration list for PBXNativeTarget "SmokeAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73D8FAEB2987A1230084BE25 /* Debug */,
+				73D8FAEC2987A1230084BE25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73D8FAED2987A1230084BE25 /* Build configuration list for PBXNativeTarget "SmokeAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73D8FAEE2987A1230084BE25 /* Debug */,
+				73D8FAEF2987A1230084BE25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		73D8FAC62987A1220084BE25 /* SmokeApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				73D8FAC72987A1220084BE25 /* SmokeApp.xcdatamodel */,
+			);
+			currentVersion = 73D8FAC72987A1220084BE25 /* SmokeApp.xcdatamodel */;
+			path = SmokeApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 73D8FAB22987A1220084BE25 /* Project object */;
+}

@@ -1,0 +1,6 @@
+module Pods_SmokeApp_SmokeAppUITests {
+  umbrella header "Pods-SmokeApp-SmokeAppUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

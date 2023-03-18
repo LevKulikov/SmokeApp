@@ -1,0 +1,6 @@
+module Pods_SmokeApp {
+  umbrella header "Pods-SmokeApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
