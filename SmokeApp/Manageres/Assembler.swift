@@ -44,6 +44,7 @@ final class Assembler {
         
         let tabBar = UITabBarController()
         tabBar.setViewControllers([calendarNavCon, statisticsNavCon, targetNavCon], animated: true)
+        tabBar.delegate = calendarViewController as? CalendarViewController
         
         return tabBar
     }

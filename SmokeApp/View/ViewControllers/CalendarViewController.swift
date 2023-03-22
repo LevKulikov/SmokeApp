@@ -30,6 +30,9 @@ final class CalendarViewController: UIViewController, CalendarViewControllerProt
     /// Flag that identifies if scrollButton should be hidden
     private var buttonHide: Bool = true
     
+    /// Variable that indicates if view appeared
+    private var didAppear: Bool = false
+    
     /// Bag to dispose RxSwift items
     private let disposeBag = DisposeBag()
     
@@ -130,9 +133,15 @@ final class CalendarViewController: UIViewController, CalendarViewControllerProt
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        didAppear = true
 //        collectionView.isHidden = false
 //        animateShowingCollectionView()
 //        WidgetCenter.shared.reloadAllTimelines()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        didAppear = false
     }
     
     //MARK: Methods
@@ -358,7 +367,7 @@ final class CalendarCollectionViewAdapter {
     }
 }
 
-extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITabBarControllerDelegate {
     //MARK: UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         do {
@@ -453,6 +462,16 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
             }
             
             timer.invalidate()
+        }
+    }
+    
+    //MARK: UITabBarDelegate
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        if tabBarController.selectedIndex == 0 {
+            if didAppear {
+                guard let lastIndexPath = getAllIndexPathsInCollectioView().last else { return }
+                collectionView.scrollToItem(at: lastIndexPath, at: .bottom, animated: true)
+            }
         }
     }
 }
