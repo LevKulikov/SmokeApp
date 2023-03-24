@@ -15,22 +15,12 @@
 		733B0F6A299BB9B000E7EC6D /* ChartCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0F69299BB9B000E7EC6D /* ChartCollectionViewCell.swift */; };
 		733B0F6C299BB9DE00E7EC6D /* NarrowCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0F6B299BB9DE00E7EC6D /* NarrowCollectionViewCell.swift */; };
 		733B0F6E299BC12800E7EC6D /* Useful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0F6D299BC12800E7EC6D /* Useful.swift */; };
-		733D5159298FDCF000275130 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733D5158298FDCF000275130 /* WidgetKit.framework */; };
-		733D515B298FDCF000275130 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733D515A298FDCF000275130 /* SwiftUI.framework */; };
-		733D515E298FDCF000275130 /* SmokeWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733D515D298FDCF000275130 /* SmokeWidgetBundle.swift */; };
-		733D5160298FDCF000275130 /* SmokeWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733D515F298FDCF000275130 /* SmokeWidgetLiveActivity.swift */; };
-		733D5162298FDCF000275130 /* SmokeWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733D5161298FDCF000275130 /* SmokeWidget.swift */; };
-		733D5165298FDCF200275130 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 733D5164298FDCF200275130 /* Assets.xcassets */; };
-		733D5167298FDCF200275130 /* SmokeWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 733D5163298FDCF000275130 /* SmokeWidget.intentdefinition */; };
-		733D5168298FDCF200275130 /* SmokeWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 733D5163298FDCF000275130 /* SmokeWidget.intentdefinition */; };
-		733D516B298FDCF200275130 /* SmokeWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 733D5157298FDCF000275130 /* SmokeWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		733F4440299FF2D0002E2291 /* TargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F443F299FF2D0002E2291 /* TargetViewController.swift */; };
 		733F4442299FF43C002E2291 /* TargetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F4441299FF43C002E2291 /* TargetViewModel.swift */; };
 		733F444429A01ADD002E2291 /* TargetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F444329A01ADD002E2291 /* TargetModel.swift */; };
 		733F444629A0210D002E2291 /* TargetStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F444529A0210D002E2291 /* TargetStorage.swift */; };
 		734AD6F929AFBAF500F92A0F /* HapticManagere.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734AD6F829AFBAF500F92A0F /* HapticManagere.swift */; };
 		73B7129A29A23293001BF38C /* SmokeItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B7129929A23293001BF38C /* SmokeItemData.swift */; };
-		73B7129B29A232DE001BF38C /* SmokeItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B7129929A23293001BF38C /* SmokeItemData.swift */; };
 		73B712A229A233D2001BF38C /* SmokeItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B712A029A233D2001BF38C /* SmokeItem+CoreDataProperties.swift */; };
 		73B712A329A233D2001BF38C /* SmokeItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B712A129A233D2001BF38C /* SmokeItem+CoreDataClass.swift */; };
 		73D8FABE2987A1220084BE25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FABD2987A1220084BE25 /* AppDelegate.swift */; };
@@ -54,13 +44,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		733D5169298FDCF200275130 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 73D8FAB22987A1220084BE25 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 733D5156298FDCF000275130;
-			remoteInfo = SmokeWidgetExtension;
-		};
 		73D8FAD42987A1230084BE25 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 73D8FAB22987A1220084BE25 /* Project object */;
@@ -78,13 +61,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		733D516C298FDCF200275130 /* Embed Foundation Extensions */ = {
+		73FFF95029CE487C001BCED6 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				733D516B298FDCF200275130 /* SmokeWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,17 +86,8 @@
 		733B0F69299BB9B000E7EC6D /* ChartCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCollectionViewCell.swift; sourceTree = "<group>"; };
 		733B0F6B299BB9DE00E7EC6D /* NarrowCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarrowCollectionViewCell.swift; sourceTree = "<group>"; };
 		733B0F6D299BC12800E7EC6D /* Useful.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Useful.swift; sourceTree = "<group>"; };
-		733D5157298FDCF000275130 /* SmokeWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SmokeWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		733D5158298FDCF000275130 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		733D515A298FDCF000275130 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		733D515D298FDCF000275130 /* SmokeWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeWidgetBundle.swift; sourceTree = "<group>"; };
-		733D515F298FDCF000275130 /* SmokeWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeWidgetLiveActivity.swift; sourceTree = "<group>"; };
-		733D5161298FDCF000275130 /* SmokeWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeWidget.swift; sourceTree = "<group>"; };
-		733D5163298FDCF000275130 /* SmokeWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = SmokeWidget.intentdefinition; sourceTree = "<group>"; };
-		733D5164298FDCF200275130 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		733D5166298FDCF200275130 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		733D5170298FEF5500275130 /* SmokeApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SmokeApp.entitlements; sourceTree = "<group>"; };
-		733D5171298FEFA700275130 /* SmokeWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SmokeWidgetExtension.entitlements; sourceTree = "<group>"; };
 		733F443F299FF2D0002E2291 /* TargetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetViewController.swift; sourceTree = "<group>"; };
 		733F4441299FF43C002E2291 /* TargetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetViewModel.swift; sourceTree = "<group>"; };
 		733F444329A01ADD002E2291 /* TargetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetModel.swift; sourceTree = "<group>"; };
@@ -150,15 +123,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		733D5154298FDCF000275130 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				733D515B298FDCF000275130 /* SwiftUI.framework in Frameworks */,
-				733D5159298FDCF000275130 /* WidgetKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		73D8FAB72987A1220084BE25 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -221,27 +185,12 @@
 			path = Statistics;
 			sourceTree = "<group>";
 		};
-		733D515C298FDCF000275130 /* SmokeWidget */ = {
-			isa = PBXGroup;
-			children = (
-				733D515D298FDCF000275130 /* SmokeWidgetBundle.swift */,
-				733D515F298FDCF000275130 /* SmokeWidgetLiveActivity.swift */,
-				733D5161298FDCF000275130 /* SmokeWidget.swift */,
-				733D5163298FDCF000275130 /* SmokeWidget.intentdefinition */,
-				733D5164298FDCF200275130 /* Assets.xcassets */,
-				733D5166298FDCF200275130 /* Info.plist */,
-			);
-			path = SmokeWidget;
-			sourceTree = "<group>";
-		};
 		73D8FAB12987A1220084BE25 = {
 			isa = PBXGroup;
 			children = (
-				733D5171298FEFA700275130 /* SmokeWidgetExtension.entitlements */,
 				73D8FABC2987A1220084BE25 /* SmokeApp */,
 				73D8FAD62987A1230084BE25 /* SmokeAppTests */,
 				73D8FAE02987A1230084BE25 /* SmokeAppUITests */,
-				733D515C298FDCF000275130 /* SmokeWidget */,
 				73D8FABB2987A1220084BE25 /* Products */,
 				607F8EBAFD2D2BB033DAFD52 /* Pods */,
 				05B80DA332DA022506BBF15E /* Frameworks */,
@@ -254,7 +203,6 @@
 				73D8FABA2987A1220084BE25 /* SmokeApp.app */,
 				73D8FAD32987A1230084BE25 /* SmokeAppTests.xctest */,
 				73D8FADD2987A1230084BE25 /* SmokeAppUITests.xctest */,
-				733D5157298FDCF000275130 /* SmokeWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -262,7 +210,6 @@
 		73D8FABC2987A1220084BE25 /* SmokeApp */ = {
 			isa = PBXGroup;
 			children = (
-				733D5170298FEF5500275130 /* SmokeApp.entitlements */,
 				73D8FACE2987A1230084BE25 /* Info.plist */,
 				73D8FAFA2987AF200084BE25 /* DataStructure */,
 				73D8FAF82987AA120084BE25 /* Sources */,
@@ -378,23 +325,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		733D5156298FDCF000275130 /* SmokeWidgetExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 733D516F298FDCF200275130 /* Build configuration list for PBXNativeTarget "SmokeWidgetExtension" */;
-			buildPhases = (
-				733D5153298FDCF000275130 /* Sources */,
-				733D5154298FDCF000275130 /* Frameworks */,
-				733D5155298FDCF000275130 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SmokeWidgetExtension;
-			productName = SmokeWidgetExtension;
-			productReference = 733D5157298FDCF000275130 /* SmokeWidgetExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		73D8FAB92987A1220084BE25 /* SmokeApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 73D8FAE72987A1230084BE25 /* Build configuration list for PBXNativeTarget "SmokeApp" */;
@@ -403,12 +333,11 @@
 				73D8FAB62987A1220084BE25 /* Sources */,
 				73D8FAB72987A1220084BE25 /* Frameworks */,
 				73D8FAB82987A1220084BE25 /* Resources */,
-				733D516C298FDCF200275130 /* Embed Foundation Extensions */,
+				73FFF95029CE487C001BCED6 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				733D516A298FDCF200275130 /* PBXTargetDependency */,
 			);
 			name = SmokeApp;
 			packageProductDependencies = (
@@ -465,9 +394,6 @@
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
-					733D5156298FDCF000275130 = {
-						CreatedOnToolsVersion = 14.2;
-					};
 					73D8FAB92987A1220084BE25 = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -499,20 +425,11 @@
 				73D8FAB92987A1220084BE25 /* SmokeApp */,
 				73D8FAD22987A1230084BE25 /* SmokeAppTests */,
 				73D8FADC2987A1230084BE25 /* SmokeAppUITests */,
-				733D5156298FDCF000275130 /* SmokeWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		733D5155298FDCF000275130 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				733D5165298FDCF200275130 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		73D8FAB82987A1220084BE25 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -608,18 +525,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		733D5153298FDCF000275130 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				733D5167298FDCF200275130 /* SmokeWidget.intentdefinition in Sources */,
-				733D5162298FDCF000275130 /* SmokeWidget.swift in Sources */,
-				73B7129B29A232DE001BF38C /* SmokeItemData.swift in Sources */,
-				733D5160298FDCF000275130 /* SmokeWidgetLiveActivity.swift in Sources */,
-				733D515E298FDCF000275130 /* SmokeWidgetBundle.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		73D8FAB62987A1220084BE25 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -634,7 +539,6 @@
 				73D8FB0E2987B7100084BE25 /* DataStorage.swift in Sources */,
 				73D8FAF52987A53E0084BE25 /* Assembler.swift in Sources */,
 				733F444429A01ADD002E2291 /* TargetModel.swift in Sources */,
-				733D5168298FDCF200275130 /* SmokeWidget.intentdefinition in Sources */,
 				733B0F542992ECE900E7EC6D /* StatisticsViewController.swift in Sources */,
 				733B0F6C299BB9DE00E7EC6D /* NarrowCollectionViewCell.swift in Sources */,
 				733F4442299FF43C002E2291 /* TargetViewModel.swift in Sources */,
@@ -674,11 +578,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		733D516A298FDCF200275130 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 733D5156298FDCF000275130 /* SmokeWidgetExtension */;
-			targetProxy = 733D5169298FDCF200275130 /* PBXContainerItemProxy */;
-		};
 		73D8FAD52987A1230084BE25 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 73D8FAB92987A1220084BE25 /* SmokeApp */;
@@ -703,62 +602,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		733D516D298FDCF200275130 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = SmokeWidgetExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5FUKPK9U66;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SmokeWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = SmokeWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = someballs.SmokeApp.SmokeWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		733D516E298FDCF200275130 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = SmokeWidgetExtension.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5FUKPK9U66;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SmokeWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = SmokeWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = someballs.SmokeApp.SmokeWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		73D8FAE52987A1230084BE25 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -809,7 +652,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -863,7 +706,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -877,17 +720,19 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CC64047E8407C351FB0A343D /* Pods-SmokeApp.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = SmokeApp/SmokeApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5FUKPK9U66;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SmokeApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SmokeApp;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
@@ -895,7 +740,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = someballs.SmokeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -911,17 +756,19 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E5BE3E2BD3411E1D6949AB01 /* Pods-SmokeApp.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = SmokeApp/SmokeApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5FUKPK9U66;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SmokeApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SmokeApp;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
@@ -929,7 +776,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = someballs.SmokeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -949,11 +796,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5FUKPK9U66;
+				DEVELOPMENT_TEAM = 7P2A9ACZ7S;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = someballs.SmokeAppTests;
+				PRODUCT_BUNDLE_IDENTIFIER = healthapps.SmokeAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -970,11 +817,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5FUKPK9U66;
+				DEVELOPMENT_TEAM = 7P2A9ACZ7S;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = someballs.SmokeAppTests;
+				PRODUCT_BUNDLE_IDENTIFIER = healthapps.SmokeAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -990,10 +837,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5FUKPK9U66;
+				DEVELOPMENT_TEAM = 7P2A9ACZ7S;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = someballs.SmokeAppUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = healthapps.SmokeAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -1009,10 +856,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5FUKPK9U66;
+				DEVELOPMENT_TEAM = 7P2A9ACZ7S;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = someballs.SmokeAppUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = healthapps.SmokeAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -1024,15 +871,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		733D516F298FDCF200275130 /* Build configuration list for PBXNativeTarget "SmokeWidgetExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				733D516D298FDCF200275130 /* Debug */,
-				733D516E298FDCF200275130 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		73D8FAB52987A1220084BE25 /* Build configuration list for PBXProject "SmokeApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
