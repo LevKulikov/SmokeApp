@@ -68,6 +68,7 @@ final class DayViewModel: DayViewModelProtocol {
         let bindingClosure: (Target?) -> Void = { [weak self] newTarget in
             guard let self else { return }
             guard let newTarget else {
+                try? self.dataStorage.deleteTargetForItem(self.smokeItem)
                 self.targetUpdate?(nil)
                 return
             }
@@ -93,6 +94,7 @@ final class DayViewModel: DayViewModelProtocol {
         let currentDate = calendar.dateComponents([.year, .month, .day], from: Date.now)
         let smokeDate = calendar.dateComponents([.year, .month, .day], from: smokeItem.date!)
         guard currentDate == smokeDate else { return }
+        bindWithTargetOwner()
         
         guard let userTarget = targetOwner.userTarget?.userTarget else {
             try? dataStorage.deleteTargetForItem(smokeItem)
@@ -109,6 +111,5 @@ final class DayViewModel: DayViewModelProtocol {
                 try? dataStorage.updateDataItem(smokeItem, newDate: nil, newCount: nil, targetAmount: Int16(averageSmokes))
             }
         }
-        bindWithTargetOwner()
     }
 }

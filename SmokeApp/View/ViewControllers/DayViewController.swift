@@ -465,6 +465,7 @@ final class DayViewController: UIViewController, DayViewControllerPotocol {
     private func setBindingWithViewModel() {
         let bindingTargetCloser: (Int16?) -> Void = { [weak self] newLimit in
             if let newLimit {
+                self?.addLimitLabelIfNeeded()
                 self?.limitLabel.text = "Todays limit: \(newLimit)"
                 self?.limitLabel.isHidden = false
                 guard let smokesAmount = self?.viewModel.selectedSmokeItem.amount else { return }
