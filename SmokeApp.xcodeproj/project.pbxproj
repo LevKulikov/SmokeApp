@@ -23,6 +23,9 @@
 		73B7129A29A23293001BF38C /* SmokeItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B7129929A23293001BF38C /* SmokeItemData.swift */; };
 		73B712A229A233D2001BF38C /* SmokeItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B712A029A233D2001BF38C /* SmokeItem+CoreDataProperties.swift */; };
 		73B712A329A233D2001BF38C /* SmokeItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B712A129A233D2001BF38C /* SmokeItem+CoreDataClass.swift */; };
+		73C8039629D5A092007A20BC /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C8039529D5A092007A20BC /* AccountViewModel.swift */; };
+		73C8039829D5A10C007A20BC /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C8039729D5A10C007A20BC /* AccountViewController.swift */; };
+		73C8039A29D5A1A1007A20BC /* UserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C8039929D5A1A1007A20BC /* UserNotificationManager.swift */; };
 		73D8FABE2987A1220084BE25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FABD2987A1220084BE25 /* AppDelegate.swift */; };
 		73D8FAC02987A1220084BE25 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FABF2987A1220084BE25 /* SceneDelegate.swift */; };
 		73D8FAC22987A1220084BE25 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FAC12987A1220084BE25 /* CalendarViewController.swift */; };
@@ -96,6 +99,9 @@
 		73B7129929A23293001BF38C /* SmokeItemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeItemData.swift; sourceTree = "<group>"; };
 		73B712A029A233D2001BF38C /* SmokeItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SmokeItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		73B712A129A233D2001BF38C /* SmokeItem+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SmokeItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		73C8039529D5A092007A20BC /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		73C8039729D5A10C007A20BC /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		73C8039929D5A1A1007A20BC /* UserNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationManager.swift; sourceTree = "<group>"; };
 		73D8FABA2987A1220084BE25 /* SmokeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmokeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73D8FABD2987A1220084BE25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73D8FABF2987A1220084BE25 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -244,6 +250,7 @@
 				73D8FAF62987A8FD0084BE25 /* Constants.swift */,
 				733B0F6D299BC12800E7EC6D /* Useful.swift */,
 				734AD6F829AFBAF500F92A0F /* HapticManagere.swift */,
+				73C8039929D5A1A1007A20BC /* UserNotificationManager.swift */,
 			);
 			path = Manageres;
 			sourceTree = "<group>";
@@ -298,6 +305,7 @@
 				73D8FB15298A4A670084BE25 /* DayViewModel.swift */,
 				733B0F552992F98A00E7EC6D /* StatisticsViewModel.swift */,
 				733F4441299FF43C002E2291 /* TargetViewModel.swift */,
+				73C8039529D5A092007A20BC /* AccountViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -309,6 +317,7 @@
 				73D8FB13298A47DA0084BE25 /* DayViewController.swift */,
 				733B0F532992ECE900E7EC6D /* StatisticsViewController.swift */,
 				733F443F299FF2D0002E2291 /* TargetViewController.swift */,
+				73C8039729D5A10C007A20BC /* AccountViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -531,8 +540,10 @@
 			files = (
 				73D8FB122987F3380084BE25 /* CalendarCollectionViewCell.swift in Sources */,
 				733B0F6A299BB9B000E7EC6D /* ChartCollectionViewCell.swift in Sources */,
+				73C8039829D5A10C007A20BC /* AccountViewController.swift in Sources */,
 				73D8FAC22987A1220084BE25 /* CalendarViewController.swift in Sources */,
 				733B0F68299BB91F00E7EC6D /* WideCollectionViewCell.swift in Sources */,
+				73C8039A29D5A1A1007A20BC /* UserNotificationManager.swift in Sources */,
 				73B712A329A233D2001BF38C /* SmokeItem+CoreDataClass.swift in Sources */,
 				73D8FAC82987A1220084BE25 /* SmokeApp.xcdatamodeld in Sources */,
 				734AD6F929AFBAF500F92A0F /* HapticManagere.swift in Sources */,
@@ -551,6 +562,7 @@
 				73D8FB14298A47DA0084BE25 /* DayViewController.swift in Sources */,
 				73D8FAC02987A1220084BE25 /* SceneDelegate.swift in Sources */,
 				73D8FB0A2987B04E0084BE25 /* CalendarViewModel.swift in Sources */,
+				73C8039629D5A092007A20BC /* AccountViewModel.swift in Sources */,
 				733B0F6E299BC12800E7EC6D /* Useful.swift in Sources */,
 				73D8FAF72987A8FD0084BE25 /* Constants.swift in Sources */,
 				73D8FB16298A4A670084BE25 /* DayViewModel.swift in Sources */,

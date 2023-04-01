@@ -87,4 +87,9 @@ final class Assembler {
         let viewController = StatisticsViewController(viewModel: viewModel)
         return viewController
     }
+    
+    //TODO: Continue
+    func buildMVVMAccountViewController() -> UIViewController {
+        return UIViewController()
+    }
 }
