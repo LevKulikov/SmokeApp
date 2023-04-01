@@ -328,7 +328,7 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
     private func setTargetTypeSegmentedControlConstraints() {
         NSLayoutConstraint.activate([
             targetTypeSegmentedControl.heightAnchor.constraint(equalToConstant: 40),
-            targetTypeSegmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            targetTypeSegmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             targetTypeSegmentedControl.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30),
             targetTypeSegmentedControl.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30),
         ])
@@ -336,7 +336,10 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
     
     /// Sets layout constraints to circleView
     private func setCircleViewConstraints() {
-        let multiplier: CGFloat = 0.65
+        var multiplier: CGFloat = 0.65
+        if view.safeAreaLayoutGuide.layoutFrame.height < 570 {
+            multiplier = 0.3
+        }
         let maxDimensionValue: CGFloat = 150
         
         let circleViewHeightAnchor = circleView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: multiplier)
@@ -344,7 +347,7 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
         let circleViewHeightAnchorMax = circleView.heightAnchor.constraint(lessThanOrEqualToConstant: maxDimensionValue)
         circleViewHeightAnchorMax.priority = .required
         
-        let topAnchorConstant: CGFloat = 100
+        let topAnchorConstant: CGFloat = 90
         NSLayoutConstraint.activate([
             circleView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topAnchorConstant),
             circleView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
@@ -364,6 +367,7 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
             limitTextField.leftAnchor.constraint(equalTo: circleView.leftAnchor),
             limitTextField.rightAnchor.constraint(equalTo: circleView.rightAnchor)
         ])
+        circleView.layoutIfNeeded()
         limitTextField.font = .boldSystemFont(ofSize: circleView.safeAreaLayoutGuide.layoutFrame.width * 0.35)
     }
     
@@ -375,7 +379,7 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
         )
         NSLayoutConstraint.activate([
             quitDaysLimitLabelTopConstraint,
-            quitDaysInitialLimitLabel.heightAnchor.constraint(equalToConstant: 50),
+            quitDaysInitialLimitLabel.heightAnchor.constraint(equalToConstant: 36),
             quitDaysInitialLimitLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
@@ -404,9 +408,14 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
     
     /// Sets layout constraints to targetTypeLabel
     private func setTargetTypeLabelConstraints() {
+        var topAnchorConstant: CGFloat = 60
+        if view.safeAreaLayoutGuide.layoutFrame.height < 570 {
+            topAnchorConstant = 40
+        }
+        
         NSLayoutConstraint.activate([
             targetTypeLabel.heightAnchor.constraint(equalToConstant: 40),
-            targetTypeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 70),
+            targetTypeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topAnchorConstant),
             targetTypeLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30),
             targetTypeLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30),
         ])
@@ -761,8 +770,7 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
         targetValue.isHidden = false
         targetFulfilmentDescriptionLabel.isHidden = false
         targetFulfilmentLabel.isHidden = false
-        
-        
+                
         setTargetTypeLabelConstraints()
         setTargetValueConstraints()
         setTargetFulfilmentLabelsConstraints()

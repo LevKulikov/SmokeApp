@@ -195,6 +195,10 @@ final class DayViewController: UIViewController, DayViewControllerPotocol {
     private func setCircleViewConstraints() {
         let multiplier: CGFloat = 0.65
         let maxDimensionValue: CGFloat = 300
+        var topAnchorConstant: CGFloat = 60
+        if view.safeAreaLayoutGuide.layoutFrame.height < 570 {
+            topAnchorConstant = 30
+        }
         
         let imageViewHeightAnchor = circleView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: multiplier)
         imageViewHeightAnchor.priority = .defaultHigh
@@ -202,7 +206,7 @@ final class DayViewController: UIViewController, DayViewControllerPotocol {
         imageViewHeightAnchorMax.priority = .required
         
         NSLayoutConstraint.activate([
-            circleView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 75),
+            circleView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topAnchorConstant),
             circleView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             imageViewHeightAnchor,
             imageViewHeightAnchorMax,
