@@ -77,11 +77,9 @@ final class DayViewModel: DayViewModelProtocol {
             case .dayLimit(from: _, smokes: let limit):
                 try? self.dataStorage.updateDataItem(self.smokeItem, newDate: nil, newCount: nil, targetAmount: limit)
                 self.targetUpdate?(limit)
-            case .quitTime:
-                let statisticsViewModel = StatisticsViewModel(dataStorage: self.dataStorage)
-                let averageSmokes = Int16(statisticsViewModel.countAverageSmokesNumber())
-                try? self.dataStorage.updateDataItem(self.smokeItem, newDate: nil, newCount: nil, targetAmount: averageSmokes)
-                self.targetUpdate?(averageSmokes)
+            case .quitTime(from: _, days: _, initialLimit: let limit):
+                try? self.dataStorage.updateDataItem(self.smokeItem, newDate: nil, newCount: nil, targetAmount: limit)
+                self.targetUpdate?(limit)
             }
         }
         
@@ -105,10 +103,8 @@ final class DayViewModel: DayViewModelProtocol {
             switch userTarget {
             case .dayLimit(from: _, smokes: let limit):
                 try? dataStorage.updateDataItem(smokeItem, newDate: nil, newCount: nil, targetAmount: limit)
-            case .quitTime:
-                let statisticsViewModel = StatisticsViewModel(dataStorage: dataStorage)
-                let averageSmokes = statisticsViewModel.countAverageSmokesNumber()
-                try? dataStorage.updateDataItem(smokeItem, newDate: nil, newCount: nil, targetAmount: Int16(averageSmokes))
+            case .quitTime(from: _, days: _, initialLimit: let limit):
+                try? dataStorage.updateDataItem(smokeItem, newDate: nil, newCount: nil, targetAmount: limit)
             }
         }
     }

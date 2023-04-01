@@ -104,7 +104,7 @@ final class CalendarViewModel: CalendarViewModelProtocol {
     private func fixStartSmokeItemForQuitTarget() {
         if let target = targetOwner.userTarget {
             switch target.userTarget {
-            case .quitTime(from: let fromDate, days: _):
+            case .quitTime(from: let fromDate, days: _, initialLimit: _):
                 let caledar = Calendar.current
                 if let startSmokeItem = try? dataStorage.getDataItems().first(where: {
                     caledar.startOfDay(for: $0.date!) == caledar.startOfDay(for: fromDate)
@@ -127,7 +127,7 @@ final class CalendarViewModel: CalendarViewModelProtocol {
             switch userTarget {
             case .dayLimit(from: _, smokes: let maxNumber):
                 limit = maxNumber
-            case .quitTime(from: let fromDate, days: let daysToQuit):
+            case .quitTime(from: let fromDate, days: let daysToQuit, initialLimit: _):
                 limit = countNeededLimit(from: fromDate, to: date, days: daysToQuit)
             }
         }

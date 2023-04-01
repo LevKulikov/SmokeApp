@@ -28,11 +28,14 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
     /// Bag to dispose RxSwift items
     private let disposeBag = DisposeBag()
     
-    /// Initial point of location for secondCircleView
-    private var secondCircleViewInitialPoint: CGPoint?
+    /// Initial Y point for circleView
+    private var circleViewInitialY: CGFloat!
     
-    /// Initial point of location for quitDaysInitialLimitLabel
-    private var quitDaysLimitLabelInitialPoint: CGPoint?
+    /// Initial Y point for quitDaysInitialLimitLabel
+    private var quitDaysLimitLabelInitialY: CGFloat!
+    
+    /// Constraint for quitDaysInitialLimitLabel, which is needed for animation
+    private var quitDaysLimitLabelTopConstraint: NSLayoutConstraint!
     
     /// Introdaction label displays general information to user about what is this view about
     private lazy var introLabel: UILabel = {
@@ -149,15 +152,9 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
         textField.keyboardType = .numberPad
         textField.returnKeyType = .done
         textField.borderStyle = .none
+        textField.text = "20"
         textField.placeholder = "0"
         textField.delegate = self
-        
-        // Recommended value is minimal registered smokes amount ever, except 0 value
-        if let recommendedValue = viewModel.getAllTimeMinimalSmokes() {
-            textField.text = String(recommendedValue)
-        } else {
-            textField.text = "0"
-        }
         
         /// Filters only number values
         textField.rxAcceptingOnlyInt16Field().disposed(by: disposeBag)
@@ -288,6 +285,13 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
         changeCircleViewsWithKeyboard()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setCircleViewConstraints()
+        circleView.layoutIfNeeded()
+        quitDaysLimitLabelInitialY = circleViewInitialY + circleView.bounds.height + 20
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         reloadLabelsData()
@@ -340,14 +344,16 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
         let circleViewHeightAnchorMax = circleView.heightAnchor.constraint(lessThanOrEqualToConstant: maxDimensionValue)
         circleViewHeightAnchorMax.priority = .required
         
+        let topAnchorConstant: CGFloat = 100
         NSLayoutConstraint.activate([
-            circleView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+            circleView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: topAnchorConstant),
             circleView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             circleViewHeightAnchor,
             circleViewHeightAnchorMax,
             circleView.widthAnchor.constraint(equalTo: circleView.heightAnchor, multiplier: 2)
         ])
         circleView.layer.cornerRadius = circleView.safeAreaLayoutGuide.layoutFrame.width / 8
+        circleViewInitialY = topAnchorConstant
     }
     
     /// Sets layout constraints to limitTextField **and text font depending on circleView width**
@@ -363,12 +369,15 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
     
     /// Sets layout constraints to quitDaysInitialLimitLabel
     private func setQuitDaysInitialLimitLabelConstraints() {
+        quitDaysLimitLabelTopConstraint = quitDaysInitialLimitLabel.topAnchor.constraint(
+            equalTo: view.safeAreaLayoutGuide.topAnchor,
+            constant: quitDaysLimitLabelInitialY
+        )
         NSLayoutConstraint.activate([
-            quitDaysInitialLimitLabel.topAnchor.constraint(equalTo: circleView.bottomAnchor, constant: 20),
+            quitDaysLimitLabelTopConstraint,
             quitDaysInitialLimitLabel.heightAnchor.constraint(equalToConstant: 50),
             quitDaysInitialLimitLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
-        quitDaysLimitLabelInitialPoint = quitDaysInitialLimitLabel.frame.origin
     }
     
     /// Sets layout constraints to secondCircleView
@@ -380,7 +389,6 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
             secondCircleView.widthAnchor.constraint(equalTo: secondCircleView.heightAnchor, multiplier: 2)
         ])
         secondCircleView.layer.cornerRadius = secondCircleView.safeAreaLayoutGuide.layoutFrame.width / 8
-        secondCircleViewInitialPoint = secondCircleView.frame.origin
     }
     
     /// Sets layout constraints to initialLimitTextField
@@ -805,7 +813,7 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
     private func saveTarget() throws {
         var int16: Int16
         do {
-            int16 = try checkValueInTextField()
+            int16 = try checkValueInTextField(limitTextField)
         } catch {
             limitTextField.text = "0"
             throw error
@@ -816,8 +824,15 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
             let target = Target(userTarget: .dayLimit(from: Date.now, smokes: int16))
             viewModel.setNewTarget(target)
         case 1:
-            let target = Target(userTarget: .quitTime(from: Date.now, days: int16))
-            viewModel.setNewTarget(target)
+            var initialInt16: Int16
+            do {
+                initialInt16 = try checkValueInTextField(initialLimitTextField)
+                let target = Target(userTarget: .quitTime(from: Date.now, days: int16, initialLimit: initialInt16))
+                viewModel.setNewTarget(target)
+            } catch {
+                initialLimitTextField.text = "0"
+                throw error
+            }
         default:
             break
         }
@@ -825,8 +840,8 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
     
     /// Checks if value in text field is int. If it is not, it throws an error
     /// - Returns: If value is Int16, so it returns Int16
-    private func checkValueInTextField() throws -> Int16 {
-        guard let string = limitTextField.text else {
+    private func checkValueInTextField(_ textField: UITextField) throws -> Int16 {
+        guard let string = textField.text else {
             throw TargetError.noValue
         }
         guard let int16 = Int16(string) else {
@@ -1095,11 +1110,13 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
         if initialLimitTextField.isFirstResponder {
             targetTypeSegmentedControl.isEnabled = false
             limitTextField.isEnabled = false
-            targetTypeSegmentedControl.alpha = 0.5
+            targetTypeSegmentedControl.alpha = 0
             circleView.alpha = 0.5
             
-            quitDaysInitialLimitLabel.frame.origin.y = circleView.frame.origin.y - quitDaysInitialLimitLabel.frame.height - 10
-            secondCircleView.frame.origin.y = circleView.frame.origin.y
+            quitDaysLimitLabelTopConstraint.constant = circleViewInitialY - quitDaysInitialLimitLabel.bounds.height - 10
+            UIView.animate(withDuration: 0.5, delay: 0) { [weak self] in
+                self?.view.layoutIfNeeded()
+            }
         } else if limitTextField.isFirstResponder {
             initialLimitTextField.isEnabled = false
         }
@@ -1113,8 +1130,10 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
             targetTypeSegmentedControl.alpha = 1
             circleView.alpha = 1
             
-            quitDaysInitialLimitLabel.frame.origin.y = quitDaysLimitLabelInitialPoint?.y ?? 0
-            secondCircleView.frame.origin.y = secondCircleViewInitialPoint?.y ?? 0
+            quitDaysLimitLabelTopConstraint.constant = quitDaysLimitLabelInitialY
+            UIView.animate(withDuration: 0.5, delay: 0) { [weak self] in
+                self?.view.layoutIfNeeded()
+            }
         } else if limitTextField.isFirstResponder {
             initialLimitTextField.isEnabled = true
         }

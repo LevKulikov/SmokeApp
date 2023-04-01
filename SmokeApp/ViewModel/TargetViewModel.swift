@@ -71,7 +71,7 @@ final class TargetViewModel: TargetViewModelProtocol {
             return nil
         }
         switch target.userTarget {
-        case .quitTime(from: let startDate, days: let days):
+        case .quitTime(from: let startDate, days: let days, initialLimit: _):
             let calendar = Calendar.current
             let currentDate = calendar.startOfDay(for: Date.now)
             let fromStartDate = calendar.startOfDay(for: startDate)
@@ -94,7 +94,7 @@ final class TargetViewModel: TargetViewModelProtocol {
         
         var startDate: Date
         switch target.userTarget {
-        case .quitTime(from: let date, days: _):
+        case .quitTime(from: let date, days: _, initialLimit: _):
             startDate = date
         case .dayLimit(from: let date, smokes: _):
             startDate = date
