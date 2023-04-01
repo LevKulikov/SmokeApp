@@ -586,7 +586,7 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
             let animation = AnimationType.from(direction: .top, offset: 100)
             targetValue.animate(
                 animations: [animation],
-                delay: 0.15,
+                delay: 0.1,
                 duration: 0.4,
                 completion: completion
             )
@@ -612,7 +612,7 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
             let animation = AnimationType.from(direction: .top, offset: 100)
             targetFulfilmentDescriptionLabel.animate(
                 animations: [animation],
-                delay: 0.15,
+                delay: 0.2,
                 duration: 0.4,
                 completion: completion
             )
@@ -638,7 +638,7 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
             let animation = AnimationType.from(direction: .top, offset: 100)
             targetFulfilmentLabel.animate(
                 animations: [animation],
-                delay: 0.15,
+                delay: 0.3,
                 duration: 0.4,
                 completion: completion
             )
