@@ -28,6 +28,12 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
     /// Bag to dispose RxSwift items
     private let disposeBag = DisposeBag()
     
+    /// Initial point of location for secondCircleView
+    private var secondCircleViewInitialPoint: CGPoint?
+    
+    /// Initial point of location for quitDaysInitialLimitLabel
+    private var quitDaysLimitLabelInitialPoint: CGPoint?
+    
     /// Introdaction label displays general information to user about what is this view about
     private lazy var introLabel: UILabel = {
         let label = UILabel()
@@ -97,6 +103,16 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
         return circleView
     }()
     
+    /// View for background circle for limitTextField to enter initial limit when user chooses to set days to quit smoking
+    private lazy var secondCircleView: UIView = {
+        let circleView = UIView()
+        circleView.translatesAutoresizingMaskIntoConstraints = false
+        circleView.backgroundColor = .systemGray5
+        circleView.isUserInteractionEnabled = true
+        circleView.isHidden = true
+        return circleView
+    }()
+    
     /// TextField to set count number from limit
     private lazy var limitTextField: UITextField = {
         let textField = UITextField()
@@ -121,6 +137,44 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
         textField.rxAcceptingOnlyInt16Field().disposed(by: disposeBag)
         
         return textField
+    }()
+    
+    /// TextField to set count number for initial limit when user chooses to set days to quit smoking
+    private lazy var initialLimitTextField: UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.textAlignment = .center
+        textField.textColor = .label
+        textField.tintColor = .systemGray
+        textField.keyboardType = .numberPad
+        textField.returnKeyType = .done
+        textField.borderStyle = .none
+        textField.placeholder = "0"
+        textField.delegate = self
+        
+        // Recommended value is minimal registered smokes amount ever, except 0 value
+        if let recommendedValue = viewModel.getAllTimeMinimalSmokes() {
+            textField.text = String(recommendedValue)
+        } else {
+            textField.text = "0"
+        }
+        
+        /// Filters only number values
+        textField.rxAcceptingOnlyInt16Field().disposed(by: disposeBag)
+        
+        return textField
+    }()
+    
+    private lazy var quitDaysInitialLimitLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Initial smoke limit"
+        label.font = .systemFont(ofSize: 35)
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .center
+        label.textColor = .label
+        label.isHidden = true
+        return label
     }()
     
     /// Label displays set target type
@@ -170,7 +224,6 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
     /// Value with user's target fulfilment, it is binded with targetFulfilmentLabel to provide actual data
     private var targetFulfimentValue: Float? {
         didSet {
-            //TODO: bind with targetFulfilmintLabel
             guard let targetFulfimentValue else {
                 targetFulfilmentLabel.text = "Nil"
                 targetFulfilmentLabel.textColor = .label
@@ -213,15 +266,26 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
         title = "Smokes Target"
         view.backgroundColor = Constants.shared.viewControllerBackgroundColor
         view.addSubviews(
-            introLabel, addTargetButton, targetTypeSegmentedControl, circleView, targetTypeLabel, targetValue, targetFulfilmentDescriptionLabel, targetFulfilmentLabel
+            introLabel,
+            addTargetButton,
+            targetTypeSegmentedControl,
+            circleView,
+            targetTypeLabel,
+            targetValue,
+            targetFulfilmentDescriptionLabel,
+            targetFulfilmentLabel,
+            quitDaysInitialLimitLabel,
+            secondCircleView
         )
         circleView.addSubview(limitTextField)
+        secondCircleView.addSubview(initialLimitTextField)
         // Identifies if its needed to show inro label or set target information
         if let _ = viewModel.target {
             setTargetViews()
         } else {
             setIntroAndToolsToSetTargetViews()
         }
+        changeCircleViewsWithKeyboard()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -232,6 +296,7 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         limitTextField.resignFirstResponder()
+        initialLimitTextField.resignFirstResponder()
     }
     
     //MARK: Methdos
@@ -294,6 +359,39 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
             limitTextField.rightAnchor.constraint(equalTo: circleView.rightAnchor)
         ])
         limitTextField.font = .boldSystemFont(ofSize: circleView.safeAreaLayoutGuide.layoutFrame.width * 0.35)
+    }
+    
+    /// Sets layout constraints to quitDaysInitialLimitLabel
+    private func setQuitDaysInitialLimitLabelConstraints() {
+        NSLayoutConstraint.activate([
+            quitDaysInitialLimitLabel.topAnchor.constraint(equalTo: circleView.bottomAnchor, constant: 20),
+            quitDaysInitialLimitLabel.heightAnchor.constraint(equalToConstant: 50),
+            quitDaysInitialLimitLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        quitDaysLimitLabelInitialPoint = quitDaysInitialLimitLabel.frame.origin
+    }
+    
+    /// Sets layout constraints to secondCircleView
+    private func setSecondCircleViewConstraints() {
+        NSLayoutConstraint.activate([
+            secondCircleView.topAnchor.constraint(equalTo: quitDaysInitialLimitLabel.bottomAnchor, constant: 10),
+            secondCircleView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            secondCircleView.heightAnchor.constraint(equalTo: circleView.heightAnchor),
+            secondCircleView.widthAnchor.constraint(equalTo: secondCircleView.heightAnchor, multiplier: 2)
+        ])
+        secondCircleView.layer.cornerRadius = secondCircleView.safeAreaLayoutGuide.layoutFrame.width / 8
+        secondCircleViewInitialPoint = secondCircleView.frame.origin
+    }
+    
+    /// Sets layout constraints to initialLimitTextField
+    private func setInitialLimitTextFieldConstraints() {
+        NSLayoutConstraint.activate([
+            initialLimitTextField.topAnchor.constraint(equalTo: secondCircleView.topAnchor),
+            initialLimitTextField.bottomAnchor.constraint(equalTo: secondCircleView.bottomAnchor),
+            initialLimitTextField.leftAnchor.constraint(equalTo: secondCircleView.leftAnchor),
+            initialLimitTextField.rightAnchor.constraint(equalTo: secondCircleView.rightAnchor)
+        ])
+        initialLimitTextField.font = .boldSystemFont(ofSize: secondCircleView.safeAreaLayoutGuide.layoutFrame.width * 0.35)
     }
     
     /// Sets layout constraints to targetTypeLabel
@@ -549,6 +647,37 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
         }
     }
     
+    /// Animates view for setting initial limit when user chooses quit days for target showing or disappearing
+    /// - Parameter showing: enter *true* if it is needed to show, enter *false* if to disappeare
+    /// - Parameter completion: code block that is executed after animation ends
+    private func animateInitialLimitView(showing: Bool, completion: (() -> Void)? = nil) {
+        guard !quitDaysInitialLimitLabel.isHidden,
+              !secondCircleView.isHidden
+        else { return }
+        
+        if showing {
+            let animation = AnimationType.from(direction: .top, offset: 100)
+            UIView.animate(
+                views: [quitDaysInitialLimitLabel, secondCircleView],
+                animations: [animation],
+                delay: 0.15,
+                duration: 0.4,
+                completion: completion
+            )
+        } else {
+            let animation = AnimationType.from(direction: .top, offset: 0)
+            UIView.animate(
+                views: [quitDaysInitialLimitLabel, secondCircleView],
+                animations: [animation],
+                reversed: true,
+                initialAlpha: 1,
+                finalAlpha: 0,
+                duration: 0.3,
+                completion: completion
+            )
+        }
+    }
+    
     /// Sets right button to Navigation Bar
     /// - Parameter image: Image to set in the button
     /// - Parameter selector: selector to set as action in button
@@ -585,7 +714,7 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
     }
     
     /// Adds button above keyboard to turn down keyboard
-    private func addDoneButtonToKeyboard() {
+    private func addDoneButtonToKeyboard(for textField: UITextField) {
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen().bounds.width, height: 50))
         toolBar.barStyle = .default
         toolBar.backgroundColor = .clear
@@ -594,14 +723,26 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
         let doneButton = UIBarButtonItem(
             title: nil,
             image: UIImage(systemName: "keyboard.chevron.compact.down"),
-            primaryAction: UIAction(handler: { [weak self] _ in
-                self?.limitTextField.resignFirstResponder()
+            primaryAction: UIAction(handler: { _ in
+                textField.resignFirstResponder()
             })
         )
         
         toolBar.setItems([spaceButton, doneButton], animated: true)
         toolBar.sizeToFit()
-        limitTextField.inputAccessoryView = toolBar
+        textField.inputAccessoryView = toolBar
+    }
+    
+    /// Changes Circle View appearance with keyboard showing or hiding
+    private func changeCircleViewsWithKeyboard() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
     }
     
     /// Sets views that display set by user target, also sets information to views
@@ -649,7 +790,8 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
         setTargetTypeSegmentedControlConstraints()
         setCircleViewConstraints()
         setLimitTextFieldConstraints()
-        addDoneButtonToKeyboard()
+        addDoneButtonToKeyboard(for: limitTextField)
+        addDoneButtonToKeyboard(for: initialLimitTextField)
         
         let gestureRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(turnBackToIntro))
         gestureRecognizer.edges = .left
@@ -707,7 +849,8 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
     }
     
     /// Target action for addTargetButton, shows views to make user be able to add his or her smoke target
-    @objc private func addButtonTapped() {
+    @objc
+    private func addButtonTapped() {
         setRightNavigationButton(image: UIImage(systemName: "arrowshape.turn.up.backward.fill"), selector: #selector(turnBackToIntro))
         
         animateIntroLabel(showing: false) { [weak self] in
@@ -720,10 +863,16 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
         
         addTargetButton.removeTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         addTargetButton.addTarget(self, action: #selector(setTargetButtonTap), for: .touchUpInside)
+        
+        setQuitDaysInitialLimitLabelConstraints()
+        setSecondCircleViewConstraints()
+        setInitialLimitTextFieldConstraints()
+        segmentSelected()
     }
     
     /// Target action for addTargetButton that replaces addButtonTapped() target by first tap, confirmes entered by user target setting
-    @objc private func setTargetButtonTap() {
+    @objc
+    private func setTargetButtonTap() {
         do {
             try saveTarget()
         } catch {
@@ -740,6 +889,10 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
         animateAddTargetButton(showing: false) { [weak self] in
             self?.addTargetButton.isHidden = true
         }
+        animateInitialLimitView(showing: false) { [weak self] in
+            self?.quitDaysInitialLimitLabel.isHidden = true
+            self?.secondCircleView.isHidden = true
+        }
         
         setTargetViews()
         animateTargetTypeLabel(showing: true)
@@ -749,9 +902,12 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
     }
     
     /// Cancels target adding
-    @objc private func turnBackToIntro() {
+    @objc
+    private func turnBackToIntro() {
         // If target is not set, button just returns to intoLabel
         guard let _ = viewModel.target else {
+            limitTextField.resignFirstResponder()
+            initialLimitTextField.resignFirstResponder()
             addTargetButton.removeTarget(self, action: #selector(setTargetButtonTap), for: .touchUpInside)
             addTargetButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
             
@@ -763,6 +919,10 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
             animateCircleView(showing: false) { [weak self] in
                 self?.circleView.isHidden = true
             }
+            animateInitialLimitView(showing: false) { [weak self] in
+                self?.quitDaysInitialLimitLabel.isHidden = true
+                self?.secondCircleView.isHidden = true
+            }
             
             navigationItem.setRightBarButton(nil, animated: true)
             return
@@ -770,10 +930,15 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
     }
     
     /// Target action for selecting any segments in targetTypeSegmentedControl
-    @objc private func segmentSelected() {
+    @objc
+    private func segmentSelected() {
         if let target = viewModel.target {
             switch targetTypeSegmentedControl.selectedSegmentIndex {
             case 0:
+                animateInitialLimitView(showing: false) { [weak self] in
+                    self?.quitDaysInitialLimitLabel.isHidden = true
+                    self?.secondCircleView.isHidden = true
+                }
                 switch target.userTarget {
                 case .dayLimit(from: _, smokes: let limit):
                     limitTextField.text = String(limit)
@@ -781,6 +946,9 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
                     break
                 }
             case 1:
+                quitDaysInitialLimitLabel.isHidden = false
+                secondCircleView.isHidden = false
+                animateInitialLimitView(showing: true)
                 switch target.userTarget {
                 case .quitTime:
                     limitTextField.text = String(viewModel.countLeftDaysToQuitSmoking() ?? 0)
@@ -800,8 +968,15 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
                 } else {
                     limitTextField.text = "0"
                 }
+                animateInitialLimitView(showing: false) { [weak self] in
+                    self?.quitDaysInitialLimitLabel.isHidden = true
+                    self?.secondCircleView.isHidden = true
+                }
             case 1:
                 limitTextField.text = "30"
+                quitDaysInitialLimitLabel.isHidden = false
+                secondCircleView.isHidden = false
+                animateInitialLimitView(showing: true)
             default:
                 limitTextField.text = "0"
             }
@@ -809,12 +984,17 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
     }
     
     /// Action for editing set target
-    @objc private func editTarget() {
+    @objc
+    private func editTarget() {
         setTargetTypeSegmentedControlConstraints()
         setCircleViewConstraints()
         setAddTargetButtonConstraints()
         setLimitTextFieldConstraints()
-        addDoneButtonToKeyboard()
+        addDoneButtonToKeyboard(for: limitTextField)
+        addDoneButtonToKeyboard(for: initialLimitTextField)
+        setQuitDaysInitialLimitLabelConstraints()
+        setSecondCircleViewConstraints()
+        setInitialLimitTextFieldConstraints()
         
         animateTargetTypeLabel(showing: false) { [weak self] in
             self?.targetTypeLabel.isHidden = true
@@ -852,7 +1032,11 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
     }
     
     /// Cancels editing
-    @objc private func cancelEditing() {
+    @objc
+    private func cancelEditing() {
+        limitTextField.resignFirstResponder()
+        initialLimitTextField.resignFirstResponder()
+        
         animateTargetTypeSegmentedControl(showing: false) { [weak self] in
             self?.targetTypeSegmentedControl.isHidden = true
         }
@@ -861,6 +1045,10 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
         }
         animateAddTargetButton(showing: false) { [weak self] in
             self?.addTargetButton.isHidden = true
+        }
+        animateInitialLimitView(showing: false) { [weak self] in
+            self?.quitDaysInitialLimitLabel.isHidden = true
+            self?.secondCircleView.isHidden = true
         }
         
         targetTypeLabel.isHidden = false
@@ -877,7 +1065,8 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
     }
     
     /// Delete target
-    @objc private func deleteTarget() {
+    @objc
+    private func deleteTarget() {
         let alertController = UIAlertController(
             title: "DELETE TARGET",
             message: "Are you sure that you want to delete smoking target?",
@@ -899,6 +1088,36 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
         alertController.addAction(cancelAction)
         alertController.addAction(deleteAction)
         present(alertController, animated: true)
+    }
+    
+    @objc
+    private func keyboardWillShow(notification: NSNotification) {
+        if initialLimitTextField.isFirstResponder {
+            targetTypeSegmentedControl.isEnabled = false
+            limitTextField.isEnabled = false
+            targetTypeSegmentedControl.alpha = 0.5
+            circleView.alpha = 0.5
+            
+            quitDaysInitialLimitLabel.frame.origin.y = circleView.frame.origin.y - quitDaysInitialLimitLabel.frame.height - 10
+            secondCircleView.frame.origin.y = circleView.frame.origin.y
+        } else if limitTextField.isFirstResponder {
+            initialLimitTextField.isEnabled = false
+        }
+    }
+    
+    @objc
+    private func keyboardWillHide(notification: NSNotification) {
+        if initialLimitTextField.isFirstResponder {
+            targetTypeSegmentedControl.isEnabled = true
+            limitTextField.isEnabled = true
+            targetTypeSegmentedControl.alpha = 1
+            circleView.alpha = 1
+            
+            quitDaysInitialLimitLabel.frame.origin.y = quitDaysLimitLabelInitialPoint?.y ?? 0
+            secondCircleView.frame.origin.y = secondCircleViewInitialPoint?.y ?? 0
+        } else if limitTextField.isFirstResponder {
+            initialLimitTextField.isEnabled = true
+        }
     }
 }
 
