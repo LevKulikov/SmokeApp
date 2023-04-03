@@ -8,7 +8,18 @@
 import Foundation
 import UserNotifications
 
-final class UserNotificationManager {
+/// Protocol to manage user's notifications
+protocol UserNotificationManagerProtocol: AnyObject {
+    /// Checks status of notification permision
+    func checkForNotificationPermition()
+    
+    /// Sends in the queue notification about limit exceeded
+    /// - Parameter limit: set limit that was exceeded
+    func dispatchLimitExceedNotification(limit: Int16?)
+}
+
+/// Class to manage user's notifications
+final class UserNotificationManager: UserNotificationManagerProtocol {
     //MARK: Properties
     /// Current User Notification center
     private let notificationCenter: UNUserNotificationCenter
@@ -22,7 +33,6 @@ final class UserNotificationManager {
         checkForNotificationPermition()
     }
     //MARK: Methods
-    /// Checks status of notification permision
     func checkForNotificationPermition() {
         notificationCenter.getNotificationSettings { [weak self] notificationSettings in
             switch notificationSettings.authorizationStatus {

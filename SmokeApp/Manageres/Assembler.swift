@@ -22,7 +22,9 @@ final class Assembler {
     /// - Returns: built tabBar to set as root for window
     func buildMainTabBarController() -> UITabBarController {
         let dataStorage = DataStorage()
-        let targetOwner = TargetOwner()        
+        let targetOwner = TargetOwner()
+        let accountDataStorage = AccountDataStorage()
+        let notificationManager = UserNotificationManager()
         
         let calendarViewController = buildMVVMCalendarViewController(dataStorage: dataStorage, targetOwner: targetOwner)
         let calendarNavCon = UINavigationController(rootViewController: calendarViewController)
@@ -52,7 +54,10 @@ final class Assembler {
     /// Returns Calendar View Controller with set MVVM elements like viewModel and model
     /// - Parameter dataStorage: DataStorage to set in viewModel
     /// - Returns: MVVM View Controller (CalendarViewController)
-    func buildMVVMCalendarViewController(dataStorage: DataStorageProtocol, targetOwner: TargetOwnerProtocol) -> UIViewController {
+    func buildMVVMCalendarViewController(
+        dataStorage: DataStorageProtocol,
+        targetOwner: TargetOwnerProtocol
+    ) -> UIViewController {
         let viewModel = CalendarViewModel(dataStorage: dataStorage, targetOwner: targetOwner)
         let viewController = CalendarViewController(viewModel: viewModel)
         return viewController
@@ -62,7 +67,10 @@ final class Assembler {
     /// - Parameter targetOwner: TargetOwner to set in ViewModel
     /// - Parameter dataStorage: DataStorage to set in viewModel
     /// - Returns: MVVM View Controller (TargetViewController)
-    func buildMVVMTargetViewController(targetOwner: TargetOwnerProtocol, dataStorage: DataStorageProtocol) -> UIViewController {
+    func buildMVVMTargetViewController(
+        targetOwner: TargetOwnerProtocol,
+        dataStorage: DataStorageProtocol
+    ) -> UIViewController {
         let viewModel = TargetViewModel(targetOwner: targetOwner, dataStorage: dataStorage)
         let viewController = TargetViewController(viewModel: viewModel)
         return viewController
@@ -72,8 +80,13 @@ final class Assembler {
     /// - Parameters:
     ///   - smokeItem: SmokeItem those information wil be displayed in DayViewContoller
     ///   - dataStorage: DataStorage from root ViewController to manipulate with data (update it)
+    ///   - targetOwner: TargetOwner object to set in ViewModel
     /// - Returns: MVVM Day View Controller with set View Model and DataStorage
-    func buildMVVMDayViewController(with smokeItem: SmokeItem, dataStorage: DataStorageProtocol, targetOwner: TargetOwnerProtocol) -> UIViewController {
+    func buildMVVMDayViewController(
+        with smokeItem: SmokeItem,
+        dataStorage: DataStorageProtocol,
+        targetOwner: TargetOwnerProtocol
+    ) -> UIViewController {
         let viewModel = DayViewModel(smokeItem: smokeItem, dataStorage: dataStorage, targetOwner: targetOwner)
         let viewController = DayViewController(viewModel: viewModel)
         return viewController
@@ -88,8 +101,26 @@ final class Assembler {
         return viewController
     }
     
-    //TODO: Continue
-    func buildMVVMAccountViewController() -> UIViewController {
-        return UIViewController()
+    /// Creates Account View Controller with set MVVM elements like viewModel and model
+    /// - Parameters:
+    ///   - accountDataStorage: Object that srores account's data
+    ///   - targetOwner: TargetOwner to set in ViewModel
+    ///   - dataStorage: DataStorage to set in viewModel
+    ///   - notificationManager: Object that manages user's notifications
+    /// - Returns: MVVM Account View Controller with configurated View Model
+    func buildMVVMAccountViewController(
+        accountDataStorage: AccountDataStorageProtocol,
+        targetOwner: TargetOwnerProtocol,
+        dataStorage: DataStorageProtocol,
+        notificationManager: UserNotificationManagerProtocol
+    ) -> UIViewController {
+        let viewModel = AccountViewModel(
+            accountDataStorage: accountDataStorage,
+            dataStorage: dataStorage,
+            targetStorage: targetOwner,
+            notificationManager: notificationManager
+        )
+        let viewController = AccountViewController(viewModel: viewModel)
+        return viewController
     }
 }

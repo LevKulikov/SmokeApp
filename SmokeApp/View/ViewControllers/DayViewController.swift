@@ -76,7 +76,7 @@ final class DayViewController: UIViewController, DayViewControllerPotocol {
     }()
     
     /// Button that decreases smoke count value
-    private lazy var decreeseButton: UIButton = {
+    private lazy var decreaseButton: UIButton = {
         //TODO: Change image size
         var buttonCongig = UIButton.Configuration.borderedProminent()
         buttonCongig.cornerStyle = .large
@@ -84,7 +84,7 @@ final class DayViewController: UIViewController, DayViewControllerPotocol {
         buttonCongig.image = UIImage(systemName: "arrow.down.circle.fill")
         buttonCongig.imagePadding = 10
         buttonCongig.imagePlacement = .trailing
-        buttonCongig.title = "Decreese"
+        buttonCongig.title = "Decrease"
         buttonCongig.titleAlignment = .center
         
         let button = UIButton(configuration: buttonCongig)
@@ -150,7 +150,7 @@ final class DayViewController: UIViewController, DayViewControllerPotocol {
         
         setBindingWithViewModel()
         countTextField.text = String(describing: viewModel.selectedSmokeItem.amount)
-        view.addSubviews(circleView, decreeseButton, increaseButton)
+        view.addSubviews(circleView, decreaseButton, increaseButton)
         circleView.addSubview(countTextField)
         addLimitLabelIfNeeded()
         
@@ -228,20 +228,20 @@ final class DayViewController: UIViewController, DayViewControllerPotocol {
     
     /// Sets layout constraints to decrease and increase buttons
     private func setButtonsConstraints() {
-        let buttonHightConstraint = decreeseButton.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 1/5)
+        let buttonHightConstraint = decreaseButton.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 1/5)
         buttonHightConstraint.priority = .defaultHigh
-        let buttonHightConstraintMax = decreeseButton.heightAnchor.constraint(lessThanOrEqualToConstant: 130)
+        let buttonHightConstraintMax = decreaseButton.heightAnchor.constraint(lessThanOrEqualToConstant: 130)
         buttonHightConstraintMax.priority = .required
         
         NSLayoutConstraint.activate([
             buttonHightConstraint,
             buttonHightConstraintMax,
-            decreeseButton.widthAnchor.constraint(equalTo: decreeseButton.heightAnchor, multiplier: 2),
-            decreeseButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 25),
-            decreeseButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
+            decreaseButton.widthAnchor.constraint(equalTo: decreaseButton.heightAnchor, multiplier: 2),
+            decreaseButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 25),
+            decreaseButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
             
-            increaseButton.heightAnchor.constraint(equalTo: decreeseButton.heightAnchor),
-            increaseButton.widthAnchor.constraint(equalTo: decreeseButton.widthAnchor),
+            increaseButton.heightAnchor.constraint(equalTo: decreaseButton.heightAnchor),
+            increaseButton.widthAnchor.constraint(equalTo: decreaseButton.widthAnchor),
             increaseButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -25),
             increaseButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
         ])
@@ -314,7 +314,7 @@ final class DayViewController: UIViewController, DayViewControllerPotocol {
         let animationLeft = AnimationType.from(direction: .bottom, offset: 200)
         let animationRight = AnimationType.from(direction: .bottom, offset: 200)
         if showing {
-            decreeseButton.animate(
+            decreaseButton.animate(
                 animations: [animationLeft],
                 duration: 0.4
             )
@@ -323,7 +323,7 @@ final class DayViewController: UIViewController, DayViewControllerPotocol {
                 duration: 0.4
             )
         } else {
-            decreeseButton.animate(
+            decreaseButton.animate(
                 animations: [animationLeft],
                 reversed: true,
                 initialAlpha: 1,
@@ -354,7 +354,7 @@ final class DayViewController: UIViewController, DayViewControllerPotocol {
                 self?.limitLabel.backgroundColor = Constants.shared.viewControllerBackgroundColor
                 self?.limitLabel.textColor = .red
                 self?.countTextField.textColor = .label
-                self?.decreeseButton.configuration?.baseBackgroundColor = .red
+                self?.decreaseButton.configuration?.baseBackgroundColor = .red
             }
         } else {
             animationClosure = { [weak self] in
@@ -363,7 +363,7 @@ final class DayViewController: UIViewController, DayViewControllerPotocol {
                 self?.limitLabel.backgroundColor = .systemGray5
                 self?.limitLabel.textColor = .systemGreen
                 self?.countTextField.textColor = .white
-                self?.decreeseButton.configuration?.baseBackgroundColor = .systemRed
+                self?.decreaseButton.configuration?.baseBackgroundColor = .systemRed
             }
         }
         

@@ -79,3 +79,31 @@ extension UITextField {
             }
     }
 }
+
+extension String {
+    /// Converts string to UIImage if its possible
+    /// - Returns: Image from String, or nil if there is no data to be get from string
+    func toImage() -> UIImage? {
+        if let data = Data(base64Encoded: self, options: .ignoreUnknownCharacters){
+            return UIImage(data: data)
+        }
+        return nil
+    }
+}
+
+extension UIImage {
+    /// Converts UIImage to String representation of PNG data
+    /// - Returns: String representation
+    func toPngString() -> String? {
+        let data = self.pngData()
+        return data?.base64EncodedString(options: .endLineWithLineFeed)
+    }
+    
+    /// Compress and converts UIImage to String representation of PNG data
+    /// - Parameter cq: provide numerical representation (from 0.0 to 1.0) how image shound be compressed, input 1.0 if compression is not needed
+    /// - Returns: The Base-64 encoded string
+    func toJpegString(compressionQuality cq: CGFloat) -> String? {
+        let data = self.jpegData(compressionQuality: cq)
+        return data?.base64EncodedString(options: .endLineWithLineFeed)
+    }
+}
