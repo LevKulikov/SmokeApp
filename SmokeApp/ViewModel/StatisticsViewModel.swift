@@ -53,7 +53,7 @@ protocol StatisticsViewModelProtocol: AnyObject {
 
 final class StatisticsViewModel: StatisticsViewModelProtocol {
     //MARK: Properties
-    public var daysToCountAverage: Int = 7 {
+    var daysToCountAverage: Int = 7 {
         didSet {
             UserDefaults.standard.set(
                 daysToCountAverage,
@@ -62,7 +62,7 @@ final class StatisticsViewModel: StatisticsViewModelProtocol {
         }
     }
     
-    public var daysToCountDynamics: Int = 7 {
+    var daysToCountDynamics: Int = 7 {
         didSet {
             UserDefaults.standard.set(
                 daysToCountDynamics,
@@ -71,7 +71,7 @@ final class StatisticsViewModel: StatisticsViewModelProtocol {
         }
     }
     
-    public let possibleDaysArray: [Int] = [1, 7, 14, 30]
+    let possibleDaysArray: [Int] = [1, 7, 14, 30]
     
     /// DataStorage to manipulate with data (mostly to get it)
     private var dataStorage: DataStorageProtocol
@@ -86,7 +86,7 @@ final class StatisticsViewModel: StatisticsViewModelProtocol {
     }
     
     //MARK: Methods
-    public func getSmokeItems() -> [SmokeItem] {
+    func getSmokeItems() -> [SmokeItem] {
         do {
             let allData = try dataStorage.getDataItems()
             return allData
@@ -96,13 +96,13 @@ final class StatisticsViewModel: StatisticsViewModelProtocol {
         }
     }
     
-    public func getTotalSmokeCount() -> Int {
+    func getTotalSmokeCount() -> Int {
         let allData = dataStorage.savedData.compactMap{ Int($0.amount) }
         let totalCounts = allData.reduce(0, +)
         return totalCounts
     }
     
-    public func countDinamics(according days: Int) -> Float {
+    func countDinamics(according days: Int) -> Float {
         var allData = dataStorage.savedData.compactMap{ Float($0.amount) }
         guard allData.count >= days * 2 else {
             return 0.0
@@ -132,7 +132,7 @@ final class StatisticsViewModel: StatisticsViewModelProtocol {
         return dinamic
     }
     
-    public func getMinimumSmokeItem() -> SmokeItem? {
+    func getMinimumSmokeItem() -> SmokeItem? {
         let allData = dataStorage.savedData
         // Seachs minimal value except the last one, because last value does not set finally
         let intData = allData.dropLast(1).compactMap{ $0.amount }
@@ -142,7 +142,7 @@ final class StatisticsViewModel: StatisticsViewModelProtocol {
         return allData.first { $0.amount == minValue }
     }
     
-    public func getMaximumSmokeItem() -> SmokeItem? {
+    func getMaximumSmokeItem() -> SmokeItem? {
         let allData = dataStorage.savedData
         let intData = allData.compactMap{ $0.amount }
         guard let maxValue = intData.max() else {
@@ -151,18 +151,21 @@ final class StatisticsViewModel: StatisticsViewModelProtocol {
         return allData.first { $0.amount == maxValue }
     }
     
-    public func countAverageSmokesNumber() -> Float {
+    func countAverageSmokesNumber() -> Float {
         let allData = dataStorage.savedData.compactMap { Float($0.amount) }
         let average = allData.reduce(0, +) / Float(allData.count)
         let rounded = Float(Int(average * 10))/10
         return rounded
     }
     
-    public func countAverageSmokesNumber(for days: Int) -> Float {
+    func countAverageSmokesNumber(for days: Int) -> Float {
         let allData =  dataStorage.savedData.compactMap { Float($0.amount) }
         let lastDaysData = allData.dropFirst(allData.count > days ? allData.count - days : 0)
         let average = lastDaysData.reduce(0, +)/Float(lastDaysData.count)
         let rounded = Float(Int(average * 10))/10
         return rounded
     }
+    
+    //MARK: Test properties and methods
+    
 }

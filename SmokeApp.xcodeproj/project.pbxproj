@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		48B4BC6E76D6C29DF79DFC0D /* libPods-SmokeAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4924C7B69BACCDCA80B1BA65 /* libPods-SmokeAppTests.a */; };
 		5FCCFCEDECBB95FB8CE36D8F /* libPods-SmokeApp-SmokeAppUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1CE2C06CF6A35C0C302C53 /* libPods-SmokeApp-SmokeAppUITests.a */; };
+		732E801A29DC87540068959A /* AccountDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732E801929DC87540068959A /* AccountDetailsTableViewCell.swift */; };
+		732E801C29DC87800068959A /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732E801B29DC87800068959A /* SettingsTableViewCell.swift */; };
+		732E801E29DC87920068959A /* LinksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732E801D29DC87920068959A /* LinksTableViewCell.swift */; };
+		732E802029DE27C80068959A /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732E801F29DE27C80068959A /* AccountViewModel.swift */; };
+		732E802229DE2D700068959A /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732E802129DE2D700068959A /* AccountSettingsViewController.swift */; };
 		733B0F542992ECE900E7EC6D /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0F532992ECE900E7EC6D /* StatisticsViewController.swift */; };
 		733B0F562992F98A00E7EC6D /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0F552992F98A00E7EC6D /* StatisticsViewModel.swift */; };
 		733B0F68299BB91F00E7EC6D /* WideCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0F67299BB91F00E7EC6D /* WideCollectionViewCell.swift */; };
@@ -24,7 +29,7 @@
 		73B7129A29A23293001BF38C /* SmokeItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B7129929A23293001BF38C /* SmokeItemData.swift */; };
 		73B712A229A233D2001BF38C /* SmokeItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B712A029A233D2001BF38C /* SmokeItem+CoreDataProperties.swift */; };
 		73B712A329A233D2001BF38C /* SmokeItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B712A129A233D2001BF38C /* SmokeItem+CoreDataClass.swift */; };
-		73C8039629D5A092007A20BC /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C8039529D5A092007A20BC /* AccountViewModel.swift */; };
+		73C8039629D5A092007A20BC /* AccountSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C8039529D5A092007A20BC /* AccountSettingsViewModel.swift */; };
 		73C8039829D5A10C007A20BC /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C8039729D5A10C007A20BC /* AccountViewController.swift */; };
 		73C8039A29D5A1A1007A20BC /* UserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C8039929D5A1A1007A20BC /* UserNotificationManager.swift */; };
 		73D8FABE2987A1220084BE25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FABD2987A1220084BE25 /* AppDelegate.swift */; };
@@ -84,6 +89,11 @@
 		4CDB4753EE8AECCAD3448443 /* Pods-SmokeApp-SmokeAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmokeApp-SmokeAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-SmokeApp-SmokeAppUITests/Pods-SmokeApp-SmokeAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4E6167177A572E2CB3B83415 /* libPods-SmokeApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SmokeApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E8441C6FD1D0C4C3AEE522B /* Pods-SmokeApp-SmokeAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmokeApp-SmokeAppUITests.release.xcconfig"; path = "Target Support Files/Pods-SmokeApp-SmokeAppUITests/Pods-SmokeApp-SmokeAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		732E801929DC87540068959A /* AccountDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		732E801B29DC87800068959A /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		732E801D29DC87920068959A /* LinksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinksTableViewCell.swift; sourceTree = "<group>"; };
+		732E801F29DE27C80068959A /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		732E802129DE2D700068959A /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
 		733B0F532992ECE900E7EC6D /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		733B0F552992F98A00E7EC6D /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		733B0F67299BB91F00E7EC6D /* WideCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WideCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -101,7 +111,7 @@
 		73B7129929A23293001BF38C /* SmokeItemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeItemData.swift; sourceTree = "<group>"; };
 		73B712A029A233D2001BF38C /* SmokeItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SmokeItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		73B712A129A233D2001BF38C /* SmokeItem+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SmokeItem+CoreDataClass.swift"; sourceTree = "<group>"; };
-		73C8039529D5A092007A20BC /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		73C8039529D5A092007A20BC /* AccountSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewModel.swift; sourceTree = "<group>"; };
 		73C8039729D5A10C007A20BC /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		73C8039929D5A1A1007A20BC /* UserNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationManager.swift; sourceTree = "<group>"; };
 		73D8FABA2987A1220084BE25 /* SmokeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmokeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,6 +191,16 @@
 				A8C5959F8690267739B71705 /* Pods-SmokeAppTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		732E801829DC86A00068959A /* AccountTableView */ = {
+			isa = PBXGroup;
+			children = (
+				732E801929DC87540068959A /* AccountDetailsTableViewCell.swift */,
+				732E801B29DC87800068959A /* SettingsTableViewCell.swift */,
+				732E801D29DC87920068959A /* LinksTableViewCell.swift */,
+			);
+			path = AccountTableView;
 			sourceTree = "<group>";
 		};
 		733B0F66299BB8EB00E7EC6D /* Statistics */ = {
@@ -308,7 +328,8 @@
 				73D8FB15298A4A670084BE25 /* DayViewModel.swift */,
 				733B0F552992F98A00E7EC6D /* StatisticsViewModel.swift */,
 				733F4441299FF43C002E2291 /* TargetViewModel.swift */,
-				73C8039529D5A092007A20BC /* AccountViewModel.swift */,
+				73C8039529D5A092007A20BC /* AccountSettingsViewModel.swift */,
+				732E801F29DE27C80068959A /* AccountViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -321,6 +342,7 @@
 				733B0F532992ECE900E7EC6D /* StatisticsViewController.swift */,
 				733F443F299FF2D0002E2291 /* TargetViewController.swift */,
 				73C8039729D5A10C007A20BC /* AccountViewController.swift */,
+				732E802129DE2D700068959A /* AccountSettingsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -330,6 +352,7 @@
 			children = (
 				73D8FB112987F3380084BE25 /* CalendarCollectionViewCell.swift */,
 				733B0F66299BB8EB00E7EC6D /* Statistics */,
+				732E801829DC86A00068959A /* AccountTableView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -551,13 +574,17 @@
 				73D8FAC82987A1220084BE25 /* SmokeApp.xcdatamodeld in Sources */,
 				734AD6F929AFBAF500F92A0F /* HapticManagere.swift in Sources */,
 				7362749B29DAF37C0010F544 /* AccountDataStorage.swift in Sources */,
+				732E801C29DC87800068959A /* SettingsTableViewCell.swift in Sources */,
 				73D8FB0E2987B7100084BE25 /* DataStorage.swift in Sources */,
+				732E802229DE2D700068959A /* AccountSettingsViewController.swift in Sources */,
 				73D8FAF52987A53E0084BE25 /* Assembler.swift in Sources */,
 				733F444429A01ADD002E2291 /* TargetModel.swift in Sources */,
 				733B0F542992ECE900E7EC6D /* StatisticsViewController.swift in Sources */,
 				733B0F6C299BB9DE00E7EC6D /* NarrowCollectionViewCell.swift in Sources */,
 				733F4442299FF43C002E2291 /* TargetViewModel.swift in Sources */,
+				732E801E29DC87920068959A /* LinksTableViewCell.swift in Sources */,
 				73B712A229A233D2001BF38C /* SmokeItem+CoreDataProperties.swift in Sources */,
+				732E801A29DC87540068959A /* AccountDetailsTableViewCell.swift in Sources */,
 				73D8FABE2987A1220084BE25 /* AppDelegate.swift in Sources */,
 				73D8FB0C2987B6350084BE25 /* UpdateViewModel.swift in Sources */,
 				73B7129A29A23293001BF38C /* SmokeItemData.swift in Sources */,
@@ -566,10 +593,11 @@
 				73D8FB14298A47DA0084BE25 /* DayViewController.swift in Sources */,
 				73D8FAC02987A1220084BE25 /* SceneDelegate.swift in Sources */,
 				73D8FB0A2987B04E0084BE25 /* CalendarViewModel.swift in Sources */,
-				73C8039629D5A092007A20BC /* AccountViewModel.swift in Sources */,
+				73C8039629D5A092007A20BC /* AccountSettingsViewModel.swift in Sources */,
 				733B0F6E299BC12800E7EC6D /* Useful.swift in Sources */,
 				73D8FAF72987A8FD0084BE25 /* Constants.swift in Sources */,
 				73D8FB16298A4A670084BE25 /* DayViewModel.swift in Sources */,
+				732E802029DE27C80068959A /* AccountViewModel.swift in Sources */,
 				733B0F562992F98A00E7EC6D /* StatisticsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

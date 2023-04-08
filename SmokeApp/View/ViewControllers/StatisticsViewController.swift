@@ -20,6 +20,23 @@ final class StatisticsViewController: UIViewController {
         case narrowInfoSectoin
     }
     
+    //MARK: Test prop and meth
+    var accountViewController: UIViewController?
+    @objc
+    func pushAccountViewController() {
+        guard let accountViewController else { return }
+        navigationController?.pushViewController(accountViewController, animated: true)
+    }
+    func setAccountNavItem() {
+        let barButton = UIBarButtonItem(
+            image: UIImage(systemName: "person.crop.circle"),
+            style: .plain,
+            target: self,
+            action: #selector(pushAccountViewController)
+        )
+        navigationItem.rightBarButtonItem = barButton
+    }
+    
     //MARK: Properties
     /// ViewModel to manipulate with data by it
     private let viewModel: StatisticsViewModelProtocol
@@ -77,6 +94,7 @@ final class StatisticsViewController: UIViewController {
         view.backgroundColor = Constants.shared.viewControllerBackgroundColor
         title = "Statistics"
         view.addSubview(collectionView)
+        setAccountNavItem()
     }
     
     override func viewDidLayoutSubviews() {
@@ -187,7 +205,7 @@ final class StatisticsViewController: UIViewController {
         let compositionalLayout = UICollectionViewCompositionalLayout { [weak self] section, _ in
             switch section {
             case 0:
-                return self?.createWiewInfoSectoin()
+                return self?.createWideInfoSectoin()
             case 1:
                 return self?.createChartSectoin()
             case 2:
@@ -201,7 +219,7 @@ final class StatisticsViewController: UIViewController {
     
     /// Creates wide section to display general information
     /// - Returns: Created section
-    private func createWiewInfoSectoin() -> NSCollectionLayoutSection {
+    private func createWideInfoSectoin() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
             heightDimension: .fractionalHeight(1)
@@ -210,7 +228,7 @@ final class StatisticsViewController: UIViewController {
         let group = NSCollectionLayoutGroup.vertical(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1),
-                heightDimension: .fractionalHeight(0.15)
+                heightDimension: .absolute(128)
             ),
             subitems: [item]
         )
@@ -237,7 +255,7 @@ final class StatisticsViewController: UIViewController {
         let group = NSCollectionLayoutGroup.vertical(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1),
-                heightDimension: .fractionalHeight(0.5)
+                heightDimension: .absolute(425)
             ),
             subitems: [item]
         )
@@ -270,7 +288,7 @@ final class StatisticsViewController: UIViewController {
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1),
-                heightDimension: .fractionalHeight(0.15)
+                heightDimension: .absolute(120)
             ),
             subitems: [item, item]
         )

@@ -43,8 +43,9 @@ final class WideCollectionViewCell: UICollectionViewCell {
     private lazy var totalTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.adjustsFontSizeToFitWidth = true
         label.textColor = .secondaryLabel
-        label.font = .systemFont(ofSize: 17)
+        label.font = .systemFont(ofSize: 20)
         label.textAlignment = .center
         label.text = "All times smokes"
         return label
@@ -54,8 +55,9 @@ final class WideCollectionViewCell: UICollectionViewCell {
     private lazy var dynamicsTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.adjustsFontSizeToFitWidth = true
         label.textColor = .secondaryLabel
-        label.font = .systemFont(ofSize: 17)
+        label.font = .systemFont(ofSize: 20)
         label.textAlignment = .center
         label.text = "\(dynamicsDays) days dynamics"
         return label
@@ -66,7 +68,7 @@ final class WideCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .label
-        label.font = .boldSystemFont(ofSize: 40)
+        label.font = .boldSystemFont(ofSize: 50)
         label.textAlignment = .center
         return label
     }()
@@ -76,7 +78,7 @@ final class WideCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .label
-        label.font = .boldSystemFont(ofSize: 40)
+        label.font = .boldSystemFont(ofSize: 50)
         label.textAlignment = .center
         return label
     }()

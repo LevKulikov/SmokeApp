@@ -107,3 +107,43 @@ extension UIImage {
         return data?.base64EncodedString(options: .endLineWithLineFeed)
     }
 }
+
+
+/// Object that provides presentation lyfe cycle methods of UIViewController
+@objc
+protocol UIViewControllerPresentationDelegate: AnyObject {
+    /// Calls when UIViewController will de dismissed
+    /// - Parameter viewController: UIViewController that should be dismissed
+    @objc
+    optional func presentationWillEnd(for viewController: UIViewController)
+}
+
+extension UIViewController {
+    private static weak var presentationDelegateStored: UIViewControllerPresentationDelegate? = nil
+    /// Delegate object for presentation
+    var presentationDelegate: UIViewControllerPresentationDelegate? {
+        get {
+            return UIViewController.presentationDelegateStored
+        }
+        set {
+            UIViewController.presentationDelegateStored = newValue
+        }
+    }
+}
+
+/// UITextField that does not show action menu
+final class NoActionTextField: UITextField {
+    override func selectionRects(for range: UITextRange) -> [UITextSelectionRect] {
+        return []
+    }
+   
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+         return false
+    }
+    
+    override func buildMenu(with builder: UIMenuBuilder) {
+        builder.remove(menu: .lookup)
+
+        super.buildMenu(with: builder)
+    }
+}

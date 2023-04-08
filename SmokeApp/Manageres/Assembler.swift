@@ -98,6 +98,12 @@ final class Assembler {
     func buildMVVMStatisticsViewController(dataStorage: DataStorageProtocol) -> UIViewController {
         let viewModel = StatisticsViewModel(dataStorage: dataStorage)
         let viewController = StatisticsViewController(viewModel: viewModel)
+        
+        let accountDataStorage = AccountDataStorage()
+        let notificationManager = UserNotificationManager()
+        let targetOwner = TargetOwner()
+        viewController.accountViewController = buildMVVMAccountViewController(accountDataStorage: accountDataStorage, targetOwner: targetOwner, dataStorage: dataStorage, notificationManager: notificationManager)
+        
         return viewController
     }
     
@@ -121,6 +127,15 @@ final class Assembler {
             notificationManager: notificationManager
         )
         let viewController = AccountViewController(viewModel: viewModel)
+        return viewController
+    }
+    
+    /// Creates Account Settings View Controller with set MVVM elements like viewModel and model
+    /// - Parameter accountDataStorage: Object that srores account's data
+    /// - Returns: MVVM Account Settings View Controller with configurated View Model
+    func buildMVVMAccountSettingsViewController(accountDataStorage: AccountDataStorageProtocol) -> UIViewController {
+        let viewModel = AccountSettingsViewModel(accountDataStorage: accountDataStorage)
+        let viewController = AccountSettingsViewController(viewModel: viewModel)
         return viewController
     }
 }
