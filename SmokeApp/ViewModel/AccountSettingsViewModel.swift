@@ -44,8 +44,13 @@ final class AccountSettingsViewModel: AccountSettingsViewModelProtocol {
         }
     }
     
-    var accountImageNameToSet: String {
-        return accountDataStorage.accountImageNameToSet
+    var accountImageData: Data? {
+        get {
+            return accountDataStorage.accountImageData
+        }
+        set {
+            accountDataStorage.accountImageData = newValue
+        }
     }
     
     //MARK: Initializer
@@ -54,11 +59,4 @@ final class AccountSettingsViewModel: AccountSettingsViewModelProtocol {
     }
     
     //MARK: Methods
-    func setDefaultImageName() {
-        accountDataStorage.setDefaultImageName()
-    }
-    
-    func setAccountImageName(_ newImageName: String) {
-        accountDataStorage.setAccountImageName(newImageName)
-    }
 }

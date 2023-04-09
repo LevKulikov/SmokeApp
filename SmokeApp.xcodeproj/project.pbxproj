@@ -32,6 +32,7 @@
 		73C8039629D5A092007A20BC /* AccountSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C8039529D5A092007A20BC /* AccountSettingsViewModel.swift */; };
 		73C8039829D5A10C007A20BC /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C8039729D5A10C007A20BC /* AccountViewController.swift */; };
 		73C8039A29D5A1A1007A20BC /* UserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C8039929D5A1A1007A20BC /* UserNotificationManager.swift */; };
+		73CC9AE429E3834F007A3706 /* ContactsAndLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CC9AE329E3834F007A3706 /* ContactsAndLinks.swift */; };
 		73D8FABE2987A1220084BE25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FABD2987A1220084BE25 /* AppDelegate.swift */; };
 		73D8FAC02987A1220084BE25 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FABF2987A1220084BE25 /* SceneDelegate.swift */; };
 		73D8FAC22987A1220084BE25 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FAC12987A1220084BE25 /* CalendarViewController.swift */; };
@@ -114,6 +115,7 @@
 		73C8039529D5A092007A20BC /* AccountSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewModel.swift; sourceTree = "<group>"; };
 		73C8039729D5A10C007A20BC /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		73C8039929D5A1A1007A20BC /* UserNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationManager.swift; sourceTree = "<group>"; };
+		73CC9AE329E3834F007A3706 /* ContactsAndLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsAndLinks.swift; sourceTree = "<group>"; };
 		73D8FABA2987A1220084BE25 /* SmokeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmokeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73D8FABD2987A1220084BE25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73D8FABF2987A1220084BE25 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				73B7129929A23293001BF38C /* SmokeItemData.swift */,
 				7362749A29DAF37C0010F544 /* AccountDataStorage.swift */,
 				73D8FAFB2987AF3D0084BE25 /* Entity */,
+				73CC9AE329E3834F007A3706 /* ContactsAndLinks.swift */,
 			);
 			path = DataStructure;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 				73D8FABE2987A1220084BE25 /* AppDelegate.swift in Sources */,
 				73D8FB0C2987B6350084BE25 /* UpdateViewModel.swift in Sources */,
 				73B7129A29A23293001BF38C /* SmokeItemData.swift in Sources */,
+				73CC9AE429E3834F007A3706 /* ContactsAndLinks.swift in Sources */,
 				733F4440299FF2D0002E2291 /* TargetViewController.swift in Sources */,
 				733F444629A0210D002E2291 /* TargetStorage.swift in Sources */,
 				73D8FB14298A47DA0084BE25 /* DayViewController.swift in Sources */,

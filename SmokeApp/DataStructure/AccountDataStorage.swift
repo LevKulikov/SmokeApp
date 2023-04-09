@@ -16,16 +16,9 @@ enum Gender: String, CaseIterable {
 }
 
 /// Protocol for object that is able to manage account image data
-protocol AccountImageManagerProtocol {
-    /// Property to get image name, if it was set incorrectly (or it is unable to get data from image name) it provides default image name
-    var accountImageNameToSet: String { get }
-    
-    /// Deletes custom image name and replaces it to default name
-    func setDefaultImageName()
-    
-    /// Changes account image name to provided new one
-    /// - Parameter newImageName: new account image name to set
-    func setAccountImageName(_ newImageName: String)
+protocol AccountImageManagerProtocol: AnyObject {
+    /// Property to store account's image data
+    var accountImageData: Data? { get set }
 }
 
 /// Protocol for object that is able to manage account name data
@@ -49,7 +42,7 @@ protocol AccountDataStorageProtocol: AnyObject, AccountImageManagerProtocol, Acc
 final class AccountDataStorage: AccountDataStorageProtocol {
     //MARK: Properties
     /// Key for userDefaults to store accountImageName
-    private let accountImageNameKey = "accountImageNameKey"
+    private let accountImageDataKey = "accountImageDataKey"
     
     /// Key for userDefaults to store accountName
     private let accountNameKey = "accountNameKey"
@@ -72,10 +65,9 @@ final class AccountDataStorage: AccountDataStorageProtocol {
     /// Default birth year, it is 0, which identifies that birth year is not set (unidentified)
     static let defaultBirthYear = 0
     
-    /// Private property to store account's image name. It is recommended to not set any other string if you would like to delete image name, use setDefaultImageName() to do this properly
-    private var accountImageName: String {
+    var accountImageData: Data? {
         didSet {
-            UserDefaults.standard.setValue(accountImageName, forKey: accountImageNameKey)
+            UserDefaults.standard.setValue(accountImageData, forKey: accountImageDataKey)
         }
     }
     
@@ -97,15 +89,6 @@ final class AccountDataStorage: AccountDataStorageProtocol {
         }
     }
     
-    var accountImageNameToSet: String {
-        guard accountImageName != AccountDataStorage.defaultImageName,
-              let _ = Data(base64Encoded: accountImageName, options: .ignoreUnknownCharacters)
-        else {
-            return AccountDataStorage.defaultImageName
-        }
-        return accountImageName
-    }
-    
     //MARK: Initializer
     init() {
         if let accNameStored = UserDefaults.standard.string(forKey: accountNameKey) {
@@ -114,11 +97,7 @@ final class AccountDataStorage: AccountDataStorageProtocol {
             accountName = AccountDataStorage.defaultName
         }
         
-        if let accImageNameStored = UserDefaults.standard.string(forKey: accountImageNameKey) {
-            accountImageName = accImageNameStored
-        } else {
-            accountImageName = AccountDataStorage.defaultImageName
-        }
+        accountImageData = UserDefaults.standard.data(forKey: accountImageDataKey)
         
         if let accGenderString = UserDefaults.standard.string(forKey: genderKey), let accGender = Gender(rawValue: accGenderString) {
             accountGender = accGender
@@ -130,11 +109,5 @@ final class AccountDataStorage: AccountDataStorageProtocol {
     }
     
     //MARK: Methods
-    func setDefaultImageName() {
-        accountImageName = AccountDataStorage.defaultImageName
-    }
     
-    func setAccountImageName(_ newImageName: String) {
-        accountImageName = newImageName
-    }
 }

@@ -23,7 +23,7 @@ protocol AccountViewModelProtocol: AnyObject {
     var accountBirthYear: Int { get }
     
     /// Property to get image name, if it was set incorrectly (or it is unable to get data from image name) it provides default image name
-    var accountImageNameToSet: String { get }
+    var accountImageData: Data? { get }
 }
 
 final class AccountViewModel: AccountViewModelProtocol {
@@ -40,8 +40,8 @@ final class AccountViewModel: AccountViewModelProtocol {
             return accountDataStorage.accountBirthYear
     }
     
-    var accountImageNameToSet: String {
-        return accountDataStorage.accountImageNameToSet
+    var accountImageData: Data? {
+        return accountDataStorage.accountImageData
     }
     
     var accountDataStorageToSet: AccountDataStorageProtocol {

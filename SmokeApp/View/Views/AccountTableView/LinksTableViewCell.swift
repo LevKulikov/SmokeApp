@@ -22,5 +22,19 @@ class LinksTableViewCell: UITableViewCell {
         return nil
     }
     
+    //MARK: Lyfe Cycle methods
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        //TODO: Prepate
+    }
+    
     //MARK: Methods
+    func configure() {
+        //TODO: Configure 
+    }
 }

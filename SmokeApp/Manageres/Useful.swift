@@ -108,7 +108,6 @@ extension UIImage {
     }
 }
 
-
 /// Object that provides presentation lyfe cycle methods of UIViewController
 @objc
 protocol UIViewControllerPresentationDelegate: AnyObject {
@@ -143,7 +142,14 @@ final class NoActionTextField: UITextField {
     
     override func buildMenu(with builder: UIMenuBuilder) {
         builder.remove(menu: .lookup)
-
         super.buildMenu(with: builder)
+    }
+}
+
+extension CGFloat {
+    /// Converts value in radians
+    /// - Returns: Radians value
+    func toRadians() -> CGFloat {
+        return self * CGFloat(Double.pi) / 180.0
     }
 }

@@ -145,7 +145,7 @@ extension TableViewAdapter: UITableViewDataSource, UITableViewDelegate, UIViewCo
         case 1:
             return 3
         case 2:
-            return 3
+            return ContactsAndLinks.allCases.count
         default:
             return 0
         }
@@ -159,7 +159,7 @@ extension TableViewAdapter: UITableViewDataSource, UITableViewDelegate, UIViewCo
                 for: indexPath
             ) as! AccountDetailsTableViewCell
             cell.configure(
-                image: accountViewModel?.accountImageNameToSet.toImage(),
+                imageData: accountViewModel?.accountImageData,
                 name: accountViewModel?.accountName ?? "",
                 gender: accountViewModel?.accountGender,
                 birthYear: accountViewModel?.accountBirthYear
@@ -177,6 +177,7 @@ extension TableViewAdapter: UITableViewDataSource, UITableViewDelegate, UIViewCo
                 withIdentifier: TableViewCellTypes.links.rawValue,
                 for: indexPath
             ) as! LinksTableViewCell
+            cell.accessoryType = .disclosureIndicator
             return cell
         default:
             return UITableViewCell()
@@ -207,14 +208,19 @@ extension TableViewAdapter: UITableViewDataSource, UITableViewDelegate, UIViewCo
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let accountViewModel else { return }
-        let accountSettingsVC = Assembler.shared
-            .buildMVVMAccountSettingsViewController(
-                accountDataStorage: accountViewModel.accountDataStorageToSet
-            )
-        accountSettingsVC.presentationDelegate = self
-        accountSettingsVC.modalPresentationStyle = .overFullScreen
-        ownerViewController?.present(accountSettingsVC, animated: true)
+        switch indexPath.section {
+        case 0:
+            guard let accountViewModel else { return }
+            let accountSettingsVC = Assembler.shared
+                .buildMVVMAccountSettingsViewController(
+                    accountDataStorage: accountViewModel.accountDataStorageToSet
+                )
+            accountSettingsVC.presentationDelegate = self
+            accountSettingsVC.modalPresentationStyle = .overFullScreen
+            ownerViewController?.present(accountSettingsVC, animated: true)
+        default:
+            break
+        }
     }
     
     //MARK: UIViewControllerPresentationDelegate

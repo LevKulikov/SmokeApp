@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 /// Protocol for ViewController, that provides UI to set account info
 protocol AccountSettingsViewControllerProtocol: AnyObject {
@@ -16,6 +17,17 @@ class AccountSettingsViewController: UIViewController, AccountSettingsViewContro
     //MARK: Properties
     /// ViewModel for AccountSettingsViewController
     private let viewModel: AccountSettingsViewModelProtocol
+    
+    /// Instance to store image name
+    private var imageData: Data? {
+        didSet {
+            guard let imageData else {
+                accountImageView.image = UIImage(systemName: AccountDataStorage.defaultImageName)
+                return
+            }
+            accountImageView.image = UIImage(data: imageData)
+        }
+    }
     
     /// Done button to dismiss view and save account data
     private lazy var doneButton: UIButton = {
@@ -32,10 +44,12 @@ class AccountSettingsViewController: UIViewController, AccountSettingsViewContro
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
-        imageView.image = UIImage(systemName: AccountDataStorage.defaultImageName)
         imageView.tintColor = .systemGray
         imageView.contentMode = .scaleAspectFill
         imageView.isUserInteractionEnabled = true
+        
+        imageView.layer.borderColor = UIColor.systemGray.cgColor
+        imageView.layer.borderWidth = 3
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageViewTappedToSetImage))
         imageView.addGestureRecognizer(tapGesture)
@@ -55,6 +69,17 @@ class AccountSettingsViewController: UIViewController, AccountSettingsViewContro
         textField.clearButtonMode = .whileEditing
         textField.autocorrectionType = .no
         return textField
+    }()
+    
+    /// Picker for photos to set it in account image
+    private lazy var photoPickerController: PHPickerViewController = {
+        var pickerConfig = PHPickerConfiguration()
+        pickerConfig.filter = .images
+        pickerConfig.selectionLimit = 1
+        pickerConfig.preferredAssetRepresentationMode = .compatible
+        let photoPicker = PHPickerViewController(configuration: pickerConfig)
+        photoPicker.delegate = self
+        return photoPicker
     }()
     
     /// Label for description that downside is gender picker
@@ -152,6 +177,7 @@ class AccountSettingsViewController: UIViewController, AccountSettingsViewContro
             accountImageView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -padding),
             accountImageView.heightAnchor.constraint(equalToConstant: view.bounds.width - padding * 2)
         ])
+        accountImageView.layer.cornerRadius = accountImageView.bounds.height / 2
     }
     
     /// Sets constraints to nameTextField
@@ -184,15 +210,18 @@ class AccountSettingsViewController: UIViewController, AccountSettingsViewContro
     
     /// Sets previously saved data
     private func setAccountData() {
+        imageData = viewModel.accountImageData
         nameTextField.text = viewModel.accountName
         genderTextField.text = viewModel.accountGender.rawValue
     }
     
     /// Saves entered by user account info
     private func saveAccountInfo() {
-        //TODO: Save data when closing
+        viewModel.accountImageData = imageData
+        
         checkIfTextFieldEmpty()
         viewModel.accountName = nameTextField.text!
+        
         if let textFromTextField = genderTextField.text, let pickedGender = Gender(rawValue: textFromTextField) {
             viewModel.accountGender = pickedGender
         }
@@ -217,33 +246,32 @@ class AccountSettingsViewController: UIViewController, AccountSettingsViewContro
     /// Provides interface to change account image
     @objc
     private func imageViewTappedToSetImage() {
-        //TODO: Continue this method, call alert (change or delete) and add photo picker
-        print("ImageViewTapped")
+        guard let _ = imageData else {
+            present(photoPickerController, animated: true)
+            return
+        }
+        
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let changePhotoAction = UIAlertAction(title: "Change photo", style: .default) { [weak self] _ in
+            guard let self else { return }
+            self.present(self.photoPickerController, animated: true)
+        }
+        let deleteAction = UIAlertAction(title: "Delete photo", style: .destructive) { [weak self] _ in
+            self?.imageData = nil
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alertController.addAction(changePhotoAction)
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true)
     }
 }
 
 //MARK: TextField delegate
 extension AccountSettingsViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        func errorReturn() {
-//            HapticManagere.shared.notificationVibrate(type: .error)
-//            UIView.animate(
-//                withDuration: 0.3,
-//                delay: 0) {
-//                    textField.backgroundColor = .systemRed
-//                } completion: { _ in
-//                    textField.backgroundColor = nil
-//                }
-//        }
-//        guard let textFromTextField = textField.text else {
-//            errorReturn()
-//            return false
-//        }
-//
-//        guard !textFromTextField.isEmpty else {
-//            errorReturn()
-//            return false
-//        }
         textField.resignFirstResponder()
         return true
     }
@@ -296,5 +324,22 @@ extension AccountSettingsViewController: UIPickerViewDataSource, UIPickerViewDel
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         genderTextField.text = Gender.allCases[row].rawValue
         genderTextField.resignFirstResponder()
+    }
+}
+
+//MARK: PHPickerViewControllerDelegate extension
+extension AccountSettingsViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        guard !results.isEmpty else { return }
+        let item = results.first!.itemProvider
+        if item.canLoadObject(ofClass: UIImage.self) {
+            item.loadObject(ofClass: UIImage.self) { [weak self] imageItem, _ in
+                DispatchQueue.main.async {
+                    let image = imageItem as? UIImage
+                    self?.imageData = image?.jpegData(compressionQuality: 0.1)
+                }
+            }
+        }
     }
 }

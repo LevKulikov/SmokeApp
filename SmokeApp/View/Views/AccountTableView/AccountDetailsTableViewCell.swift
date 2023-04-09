@@ -70,6 +70,8 @@ class AccountDetailsTableViewCell: UITableViewCell {
             accountImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: padding),
             accountImageView.widthAnchor.constraint(equalToConstant: contentView.bounds.height - 2 * padding),
         ])
+        accountImageView.layoutIfNeeded()
+        accountImageView.layer.cornerRadius = accountImageView.bounds.width / 2
     }
     
     /// Sets constraints to nameLabel
@@ -119,9 +121,11 @@ class AccountDetailsTableViewCell: UITableViewCell {
     ///   - name: account name to set in cell
     ///   - gender: user's gender, nil = unidentified
     ///   - birthYear: user's birth year, nil and 0 value hides year in return string
-    func configure(image: UIImage?, name: String, gender: Gender?, birthYear: Int?) {
-        if let image {
-            accountImageView.image = image
+    func configure(imageData: Data?, name: String, gender: Gender?, birthYear: Int?) {
+        if let imageData {
+            DispatchQueue.main.async { [weak self] in
+                self?.accountImageView.image = UIImage(data: imageData)
+            }
         } else {
             accountImageView.image = UIImage(systemName: AccountDataStorage.defaultImageName)
         }
