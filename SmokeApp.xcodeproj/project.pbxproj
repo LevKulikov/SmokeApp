@@ -307,10 +307,10 @@
 				733F444529A0210D002E2291 /* TargetStorage.swift */,
 				733F444329A01ADD002E2291 /* TargetModel.swift */,
 				73D8FB0B2987B6350084BE25 /* UpdateViewModel.swift */,
+				73CC9AE329E3834F007A3706 /* ContactsAndLinks.swift */,
 				73B7129929A23293001BF38C /* SmokeItemData.swift */,
 				7362749A29DAF37C0010F544 /* AccountDataStorage.swift */,
 				73D8FAFB2987AF3D0084BE25 /* Entity */,
-				73CC9AE329E3834F007A3706 /* ContactsAndLinks.swift */,
 			);
 			path = DataStructure;
 			sourceTree = "<group>";

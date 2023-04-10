@@ -30,7 +30,7 @@ final class UserNotificationManager: UserNotificationManagerProtocol {
     //MARK: Initalizer
     init() {
         notificationCenter = UNUserNotificationCenter.current()
-        checkForNotificationPermition()
+//        checkForNotificationPermition()
     }
     //MARK: Methods
     func checkForNotificationPermition() {

@@ -106,6 +106,37 @@ extension UIImage {
         let data = self.jpegData(compressionQuality: cq)
         return data?.base64EncodedString(options: .endLineWithLineFeed)
     }
+    
+    /// Resizes image with provided paramener
+    /// - Parameter targetSize: Size to scale image
+    /// - Returns: new scaled image 
+    func scalePreservingAspectRatio(targetSize: CGSize) -> UIImage {
+            // Determine the scale factor that preserves aspect ratio
+            let widthRatio = targetSize.width / size.width
+            let heightRatio = targetSize.height / size.height
+            
+            let scaleFactor = min(widthRatio, heightRatio)
+            
+            // Compute the new image size that preserves aspect ratio
+            let scaledImageSize = CGSize(
+                width: size.width * scaleFactor,
+                height: size.height * scaleFactor
+            )
+
+            // Draw and return the resized UIImage
+            let renderer = UIGraphicsImageRenderer(
+                size: scaledImageSize
+            )
+
+            let scaledImage = renderer.image { _ in
+                self.draw(in: CGRect(
+                    origin: .zero,
+                    size: scaledImageSize
+                ))
+            }
+            
+            return scaledImage
+        }
 }
 
 /// Object that provides presentation lyfe cycle methods of UIViewController
@@ -151,5 +182,35 @@ extension CGFloat {
     /// - Returns: Radians value
     func toRadians() -> CGFloat {
         return self * CGFloat(Double.pi) / 180.0
+    }
+}
+
+extension UIColor {
+    /// Converts hex code to UIImage
+    /// - Parameter hex: hex code, should start with #
+    public convenience init?(hex: String) {
+        let r, g, b, a: CGFloat
+
+        if hex.hasPrefix("#") {
+            let start = hex.index(hex.startIndex, offsetBy: 1)
+            let hexColor = String(hex[start...])
+
+            if hexColor.count == 8 {
+                let scanner = Scanner(string: hexColor)
+                var hexNumber: UInt64 = 0
+
+                if scanner.scanHexInt64(&hexNumber) {
+                    r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
+                    g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
+                    b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
+                    a = CGFloat(hexNumber & 0x000000ff) / 255
+
+                    self.init(red: r, green: g, blue: b, alpha: a)
+                    return
+                }
+            }
+        }
+
+        return nil
     }
 }

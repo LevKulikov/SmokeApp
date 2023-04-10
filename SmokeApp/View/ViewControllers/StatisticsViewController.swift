@@ -27,9 +27,12 @@ final class StatisticsViewController: UIViewController {
         guard let accountViewController else { return }
         navigationController?.pushViewController(accountViewController, animated: true)
     }
+    
+    /// Sets account button in navigation bar
     func setAccountNavItem() {
+        let imageForBarButton = UIImage(systemName: "person.crop.circle")
         let barButton = UIBarButtonItem(
-            image: UIImage(systemName: "person.crop.circle"),
+            image: imageForBarButton?.scalePreservingAspectRatio(targetSize: CGSize(width: 37, height: 37)),
             style: .plain,
             target: self,
             action: #selector(pushAccountViewController)
