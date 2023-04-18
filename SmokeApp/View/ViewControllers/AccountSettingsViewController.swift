@@ -29,6 +29,31 @@ class AccountSettingsViewController: UIViewController, AccountSettingsViewContro
         }
     }
     
+    /// Instance to srore user's birth year
+    private var userBirthYear: Int? {
+        didSet {
+            guard
+                let userBirthYear,
+                userBirthYear > 0,
+                let index = yearsData.firstIndex(of: userBirthYear)
+            else {
+                birthYearTextField.text = "Unidentified"
+                return
+            }
+            birthYearTextField.text = String(userBirthYear)
+            birthYearPickerView.selectRow(index, inComponent: 0, animated: false)
+        }
+    }
+    
+    /// Array of year to set in birthYearPickerView
+    private var yearsData: [Int] = []
+    
+    /// Constraint for birth label that changes
+    private var birthLabelChangeableYConstraint: NSLayoutConstraint!
+    
+    /// Standart Y constant for birth label
+    private var birthLabelYConstant: CGFloat = 45
+    
     /// Done button to dismiss view and save account data
     private lazy var doneButton: UIButton = {
         let button = UIButton()
@@ -66,7 +91,6 @@ class AccountSettingsViewController: UIViewController, AccountSettingsViewContro
         textField.borderStyle = .none
         textField.font = .boldSystemFont(ofSize: 25)
         textField.returnKeyType = .done
-        textField.clearButtonMode = .whileEditing
         textField.autocorrectionType = .no
         return textField
     }()
@@ -117,6 +141,40 @@ class AccountSettingsViewController: UIViewController, AccountSettingsViewContro
         return pickerView
     }()
     
+    /// Description label for birth year picker view
+    private lazy var birthYearLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.adjustsFontSizeToFitWidth = true
+        label.font = .systemFont(ofSize: 20)
+        label.textColor = .secondaryLabel
+        label.textAlignment = .center
+        label.text = "Birth year"
+        return label
+    }()
+    
+    /// TextField to display date picker to set birth year
+    private lazy var birthYearTextField: NoActionTextField = {
+        let textField = NoActionTextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.delegate = self
+        textField.textAlignment = .center
+        textField.borderStyle = .none
+        textField.autocorrectionType = .no
+        textField.font = .systemFont(ofSize: 23)
+        textField.tintColor = .clear
+        return textField
+    }()
+    
+    /// DatePicker to pick birth year
+    private lazy var birthYearPickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        pickerView.translatesAutoresizingMaskIntoConstraints = false
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        return pickerView
+    }()
+    
     //MARK: Initializer
     init(viewModel: AccountSettingsViewModelProtocol) {
         self.viewModel = viewModel
@@ -137,9 +195,12 @@ class AccountSettingsViewController: UIViewController, AccountSettingsViewContro
             accountImageView,
             nameTextField,
             genderLabel,
-            genderTextField
+            genderTextField,
+            birthYearLabel,
+            birthYearTextField
         )
         setAccountData()
+        birthLabelChangeableYConstraint = birthYearLabel.topAnchor.constraint(equalTo: genderTextField.centerYAnchor, constant: 30 + 15)
     }
     
     override func viewDidLayoutSubviews() {
@@ -149,19 +210,24 @@ class AccountSettingsViewController: UIViewController, AccountSettingsViewContro
         setNameTextFieldConstraints()
         setGenderLabelConstraints()
         setGenderTextFieldConstraints()
+        setBirthYearLabelConstraints()
+        setBirthYaerTextFieldConstraints()
+        setBirthYearTextFieldInputViews()
+        if view.bounds.height < 700 {
+            changeBirthYearViewWithKeyboard()
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        nameTextField.resignFirstResponder()
-        genderTextField.resignFirstResponder()
+        view.endEditing(true)
     }
     
     //MARK: Methods
     /// Sets constraints to doneButton
     private func setDoneButtonConstraints() {
         NSLayoutConstraint.activate([
-            doneButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
+            doneButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             doneButton.heightAnchor.constraint(equalToConstant: 30),
             doneButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -5),
             doneButton.widthAnchor.constraint(equalToConstant: 60)
@@ -172,7 +238,7 @@ class AccountSettingsViewController: UIViewController, AccountSettingsViewContro
     private func setAccountImageViewConstraints() {
         let padding: CGFloat = 130
         NSLayoutConstraint.activate([
-            accountImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            accountImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 55),
             accountImageView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: padding),
             accountImageView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -padding),
             accountImageView.heightAnchor.constraint(equalToConstant: view.bounds.width - padding * 2)
@@ -183,7 +249,7 @@ class AccountSettingsViewController: UIViewController, AccountSettingsViewContro
     /// Sets constraints to nameTextField
     private func setNameTextFieldConstraints() {
         NSLayoutConstraint.activate([
-            nameTextField.topAnchor.constraint(equalTo: accountImageView.bottomAnchor, constant: 30),
+            nameTextField.centerYAnchor.constraint(equalTo: accountImageView.bottomAnchor, constant: 30 + 15),
             nameTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             nameTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20)
         ])
@@ -192,7 +258,7 @@ class AccountSettingsViewController: UIViewController, AccountSettingsViewContro
     /// Sets constraints to genderLabel
     private func setGenderLabelConstraints() {
         NSLayoutConstraint.activate([
-            genderLabel.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 30),
+            genderLabel.topAnchor.constraint(equalTo: nameTextField.centerYAnchor, constant: 30 + 15),
             genderLabel.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             genderLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             genderLabel.heightAnchor.constraint(equalToConstant: 30)
@@ -202,17 +268,61 @@ class AccountSettingsViewController: UIViewController, AccountSettingsViewContro
     /// Sets constraints to genderTextField
     private func setGenderTextFieldConstraints() {
         NSLayoutConstraint.activate([
-            genderTextField.topAnchor.constraint(equalTo: genderLabel.bottomAnchor),
+            genderTextField.centerYAnchor.constraint(equalTo: genderLabel.bottomAnchor, constant: 15),
             genderTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 70),
             genderTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -70),
         ])
     }
     
+    /// Sets constraints to birthYearLabel
+    private func setBirthYearLabelConstraints() {
+        NSLayoutConstraint.activate([
+            birthLabelChangeableYConstraint,
+            birthYearLabel.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            birthYearLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            birthYearLabel.heightAnchor.constraint(equalToConstant: 30)
+        ])
+    }
+    
+    /// Sets constraints to birthYearTextField
+    private func setBirthYaerTextFieldConstraints() {
+        NSLayoutConstraint.activate([
+            birthYearTextField.centerYAnchor.constraint(equalTo: birthYearLabel.bottomAnchor, constant: 15),
+            birthYearTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 70),
+            birthYearTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -70),
+        ])
+    }
+    
+    /// Sets to birthYearTextField input views and accessory input views
+    private func setBirthYearTextFieldInputViews() {
+        birthYearTextField.inputView = birthYearPickerView
+        
+        let toolBar = UIToolbar()
+        let deleteBarButton = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteBarButtonPressed))
+        let spaceBar = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let saveBarButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveBarButtonPressed))
+        toolBar.sizeToFit()
+        toolBar.setItems([deleteBarButton, spaceBar, saveBarButton], animated: false)
+        
+        birthYearTextField.inputAccessoryView = toolBar
+    }
+    
+    /// Configures array of years to set in birthYearPickerView
+    private func configureDataForYears() {
+        let min = AccountDataStorage.minimumYear
+        let max = AccountDataStorage.maximumYear
+        for i in (min...max).reversed() {
+            yearsData.append(i)
+        }
+    }
+    
     /// Sets previously saved data
     private func setAccountData() {
+        configureDataForYears()
         imageData = viewModel.accountImageData
         nameTextField.text = viewModel.accountName
         genderTextField.text = viewModel.accountGender.rawValue
+        userBirthYear = viewModel.accountBirthYear
     }
     
     /// Saves entered by user account info
@@ -224,6 +334,14 @@ class AccountSettingsViewController: UIViewController, AccountSettingsViewContro
         
         if let textFromTextField = genderTextField.text, let pickedGender = Gender(rawValue: textFromTextField) {
             viewModel.accountGender = pickedGender
+        } else {
+            viewModel.accountGender = AccountDataStorage.defaultGender
+        }
+        
+        if let userBirthYear {
+            viewModel.accountBirthYear = userBirthYear
+        } else {
+            viewModel.accountBirthYear = AccountDataStorage.defaultBirthYear
         }
     }
     
@@ -235,12 +353,74 @@ class AccountSettingsViewController: UIViewController, AccountSettingsViewContro
         }
     }
     
+    /// Changes birth year Vies appearance with keyboard showing or hiding
+    private func changeBirthYearViewWithKeyboard() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+    
+    /// Called when keyboard wiil show
+    @objc
+    private func keyboardWillShow(notification: NSNotification) {
+        if birthYearTextField.isFirstResponder {
+            nameTextField.isEnabled = false
+            genderTextField.isEnabled = false
+            let newAlpha: CGFloat = 0.1
+            nameTextField.alpha = newAlpha
+            genderLabel.alpha = newAlpha
+            genderTextField.alpha = newAlpha
+            
+            birthLabelChangeableYConstraint.constant = 10
+            UIView.animate(withDuration: 0.5, delay: 0) { [weak self] in
+                self?.view.layoutIfNeeded()
+            }
+        }
+    }
+    
+    /// Called when keyboard wiil hide
+    @objc
+    private func keyboardWillHide(notification: NSNotification) {
+        if birthYearTextField.isFirstResponder {
+            nameTextField.isEnabled = true
+            genderTextField.isEnabled = true
+            nameTextField.alpha = 1
+            genderLabel.alpha = 1
+            genderTextField.alpha = 1
+            
+            birthLabelChangeableYConstraint.constant = birthLabelYConstant
+            UIView.animate(withDuration: 0.5, delay: 0) { [weak self] in
+                self?.view.layoutIfNeeded()
+            }
+        }
+    }
+    
     /// Dismisses view and saves set data
     @objc
     private func dismissAndSave() {
         saveAccountInfo()
         presentationDelegate?.presentationWillEnd?(for: self)
         dismiss(animated: true)
+    }
+    
+    /// Selector for birthYearTextField toolbar save button
+    @objc
+    private func saveBarButtonPressed() {
+        birthYearTextField.resignFirstResponder()
+        let selectedIndex = birthYearPickerView.selectedRow(inComponent: 0)
+        userBirthYear = yearsData[selectedIndex]
+    }
+    
+    /// Selector for birthYearTextField toolbar delete button
+    @objc
+    private func deleteBarButtonPressed() {
+        birthYearTextField.resignFirstResponder()
+        userBirthYear = 0
     }
     
     /// Provides interface to change account image
@@ -286,7 +466,7 @@ extension AccountSettingsViewController: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == genderTextField {
+        if textField == genderTextField || textField == birthYearTextField {
             return false
         }
         return true
@@ -314,16 +494,37 @@ extension AccountSettingsViewController: UIPickerViewDataSource, UIPickerViewDel
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return Gender.allCases.count
+        switch pickerView {
+        case genderPickerView:
+            return Gender.allCases.count
+        case birthYearPickerView:
+            return yearsData.count
+        default:
+            return 0
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return Gender.allCases[row].rawValue
+        switch pickerView {
+        case genderPickerView:
+            return Gender.allCases[row].rawValue
+        case birthYearPickerView:
+            return String(yearsData[row])
+        default:
+            return nil
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        genderTextField.text = Gender.allCases[row].rawValue
-        genderTextField.resignFirstResponder()
+        switch pickerView {
+        case genderPickerView:
+            genderTextField.text = Gender.allCases[row].rawValue
+            genderTextField.resignFirstResponder()
+        case birthYearPickerView:
+            break
+        default:
+            break
+        }
     }
 }
 

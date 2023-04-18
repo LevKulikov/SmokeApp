@@ -48,18 +48,18 @@ protocol DataStorageProtocol: AnyObject, DataManipulationProtocol {
 final class DataStorage: DataStorageProtocol {
     //MARK: Properties
     /// App context to manipulate with data
-    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    public var savedData: [SmokeItem] = []
-    public var updateViewModel: (([SmokeItem]?) -> Void)?
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var savedData: [SmokeItem] = []
+    var updateViewModel: (([SmokeItem]?) -> Void)?
     
     //MARK: Initializer
-    public init() {
+    init() {
         let _ = try? getDataItems()
         fixDataStrorage()
     }
     
     //MARK: Methods
-    public func createItem(date: Date, count: Int16, targetLimit: Int16?) throws {
+    func createItem(date: Date, count: Int16, targetLimit: Int16?) throws {
         let newItem = SmokeItem(context: context)
         newItem.date = date
         newItem.amount = count
@@ -74,7 +74,7 @@ final class DataStorage: DataStorageProtocol {
         }
     }
     
-    public func getDataItems() throws -> [SmokeItem] {
+    func getDataItems() throws -> [SmokeItem] {
         do {
             let data = try context.fetch(SmokeItem.fetchRequest())
             savedData = data
@@ -84,7 +84,7 @@ final class DataStorage: DataStorageProtocol {
         }
     }
     
-    public func updateDataItem(_ item: SmokeItem, newDate: Date?, newCount: Int16?, targetAmount: Int16?) throws {
+    func updateDataItem(_ item: SmokeItem, newDate: Date?, newCount: Int16?, targetAmount: Int16?) throws {
         guard newDate != nil || newCount != nil || targetAmount != nil else {
             return
         }
@@ -109,7 +109,7 @@ final class DataStorage: DataStorageProtocol {
         updateViewModel?(nil)
     }
     
-    public func deleteTargetForItem(_ item: SmokeItem) throws {
+    func deleteTargetForItem(_ item: SmokeItem) throws {
         item.targetAmount = nil
         do {
             try context.save()
@@ -119,7 +119,7 @@ final class DataStorage: DataStorageProtocol {
         updateViewModel?(nil)
     }
     
-    public func deleteItem(_ item: SmokeItem) throws {
+    func deleteItem(_ item: SmokeItem) throws {
         context.delete(item)
         
         do {

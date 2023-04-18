@@ -23,8 +23,8 @@ final class Assembler {
     func buildMainTabBarController() -> UITabBarController {
         let dataStorage = DataStorage()
         let targetOwner = TargetOwner()
-        let accountDataStorage = AccountDataStorage()
-        let notificationManager = UserNotificationManager()
+//        let accountDataStorage = AccountDataStorage()
+//        let notificationManager = UserNotificationManager()
         
         let calendarViewController = buildMVVMCalendarViewController(dataStorage: dataStorage, targetOwner: targetOwner)
         let calendarNavCon = UINavigationController(rootViewController: calendarViewController)

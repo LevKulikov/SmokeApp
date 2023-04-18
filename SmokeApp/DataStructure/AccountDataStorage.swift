@@ -65,6 +65,19 @@ final class AccountDataStorage: AccountDataStorageProtocol {
     /// Default birth year, it is 0, which identifies that birth year is not set (unidentified)
     static let defaultBirthYear = 0
     
+    static var maximumYear: Int {
+        let currentDate = Date.now
+        let calendar = Calendar.current
+        guard let year = calendar.dateComponents([.year], from: Date.now).year else { return 0 }
+        return year
+    }
+    
+    static var minimumYear: Int {
+        let minYear = maximumYear - 120
+        guard minYear > 0 else { return 0 }
+        return minYear
+    }
+    
     var accountImageData: Data? {
         didSet {
             UserDefaults.standard.setValue(accountImageData, forKey: accountImageDataKey)
@@ -105,7 +118,7 @@ final class AccountDataStorage: AccountDataStorageProtocol {
             accountGender = AccountDataStorage.defaultGender
         }
         
-        accountBirthYear = UserDefaults.standard.integer(forKey: genderKey)
+        accountBirthYear = UserDefaults.standard.integer(forKey: birthYearKey)
     }
     
     //MARK: Methods

@@ -25,11 +25,11 @@ protocol DayViewModelProtocol: AnyObject {
 /// View model for DayViewController
 final class DayViewModel: DayViewModelProtocol {
     //MARK: Properties
-    public var selectedSmokeItem: SmokeItem {
+    var selectedSmokeItem: SmokeItem {
         return smokeItem
     }
     
-    public var targetUpdate: ((Int16?) -> Void)?
+    var targetUpdate: ((Int16?) -> Void)?
     
     var isLimitExceeded: Bool {
         guard let limit = smokeItem.targetAmount as? Int16 else { return false }
@@ -54,7 +54,7 @@ final class DayViewModel: DayViewModelProtocol {
     }
     
     //MARK: Methods
-    public func updateSmokeItemCount(with count: Int16) {
+    func updateSmokeItemCount(with count: Int16) {
         do{
             try dataStorage.updateDataItem(smokeItem, newDate: nil, newCount: count, targetAmount: nil)
         } catch {
