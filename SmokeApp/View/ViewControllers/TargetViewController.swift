@@ -698,7 +698,7 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
     /// Sets right button to Navigation Bar
     /// - Parameter image: Image to set in the button
     /// - Parameter selector: selector to set as action in button
-    private func setRightNavigationButton(image: UIImage?, selector: Selector?) {
+    private func setCustomRightNavigationButton(image: UIImage?, selector: Selector?) {
         let barButton = UIBarButtonItem(
             image: image,
             style: .done,
@@ -712,22 +712,17 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
         )
     }
     
-    /// Sets left button to Navigation Bar
-    /// - Parameters:
-    ///   - image: Image to set in the button
-    ///   - selector: selector to set as action in button
-    private func setLeftNavigationButton(image: UIImage?, selector: Selector?) {
-        let barButton = UIBarButtonItem(
-            image: image,
-            style: .done,
-            target: self,
-            action: selector
-        )
+    /// Sets editing target menu to navigation right item
+    private func setEditMenuNavigationBarButton() {
+        let editAction = UIAction(title: "Edit target", image: UIImage(systemName: "pencil.line")) { [weak self] _ in
+            self?.editTarget()
+        }
+        let deleteAction = UIAction(title: "Delete target", image: UIImage(systemName: "trash"), attributes: .destructive) { [weak self] _ in
+            self?.deleteTarget()
+        }
+        let editMenu = UIMenu(children: [editAction, deleteAction])
         
-        navigationItem.setLeftBarButton(
-            barButton,
-            animated: true
-        )
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), menu: editMenu)
     }
     
     /// Adds button above keyboard to turn down keyboard
@@ -774,8 +769,7 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
         setTargetTypeLabelConstraints()
         setTargetValueConstraints()
         setTargetFulfilmentLabelsConstraints()
-        setRightNavigationButton(image: UIImage(systemName: "pencil.line"), selector: #selector(editTarget))
-        setLeftNavigationButton(image: UIImage(systemName: "trash"), selector: #selector(deleteTarget))
+        setEditMenuNavigationBarButton()
         
         guard let target = viewModel.target else { return }
         switch target.userTarget {
@@ -874,7 +868,7 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
     /// Target action for addTargetButton, shows views to make user be able to add his or her smoke target
     @objc
     private func addButtonTapped() {
-        setRightNavigationButton(image: UIImage(systemName: "arrowshape.turn.up.backward.fill"), selector: #selector(turnBackToIntro))
+        setCustomRightNavigationButton(image: UIImage(systemName: "arrowshape.turn.up.backward.fill"), selector: #selector(turnBackToIntro))
         
         animateIntroLabel(showing: false) { [weak self] in
             self?.introLabel.isHidden = true
@@ -1038,7 +1032,7 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
         animateCircleView(showing: true)
         addTargetButton.isHidden = false
         animateAddTargetButton(showing: true)
-        setRightNavigationButton(image: UIImage(systemName: "arrowshape.turn.up.backward.fill"), selector: #selector(cancelEditing))
+        setCustomRightNavigationButton(image: UIImage(systemName: "arrowshape.turn.up.backward.fill"), selector: #selector(cancelEditing))
         navigationItem.setLeftBarButton(nil, animated: true)
         
         addTargetButton.removeTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
@@ -1083,8 +1077,7 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
         animateTargetFulfilmentDescriptionLabel(showing: true)
         animateTargetFulfilmentLabel(showing: true)
         
-        setRightNavigationButton(image: UIImage(systemName: "pencil.line"), selector: #selector(editTarget))
-        setLeftNavigationButton(image: UIImage(systemName: "trash"), selector: #selector(deleteTarget))
+        setEditMenuNavigationBarButton()
     }
     
     /// Delete target

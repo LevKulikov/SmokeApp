@@ -20,26 +20,6 @@ final class StatisticsViewController: UIViewController {
         case narrowInfoSectoin
     }
     
-    //MARK: Test prop and meth
-    var accountViewController: UIViewController?
-    @objc
-    func pushAccountViewController() {
-        guard let accountViewController else { return }
-        navigationController?.pushViewController(accountViewController, animated: true)
-    }
-    
-    /// Sets account button in navigation bar
-    func setAccountNavItem() {
-        let imageForBarButton = UIImage(systemName: "person.crop.circle")
-        let barButton = UIBarButtonItem(
-            image: imageForBarButton?.scalePreservingAspectRatio(targetSize: CGSize(width: 37, height: 37)),
-            style: .plain,
-            target: self,
-            action: #selector(pushAccountViewController)
-        )
-        navigationItem.rightBarButtonItem = barButton
-    }
-    
     //MARK: Properties
     /// ViewModel to manipulate with data by it
     private let viewModel: StatisticsViewModelProtocol
@@ -97,7 +77,6 @@ final class StatisticsViewController: UIViewController {
         view.backgroundColor = Constants.shared.viewControllerBackgroundColor
         title = "Statistics"
         view.addSubview(collectionView)
-        setAccountNavItem()
     }
     
     override func viewDidLayoutSubviews() {

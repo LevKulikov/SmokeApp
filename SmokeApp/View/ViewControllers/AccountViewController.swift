@@ -39,8 +39,7 @@ final class AccountViewController: UIViewController, AccountViewControllerProtoc
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Constants.shared.viewControllerBackgroundColor
-        navigationItem.largeTitleDisplayMode = .never
-        title = "Account settings"
+        title = "Account"
         
         // To use self, this property is identified in viewDidLoad()
         tableAdapter = TableViewAdapter(
@@ -100,6 +99,7 @@ final class TableViewAdapter: NSObject, TableViewAdapterProtocol {
     /// Enumeration that identifies cell types with their identifiers
     enum TableViewCellTypes: String, CaseIterable {
         case accountDetails = "accountDetailsCell"
+        case targetCell = "targetCell"
         case settings = "settingsCell"
         case links = "linksCell"
     }
@@ -126,6 +126,7 @@ final class TableViewAdapter: NSObject, TableViewAdapterProtocol {
     private func configureTableView() {
         tableView?.translatesAutoresizingMaskIntoConstraints = false
         tableView?.register(AccountDetailsTableViewCell.self, forCellReuseIdentifier: TableViewCellTypes.accountDetails.rawValue)
+        tableView?.register(TargetTableViewCell.self, forCellReuseIdentifier: TableViewCellTypes.targetCell.rawValue)
         tableView?.register(SettingsTableViewCell.self, forCellReuseIdentifier: TableViewCellTypes.settings.rawValue)
         tableView?.register(LinksTableViewCell.self, forCellReuseIdentifier: TableViewCellTypes.links.rawValue)
         tableView?.dataSource = self
@@ -169,6 +170,8 @@ extension TableViewAdapter: UITableViewDataSource, UITableViewDelegate, UIViewCo
 //        case 1:
 //            return 3
         case 1:
+            return 1
+        case 2:
             return ContactsAndLinks.allCases.count
         default:
             return 0
@@ -189,13 +192,19 @@ extension TableViewAdapter: UITableViewDataSource, UITableViewDelegate, UIViewCo
                 birthYear: accountViewModel?.accountBirthYear
             )
             return cell
-//        case 1:
+//        case 2:
 //            let cell = tableView.dequeueReusableCell(
 //                withIdentifier: TableViewCellTypes.settings.rawValue,
 //                for: indexPath
 //            ) as! SettingsTableViewCell
 //            return cell
         case 1:
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: TableViewCellTypes.targetCell.rawValue,
+                for: indexPath
+            ) as! TargetTableViewCell
+            return cell
+        case 2:
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: TableViewCellTypes.links.rawValue,
                 for: indexPath
@@ -209,9 +218,9 @@ extension TableViewAdapter: UITableViewDataSource, UITableViewDelegate, UIViewCo
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
-        case 0:
+        case 0, 1:
             return 100
-        case 1, 2:
+        case 2, 3:
             return 40
         default:
             return 0
@@ -222,7 +231,7 @@ extension TableViewAdapter: UITableViewDataSource, UITableViewDelegate, UIViewCo
         switch section {
 //        case 1:
 //            return "Settings"
-        case 1:
+        case 2:
             return "Useful links"
         default:
             return nil
@@ -231,9 +240,9 @@ extension TableViewAdapter: UITableViewDataSource, UITableViewDelegate, UIViewCo
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        guard let accountViewModel else { return }
         switch indexPath.section {
         case 0:
-            guard let accountViewModel else { return }
             let accountSettingsVC = Assembler.shared
                 .buildMVVMAccountSettingsViewController(
                     accountDataStorage: accountViewModel.accountDataStorageToSet
@@ -241,10 +250,16 @@ extension TableViewAdapter: UITableViewDataSource, UITableViewDelegate, UIViewCo
             accountSettingsVC.presentationDelegate = self
             accountSettingsVC.modalPresentationStyle = .overFullScreen
             ownerViewController?.present(accountSettingsVC, animated: true)
-//        case 1:
-//            print("Settings tapped")
-            break
         case 1:
+            let targetVC = Assembler.shared
+                .buildMVVMTargetViewController(
+                    targetOwner: accountViewModel.targetStorageToSet,
+                    dataStorage: accountViewModel.dataStorageToSet
+                )
+            ownerViewController?.navigationController?.pushViewController(targetVC, animated: true)
+//        case 2:
+//            print("Settings tapped")
+        case 2:
             guard let cell = tableView.cellForRow(at: indexPath) as? LinksTableViewCell,
                   let linkString = cell.linkToGet else {
                 presentErrorAlert(message: "Unable to get URL")

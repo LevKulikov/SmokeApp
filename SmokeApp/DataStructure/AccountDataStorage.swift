@@ -66,7 +66,6 @@ final class AccountDataStorage: AccountDataStorageProtocol {
     static let defaultBirthYear = 0
     
     static var maximumYear: Int {
-        let currentDate = Date.now
         let calendar = Calendar.current
         guard let year = calendar.dateComponents([.year], from: Date.now).year else { return 0 }
         return year

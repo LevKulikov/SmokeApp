@@ -13,6 +13,12 @@ protocol AccountViewModelProtocol: AnyObject {
     /// Property to savety provide account data storage to push it in another View Model
     var accountDataStorageToSet: AccountDataStorageProtocol { get }
     
+    /// Property to savety provide target storage to push it in another View Model
+    var targetStorageToSet: TargetOwnerProtocol { get }
+    
+    /// Property to savety provide smoke data storage to push it in another View Model
+    var dataStorageToSet: DataStorageProtocol { get }
+    
     /// Property to provide account's name
     var accountName: String { get }
     
@@ -46,6 +52,14 @@ final class AccountViewModel: AccountViewModelProtocol {
     
     var accountDataStorageToSet: AccountDataStorageProtocol {
         return accountDataStorage
+    }
+    
+    var targetStorageToSet: TargetOwnerProtocol {
+        return targetStorage
+    }
+    
+    var dataStorageToSet: DataStorageProtocol {
+        return dataStorage
     }
     
     /// Property to store account data storage object

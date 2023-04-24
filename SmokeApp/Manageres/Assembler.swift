@@ -23,8 +23,8 @@ final class Assembler {
     func buildMainTabBarController() -> UITabBarController {
         let dataStorage = DataStorage()
         let targetOwner = TargetOwner()
-//        let accountDataStorage = AccountDataStorage()
-//        let notificationManager = UserNotificationManager()
+        let accountDataStorage = AccountDataStorage()
+        let notificationManager = UserNotificationManager()
         
         let calendarViewController = buildMVVMCalendarViewController(dataStorage: dataStorage, targetOwner: targetOwner)
         let calendarNavCon = UINavigationController(rootViewController: calendarViewController)
@@ -38,14 +38,19 @@ final class Assembler {
         statisticsNavCon.navigationItem.largeTitleDisplayMode = .automatic
         statisticsNavCon.tabBarItem = UITabBarItem(title: "Statistics", image: UIImage(systemName: "chart.bar.xaxis"), tag: 1)
         
-        let targetViewController = buildMVVMTargetViewController(targetOwner: targetOwner, dataStorage: dataStorage)
-        let targetNavCon = UINavigationController(rootViewController: targetViewController)
-        targetNavCon.navigationBar.prefersLargeTitles = true
-        targetNavCon.navigationItem.largeTitleDisplayMode = .automatic
-        targetNavCon.tabBarItem = UITabBarItem(title: "Smokes Target", image: UIImage(systemName: "target"), tag: 2)
+        let accountViewController = buildMVVMAccountViewController(
+            accountDataStorage: accountDataStorage,
+            targetOwner: targetOwner,
+            dataStorage: dataStorage,
+            notificationManager: notificationManager
+        )
+        let accountNavCon = UINavigationController(rootViewController: accountViewController)
+        accountNavCon.navigationBar.prefersLargeTitles = true
+        accountNavCon.navigationItem.largeTitleDisplayMode = .automatic
+        accountNavCon.tabBarItem = UITabBarItem(title: "Account", image: UIImage(systemName: "person.circle.fill"), tag: 2)
         
         let tabBar = UITabBarController()
-        tabBar.setViewControllers([calendarNavCon, statisticsNavCon, targetNavCon], animated: true)
+        tabBar.setViewControllers([calendarNavCon, statisticsNavCon, accountNavCon], animated: true)
         tabBar.delegate = calendarViewController as? CalendarViewController
         
         return tabBar
@@ -98,12 +103,6 @@ final class Assembler {
     func buildMVVMStatisticsViewController(dataStorage: DataStorageProtocol) -> UIViewController {
         let viewModel = StatisticsViewModel(dataStorage: dataStorage)
         let viewController = StatisticsViewController(viewModel: viewModel)
-        
-        let accountDataStorage = AccountDataStorage()
-        let notificationManager = UserNotificationManager()
-        let targetOwner = TargetOwner()
-        viewController.accountViewController = buildMVVMAccountViewController(accountDataStorage: accountDataStorage, targetOwner: targetOwner, dataStorage: dataStorage, notificationManager: notificationManager)
-        
         return viewController
     }
     

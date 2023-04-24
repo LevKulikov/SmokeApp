@@ -14,6 +14,7 @@
 		732E801E29DC87920068959A /* LinksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732E801D29DC87920068959A /* LinksTableViewCell.swift */; };
 		732E802029DE27C80068959A /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732E801F29DE27C80068959A /* AccountViewModel.swift */; };
 		732E802229DE2D700068959A /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732E802129DE2D700068959A /* AccountSettingsViewController.swift */; };
+		73305FC629F040F2006C588C /* TargetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73305FC529F040F2006C588C /* TargetTableViewCell.swift */; };
 		733B0F542992ECE900E7EC6D /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0F532992ECE900E7EC6D /* StatisticsViewController.swift */; };
 		733B0F562992F98A00E7EC6D /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0F552992F98A00E7EC6D /* StatisticsViewModel.swift */; };
 		733B0F68299BB91F00E7EC6D /* WideCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0F67299BB91F00E7EC6D /* WideCollectionViewCell.swift */; };
@@ -95,6 +96,7 @@
 		732E801D29DC87920068959A /* LinksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinksTableViewCell.swift; sourceTree = "<group>"; };
 		732E801F29DE27C80068959A /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		732E802129DE2D700068959A /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
+		73305FC529F040F2006C588C /* TargetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetTableViewCell.swift; sourceTree = "<group>"; };
 		733B0F532992ECE900E7EC6D /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		733B0F552992F98A00E7EC6D /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		733B0F67299BB91F00E7EC6D /* WideCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WideCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				732E801929DC87540068959A /* AccountDetailsTableViewCell.swift */,
+				73305FC529F040F2006C588C /* TargetTableViewCell.swift */,
 				732E801B29DC87800068959A /* SettingsTableViewCell.swift */,
 				732E801D29DC87920068959A /* LinksTableViewCell.swift */,
 			);
@@ -571,6 +574,7 @@
 				733B0F6A299BB9B000E7EC6D /* ChartCollectionViewCell.swift in Sources */,
 				73C8039829D5A10C007A20BC /* AccountViewController.swift in Sources */,
 				73D8FAC22987A1220084BE25 /* CalendarViewController.swift in Sources */,
+				73305FC629F040F2006C588C /* TargetTableViewCell.swift in Sources */,
 				733B0F68299BB91F00E7EC6D /* WideCollectionViewCell.swift in Sources */,
 				73C8039A29D5A1A1007A20BC /* UserNotificationManager.swift in Sources */,
 				73B712A329A233D2001BF38C /* SmokeItem+CoreDataClass.swift in Sources */,

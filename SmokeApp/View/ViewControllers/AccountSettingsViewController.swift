@@ -238,7 +238,7 @@ class AccountSettingsViewController: UIViewController, AccountSettingsViewContro
     private func setAccountImageViewConstraints() {
         let padding: CGFloat = 130
         NSLayoutConstraint.activate([
-            accountImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 55),
+            accountImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 70),
             accountImageView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: padding),
             accountImageView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -padding),
             accountImageView.heightAnchor.constraint(equalToConstant: view.bounds.width - padding * 2)
@@ -376,7 +376,7 @@ class AccountSettingsViewController: UIViewController, AccountSettingsViewContro
             genderLabel.alpha = newAlpha
             genderTextField.alpha = newAlpha
             
-            birthLabelChangeableYConstraint.constant = 10
+            birthLabelChangeableYConstraint.constant = -5
             UIView.animate(withDuration: 0.5, delay: 0) { [weak self] in
                 self?.view.layoutIfNeeded()
             }
