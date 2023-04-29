@@ -31,7 +31,7 @@ protocol TargetViewModelProtocol: AnyObject, TargetManipulationProtocol {
 /// View Model for TargetViewController to filful required method
 final class TargetViewModel: TargetViewModelProtocol {
     //MARK: Properties
-    public var target: Target? {
+    var target: Target? {
         targetOwner.userTarget
     }
     
@@ -48,15 +48,15 @@ final class TargetViewModel: TargetViewModelProtocol {
     }
     
     //MARK: Methdos
-    public func setNewTarget(_ target: Target) {
+    func setNewTarget(_ target: Target) {
         targetOwner.setNewTarget(target)
     }
     
-    public func deleteTarget() {
+    func deleteTarget() {
         targetOwner.deleteTarget()
     }
     
-    public func getAllTimeMinimalSmokes() -> Int16? {
+    func getAllTimeMinimalSmokes() -> Int16? {
         let allData = dataStorage.savedData
         // Seachs minimal value except zero values and the last one, because last value does not set finally
         let intData = allData.dropLast(1).compactMap { $0.amount }.filter { $0 != 0 }
@@ -66,7 +66,7 @@ final class TargetViewModel: TargetViewModelProtocol {
         return minValue
     }
     
-    public func countLeftDaysToQuitSmoking() -> Int16? {
+    func countLeftDaysToQuitSmoking() -> Int16? {
         guard let target else {
             return nil
         }
@@ -87,7 +87,7 @@ final class TargetViewModel: TargetViewModelProtocol {
         return nil
     }
     
-    public func currentTargetPerformance() -> Float? {
+    func currentTargetPerformance() -> Float? {
         guard let target else {
             return nil
         }

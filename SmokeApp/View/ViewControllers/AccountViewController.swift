@@ -125,6 +125,7 @@ final class TableViewAdapter: NSObject, TableViewAdapterProtocol {
     /// Configures TableView correctly
     private func configureTableView() {
         tableView?.translatesAutoresizingMaskIntoConstraints = false
+        tableView?.backgroundColor = Constants.shared.viewControllerBackgroundColor
         tableView?.register(AccountDetailsTableViewCell.self, forCellReuseIdentifier: TableViewCellTypes.accountDetails.rawValue)
         tableView?.register(TargetTableViewCell.self, forCellReuseIdentifier: TableViewCellTypes.targetCell.rawValue)
         tableView?.register(SettingsTableViewCell.self, forCellReuseIdentifier: TableViewCellTypes.settings.rawValue)
@@ -203,6 +204,10 @@ extension TableViewAdapter: UITableViewDataSource, UITableViewDelegate, UIViewCo
                 withIdentifier: TableViewCellTypes.targetCell.rawValue,
                 for: indexPath
             ) as! TargetTableViewCell
+            cell.configure(
+                targetOwner: accountViewModel?.targetStorageToSet,
+                dataStorage: accountViewModel?.dataStorageToSet
+            )
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(

@@ -222,7 +222,7 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
     private var targetFulfimentValue: Float? {
         didSet {
             guard let targetFulfimentValue else {
-                targetFulfilmentLabel.text = "Nil"
+                targetFulfilmentLabel.text = "NuN"
                 targetFulfilmentLabel.textColor = .label
                 return
             }
@@ -236,7 +236,7 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
             case 85...:
                 targetFulfilmentLabel.textColor = .systemGreen
                 if resultedValue > 9999 {
-                    resultedValue = 9999
+                    resultedValue = 999
                 }
             default:
                 targetFulfilmentLabel.textColor = .label
@@ -722,7 +722,7 @@ final class TargetViewController: UIViewController, TargetViewControllerProtocol
         }
         let editMenu = UIMenu(children: [editAction, deleteAction])
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), menu: editMenu)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), menu: editMenu)
     }
     
     /// Adds button above keyboard to turn down keyboard

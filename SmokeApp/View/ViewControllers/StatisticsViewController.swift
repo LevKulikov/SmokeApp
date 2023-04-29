@@ -150,7 +150,7 @@ final class StatisticsViewController: UIViewController {
             viewModel.daysToCountDynamics = numberArray[0]
         }
         
-        let indexPath = IndexPath(row: 0, section: 0)
+        let indexPath = IndexPath(row: 0, section: 1)
         collectionView.reloadItems(at: [indexPath])
     }
     
@@ -187,9 +187,9 @@ final class StatisticsViewController: UIViewController {
         let compositionalLayout = UICollectionViewCompositionalLayout { [weak self] section, _ in
             switch section {
             case 0:
-                return self?.createWideInfoSectoin()
-            case 1:
                 return self?.createChartSectoin()
+            case 1:
+                return self?.createWideInfoSectoin()
             case 2:
                 return self?.createNarrowInfoSectoin()
             default:
@@ -217,7 +217,7 @@ final class StatisticsViewController: UIViewController {
         
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(
-            top: 10,
+            top: 5,
             leading: 10,
             bottom: 5,
             trailing: 10
@@ -244,7 +244,7 @@ final class StatisticsViewController: UIViewController {
         
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(
-            top: 5,
+            top: 10,
             leading: 10,
             bottom: 5,
             trailing: 10
@@ -310,6 +310,17 @@ extension StatisticsViewController: UICollectionViewDataSource, UICollectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewCell.basicIdentifier, for: indexPath)
         switch indexPath.section {
         case 0:
+            guard let cellChart = collectionView.dequeueReusableCell(
+                withReuseIdentifier: ChartCollectionViewCell.identifier,
+                for: indexPath
+            ) as? ChartCollectionViewCell else {
+                return cell
+            }
+            cellChart.configureCell(chartsData: viewModel.getSmokeItems())
+            cellChart.delegate = self
+            return cellChart
+            
+        case 1:
             guard let cellWide = collectionView.dequeueReusableCell(
                 withReuseIdentifier: WideCollectionViewCell.identifier,
                 for: indexPath
@@ -325,17 +336,6 @@ extension StatisticsViewController: UICollectionViewDataSource, UICollectionView
             )
             
             return cellWide
-            
-        case 1:
-            guard let cellChart = collectionView.dequeueReusableCell(
-                withReuseIdentifier: ChartCollectionViewCell.identifier,
-                for: indexPath
-            ) as? ChartCollectionViewCell else {
-                return cell
-            }
-            cellChart.configureCell(chartsData: viewModel.getSmokeItems())
-            cellChart.delegate = self
-            return cellChart
             
         case 2:
             guard let cellNarrow = collectionView.dequeueReusableCell(
@@ -389,9 +389,9 @@ extension StatisticsViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
-            wideCellTapped()
-        case 1:
             break
+        case 1:
+            wideCellTapped()
         case 2:
             switch indexPath.row {
             case 3:

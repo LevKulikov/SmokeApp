@@ -27,16 +27,21 @@ protocol TargetStorageProtocol {
 protocol TargetOwnerProtocol: AnyObject, TargetStorageProtocol, TargetManipulationProtocol {
     /// Property to bind with DayViewModel that indicates target is update
     var targetUpdateDayView: ((Target?) -> Void)? { get set }
+    
+    /// Property to bind with TargetTableViewCell that indicates target is update
+    var targetUpdateAccountCell: ((Target?) -> Void)? { get set }
 }
 
 /// Class to store set by user target and push it to other View Models
 final class TargetOwner: TargetOwnerProtocol {
     //MARK: Properties
-    public var userTarget: Target? {
+    var userTarget: Target? {
         return target
     }
     
-    public var targetUpdateDayView: ((Target?) -> Void)?
+    var targetUpdateDayView: ((Target?) -> Void)?
+    
+    var targetUpdateAccountCell: ((Target?) -> Void)?
     
     /// Private propety to manipulate with target inside the class
     private var target: Target? {
@@ -48,19 +53,21 @@ final class TargetOwner: TargetOwnerProtocol {
     
     //MARK: Initializer
     /// Initializer sets target object from UserDefaults
-    public init() {
+    init() {
         guard let targetData = UserDefaults.standard.data(forKey: Constants.shared.targetUserDefaultKey) else { return }
         target = try? JSONDecoder().decode(Target.self, from: targetData)
     }
     
     //MARK: Methods
-    public func setNewTarget(_ target: Target) {
+    func setNewTarget(_ target: Target) {
         self.target = target
         targetUpdateDayView?(target)
+        targetUpdateAccountCell?(target)
     }
     
-    public func deleteTarget() {
+    func deleteTarget() {
         self.target = nil
         targetUpdateDayView?(nil)
+        targetUpdateAccountCell?(nil)
     }
 }

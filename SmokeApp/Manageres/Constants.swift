@@ -18,7 +18,7 @@ final class Constants {
     
     //MARK: Properties
     public let viewControllerBackgroundColor = UIColor.systemBackground
-    public let cellBackgroundColor = UIColor.systemGray5
+    public let cellBackgroundColor = UIColor.systemGray6
     public let statisticsCellCornerRadius: CGFloat = 15
     public let averageDaysUserDefaultKey = "averageDaysUserDefaultKey"
     public let dynamicsDaysUserDefaultKey = "dynamicsDaysUserDefaultKey"

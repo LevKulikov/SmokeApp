@@ -41,8 +41,8 @@ protocol DataManipulationProtocol {
 protocol DataStorageProtocol: AnyObject, DataManipulationProtocol {
     /// Instanse to conviniently get data
     var savedData: [SmokeItem] { get set }
-    /// Property for binding between Data Storage and Main View Model
-    var updateViewModel: (([SmokeItem]?) -> Void)? { get set }
+    /// Property for binding between Data Storage and Account TargetTableViewCell
+    var updateTableCell: (([SmokeItem]?) -> Void)? { get set }
 }
 
 final class DataStorage: DataStorageProtocol {
@@ -50,7 +50,7 @@ final class DataStorage: DataStorageProtocol {
     /// App context to manipulate with data
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var savedData: [SmokeItem] = []
-    var updateViewModel: (([SmokeItem]?) -> Void)?
+    var updateTableCell: (([SmokeItem]?) -> Void)?
     
     //MARK: Initializer
     init() {
@@ -72,6 +72,7 @@ final class DataStorage: DataStorageProtocol {
         } catch {
             throw error
         }
+        pushInformationInUpdateClosure()
     }
     
     func getDataItems() throws -> [SmokeItem] {
@@ -106,7 +107,7 @@ final class DataStorage: DataStorageProtocol {
         } catch {
             throw error
         }
-        updateViewModel?(nil)
+        pushInformationInUpdateClosure()
     }
     
     func deleteTargetForItem(_ item: SmokeItem) throws {
@@ -116,7 +117,7 @@ final class DataStorage: DataStorageProtocol {
         } catch {
             throw error
         }
-        updateViewModel?(nil)
+        pushInformationInUpdateClosure()
     }
     
     func deleteItem(_ item: SmokeItem) throws {
@@ -127,6 +128,7 @@ final class DataStorage: DataStorageProtocol {
         } catch {
             throw error
         }
+        pushInformationInUpdateClosure()
     }
     
     /// Method that removes duplicates from contex if there is any
@@ -143,6 +145,15 @@ final class DataStorage: DataStorageProtocol {
         
         for data in duplicatedSet {
             try? deleteItem(data)
+        }
+    }
+    
+    private func pushInformationInUpdateClosure() {
+        do {
+            updateTableCell?(try getDataItems())
+        } catch {
+            print(error)
+            updateTableCell?(nil)
         }
     }
 }
