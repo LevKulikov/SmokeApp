@@ -134,22 +134,10 @@ final class TableViewAdapter: NSObject, TableViewAdapterProtocol {
         tableView?.delegate = self
     }
     
-    /// Presents Safari ViewController with provided URL String
-    /// - Parameter urlString: string that can be converted into URL
-    private func presentSafari(urlString: String) {
-        guard let url = URL(string: urlString) else {
-            presentErrorAlert(message: "Incorrect URL")
-            return
-        }
-        let safariVC = SFSafariViewController(url: url)
-        safariVC.dismissButtonStyle = .close
-        ownerViewController?.present(safariVC, animated: true)
-    }
-    
     /// Presents error alert with title "Error" and provided message. Also call error haptic vibration
     /// - Parameter message: message describes error
     private func presentErrorAlert(message: String?) {
-        let alertViewController = UIAlertController(title: "Error", message: message, preferredStyle: .actionSheet)
+        let alertViewController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "Done", style: .default)
         alertViewController.addAction(alertAction)
         HapticManagere.shared.notificationVibrate(type: .error)
@@ -160,19 +148,18 @@ final class TableViewAdapter: NSObject, TableViewAdapterProtocol {
 //MARK: TableView DataSource and Delegate, UIViewControllerPresentationDelegate
 extension TableViewAdapter: UITableViewDataSource, UITableViewDelegate, UIViewControllerPresentationDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-        //TODO: After configuring settings cell delete -1
-        return TableViewCellTypes.allCases.count-1
+        return TableViewCellTypes.allCases.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return 1
-//        case 1:
-//            return 3
         case 1:
             return 1
         case 2:
+            return SettingsType.allCases.count
+        case 3:
             return ContactsAndLinks.allCases.count
         default:
             return 0
@@ -193,12 +180,6 @@ extension TableViewAdapter: UITableViewDataSource, UITableViewDelegate, UIViewCo
                 birthYear: accountViewModel?.accountBirthYear
             )
             return cell
-//        case 2:
-//            let cell = tableView.dequeueReusableCell(
-//                withIdentifier: TableViewCellTypes.settings.rawValue,
-//                for: indexPath
-//            ) as! SettingsTableViewCell
-//            return cell
         case 1:
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: TableViewCellTypes.targetCell.rawValue,
@@ -210,6 +191,13 @@ extension TableViewAdapter: UITableViewDataSource, UITableViewDelegate, UIViewCo
             )
             return cell
         case 2:
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: TableViewCellTypes.settings.rawValue,
+                for: indexPath
+            ) as! SettingsTableViewCell
+            cell.configure(type: SettingsType.allCases[indexPath.row])
+            return cell
+        case 3:
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: TableViewCellTypes.links.rawValue,
                 for: indexPath
@@ -234,9 +222,9 @@ extension TableViewAdapter: UITableViewDataSource, UITableViewDelegate, UIViewCo
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-//        case 1:
-//            return "Settings"
         case 2:
+            return "Settings"
+        case 3:
             return "Useful links"
         default:
             return nil
@@ -248,29 +236,25 @@ extension TableViewAdapter: UITableViewDataSource, UITableViewDelegate, UIViewCo
         guard let accountViewModel else { return }
         switch indexPath.section {
         case 0:
-            let accountSettingsVC = Assembler.shared
-                .buildMVVMAccountSettingsViewController(
-                    accountDataStorage: accountViewModel.accountDataStorageToSet
-                )
-            accountSettingsVC.presentationDelegate = self
-            accountSettingsVC.modalPresentationStyle = .overFullScreen
-            ownerViewController?.present(accountSettingsVC, animated: true)
+            accountViewModel.toAccountSettings(presentationDelegate: self)
         case 1:
-            let targetVC = Assembler.shared
-                .buildMVVMTargetViewController(
-                    targetOwner: accountViewModel.targetStorageToSet,
-                    dataStorage: accountViewModel.dataStorageToSet
-                )
-            ownerViewController?.navigationController?.pushViewController(targetVC, animated: true)
-//        case 2:
-//            print("Settings tapped")
+            accountViewModel.toTargetView()
         case 2:
+            switch indexPath.row {
+            case 0:
+                accountViewModel.toNotificationSettins()
+            default:
+                print("Settings section type does not exist")
+            }
+        case 3:
             guard let cell = tableView.cellForRow(at: indexPath) as? LinksTableViewCell,
                   let linkString = cell.linkToGet else {
                 presentErrorAlert(message: "Unable to get URL")
                 return
             }
-            presentSafari(urlString: linkString.rawValue)
+            accountViewModel.toSafariLink(urlString: linkString.rawValue) { [weak self] errorMessage in
+                self?.presentErrorAlert(message: errorMessage)
+            }
         default:
             break
         }

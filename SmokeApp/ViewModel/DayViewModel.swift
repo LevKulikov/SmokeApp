@@ -32,7 +32,7 @@ final class DayViewModel: DayViewModelProtocol {
     var targetUpdate: ((Int16?) -> Void)?
     
     var isLimitExceeded: Bool {
-        guard let limit = smokeItem.targetAmount as? Int16 else { return false }
+        guard let limit = smokeItem.targetAmount as? Int16, limit >= 0 else { return false }
         return smokeItem.amount > limit
     }
     

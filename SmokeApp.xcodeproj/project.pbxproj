@@ -15,6 +15,10 @@
 		732E802029DE27C80068959A /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732E801F29DE27C80068959A /* AccountViewModel.swift */; };
 		732E802229DE2D700068959A /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732E802129DE2D700068959A /* AccountSettingsViewController.swift */; };
 		73305FC629F040F2006C588C /* TargetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73305FC529F040F2006C588C /* TargetTableViewCell.swift */; };
+		73305FC829FDBFC1006C588C /* SettingsAndLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73305FC729FDBFC1006C588C /* SettingsAndLinks.swift */; };
+		73305FCA29FDE1D2006C588C /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73305FC929FDE1D2006C588C /* NotificationViewController.swift */; };
+		73305FCC29FDE4EE006C588C /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73305FCB29FDE4EE006C588C /* NotificationViewModel.swift */; };
+		73305FCF29FDE93F006C588C /* AccountNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73305FCE29FDE93F006C588C /* AccountNavigator.swift */; };
 		733B0F542992ECE900E7EC6D /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0F532992ECE900E7EC6D /* StatisticsViewController.swift */; };
 		733B0F562992F98A00E7EC6D /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0F552992F98A00E7EC6D /* StatisticsViewModel.swift */; };
 		733B0F68299BB91F00E7EC6D /* WideCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733B0F67299BB91F00E7EC6D /* WideCollectionViewCell.swift */; };
@@ -33,7 +37,6 @@
 		73C8039629D5A092007A20BC /* AccountSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C8039529D5A092007A20BC /* AccountSettingsViewModel.swift */; };
 		73C8039829D5A10C007A20BC /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C8039729D5A10C007A20BC /* AccountViewController.swift */; };
 		73C8039A29D5A1A1007A20BC /* UserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C8039929D5A1A1007A20BC /* UserNotificationManager.swift */; };
-		73CC9AE429E3834F007A3706 /* ContactsAndLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CC9AE329E3834F007A3706 /* ContactsAndLinks.swift */; };
 		73D8FABE2987A1220084BE25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FABD2987A1220084BE25 /* AppDelegate.swift */; };
 		73D8FAC02987A1220084BE25 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FABF2987A1220084BE25 /* SceneDelegate.swift */; };
 		73D8FAC22987A1220084BE25 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FAC12987A1220084BE25 /* CalendarViewController.swift */; };
@@ -51,6 +54,7 @@
 		73D8FB122987F3380084BE25 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FB112987F3380084BE25 /* CalendarCollectionViewCell.swift */; };
 		73D8FB14298A47DA0084BE25 /* DayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FB13298A47DA0084BE25 /* DayViewController.swift */; };
 		73D8FB16298A4A670084BE25 /* DayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FB15298A4A670084BE25 /* DayViewModel.swift */; };
+		73DCCC522A0AF7BE00945B53 /* NotificationSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DCCC512A0AF7BE00945B53 /* NotificationSettingTableViewCell.swift */; };
 		D7DA29D9B5928AE3E20A97D3 /* libPods-SmokeApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E6167177A572E2CB3B83415 /* libPods-SmokeApp.a */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +101,10 @@
 		732E801F29DE27C80068959A /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		732E802129DE2D700068959A /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
 		73305FC529F040F2006C588C /* TargetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetTableViewCell.swift; sourceTree = "<group>"; };
+		73305FC729FDBFC1006C588C /* SettingsAndLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAndLinks.swift; sourceTree = "<group>"; };
+		73305FC929FDE1D2006C588C /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		73305FCB29FDE4EE006C588C /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
+		73305FCE29FDE93F006C588C /* AccountNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNavigator.swift; sourceTree = "<group>"; };
 		733B0F532992ECE900E7EC6D /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		733B0F552992F98A00E7EC6D /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		733B0F67299BB91F00E7EC6D /* WideCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WideCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -117,7 +125,6 @@
 		73C8039529D5A092007A20BC /* AccountSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewModel.swift; sourceTree = "<group>"; };
 		73C8039729D5A10C007A20BC /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		73C8039929D5A1A1007A20BC /* UserNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationManager.swift; sourceTree = "<group>"; };
-		73CC9AE329E3834F007A3706 /* ContactsAndLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsAndLinks.swift; sourceTree = "<group>"; };
 		73D8FABA2987A1220084BE25 /* SmokeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmokeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73D8FABD2987A1220084BE25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73D8FABF2987A1220084BE25 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +146,7 @@
 		73D8FB112987F3380084BE25 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		73D8FB13298A47DA0084BE25 /* DayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewController.swift; sourceTree = "<group>"; };
 		73D8FB15298A4A670084BE25 /* DayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewModel.swift; sourceTree = "<group>"; };
+		73DCCC512A0AF7BE00945B53 /* NotificationSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingTableViewCell.swift; sourceTree = "<group>"; };
 		A8C5959F8690267739B71705 /* Pods-SmokeAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmokeAppTests.release.xcconfig"; path = "Target Support Files/Pods-SmokeAppTests/Pods-SmokeAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		CC64047E8407C351FB0A343D /* Pods-SmokeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmokeApp.debug.xcconfig"; path = "Target Support Files/Pods-SmokeApp/Pods-SmokeApp.debug.xcconfig"; sourceTree = "<group>"; };
 		E5BE3E2BD3411E1D6949AB01 /* Pods-SmokeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmokeApp.release.xcconfig"; path = "Target Support Files/Pods-SmokeApp/Pods-SmokeApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -206,6 +214,14 @@
 				732E801D29DC87920068959A /* LinksTableViewCell.swift */,
 			);
 			path = AccountTableView;
+			sourceTree = "<group>";
+		};
+		73305FCD29FDE84B006C588C /* Navigators */ = {
+			isa = PBXGroup;
+			children = (
+				73305FCE29FDE93F006C588C /* AccountNavigator.swift */,
+			);
+			path = Navigators;
 			sourceTree = "<group>";
 		};
 		733B0F66299BB8EB00E7EC6D /* Statistics */ = {
@@ -278,6 +294,7 @@
 				733B0F6D299BC12800E7EC6D /* Useful.swift */,
 				734AD6F829AFBAF500F92A0F /* HapticManagere.swift */,
 				73C8039929D5A1A1007A20BC /* UserNotificationManager.swift */,
+				73305FCD29FDE84B006C588C /* Navigators */,
 			);
 			path = Manageres;
 			sourceTree = "<group>";
@@ -310,9 +327,9 @@
 				733F444529A0210D002E2291 /* TargetStorage.swift */,
 				733F444329A01ADD002E2291 /* TargetModel.swift */,
 				73D8FB0B2987B6350084BE25 /* UpdateViewModel.swift */,
-				73CC9AE329E3834F007A3706 /* ContactsAndLinks.swift */,
 				73B7129929A23293001BF38C /* SmokeItemData.swift */,
 				7362749A29DAF37C0010F544 /* AccountDataStorage.swift */,
+				73305FC729FDBFC1006C588C /* SettingsAndLinks.swift */,
 				73D8FAFB2987AF3D0084BE25 /* Entity */,
 			);
 			path = DataStructure;
@@ -336,6 +353,7 @@
 				733F4441299FF43C002E2291 /* TargetViewModel.swift */,
 				73C8039529D5A092007A20BC /* AccountSettingsViewModel.swift */,
 				732E801F29DE27C80068959A /* AccountViewModel.swift */,
+				73305FCB29FDE4EE006C588C /* NotificationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -349,6 +367,7 @@
 				733F443F299FF2D0002E2291 /* TargetViewController.swift */,
 				73C8039729D5A10C007A20BC /* AccountViewController.swift */,
 				732E802129DE2D700068959A /* AccountSettingsViewController.swift */,
+				73305FC929FDE1D2006C588C /* NotificationViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -357,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				73D8FB112987F3380084BE25 /* CalendarCollectionViewCell.swift */,
+				73DCCC512A0AF7BE00945B53 /* NotificationSettingTableViewCell.swift */,
 				733B0F66299BB8EB00E7EC6D /* Statistics */,
 				732E801829DC86A00068959A /* AccountTableView */,
 			);
@@ -572,6 +592,7 @@
 			files = (
 				73D8FB122987F3380084BE25 /* CalendarCollectionViewCell.swift in Sources */,
 				733B0F6A299BB9B000E7EC6D /* ChartCollectionViewCell.swift in Sources */,
+				73305FCC29FDE4EE006C588C /* NotificationViewModel.swift in Sources */,
 				73C8039829D5A10C007A20BC /* AccountViewController.swift in Sources */,
 				73D8FAC22987A1220084BE25 /* CalendarViewController.swift in Sources */,
 				73305FC629F040F2006C588C /* TargetTableViewCell.swift in Sources */,
@@ -582,12 +603,14 @@
 				734AD6F929AFBAF500F92A0F /* HapticManagere.swift in Sources */,
 				7362749B29DAF37C0010F544 /* AccountDataStorage.swift in Sources */,
 				732E801C29DC87800068959A /* SettingsTableViewCell.swift in Sources */,
+				73305FCA29FDE1D2006C588C /* NotificationViewController.swift in Sources */,
 				73D8FB0E2987B7100084BE25 /* DataStorage.swift in Sources */,
 				732E802229DE2D700068959A /* AccountSettingsViewController.swift in Sources */,
 				73D8FAF52987A53E0084BE25 /* Assembler.swift in Sources */,
 				733F444429A01ADD002E2291 /* TargetModel.swift in Sources */,
 				733B0F542992ECE900E7EC6D /* StatisticsViewController.swift in Sources */,
 				733B0F6C299BB9DE00E7EC6D /* NarrowCollectionViewCell.swift in Sources */,
+				73305FCF29FDE93F006C588C /* AccountNavigator.swift in Sources */,
 				733F4442299FF43C002E2291 /* TargetViewModel.swift in Sources */,
 				732E801E29DC87920068959A /* LinksTableViewCell.swift in Sources */,
 				73B712A229A233D2001BF38C /* SmokeItem+CoreDataProperties.swift in Sources */,
@@ -595,8 +618,8 @@
 				73D8FABE2987A1220084BE25 /* AppDelegate.swift in Sources */,
 				73D8FB0C2987B6350084BE25 /* UpdateViewModel.swift in Sources */,
 				73B7129A29A23293001BF38C /* SmokeItemData.swift in Sources */,
-				73CC9AE429E3834F007A3706 /* ContactsAndLinks.swift in Sources */,
 				733F4440299FF2D0002E2291 /* TargetViewController.swift in Sources */,
+				73305FC829FDBFC1006C588C /* SettingsAndLinks.swift in Sources */,
 				733F444629A0210D002E2291 /* TargetStorage.swift in Sources */,
 				73D8FB14298A47DA0084BE25 /* DayViewController.swift in Sources */,
 				73D8FAC02987A1220084BE25 /* SceneDelegate.swift in Sources */,
@@ -606,6 +629,7 @@
 				73D8FAF72987A8FD0084BE25 /* Constants.swift in Sources */,
 				73D8FB16298A4A670084BE25 /* DayViewModel.swift in Sources */,
 				732E802029DE27C80068959A /* AccountViewModel.swift in Sources */,
+				73DCCC522A0AF7BE00945B53 /* NotificationSettingTableViewCell.swift in Sources */,
 				733B0F562992F98A00E7EC6D /* StatisticsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -792,7 +816,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.4;
+				MARKETING_VERSION = 0.1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = healthapps.SmokeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -828,7 +852,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.4;
+				MARKETING_VERSION = 0.1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = healthapps.SmokeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

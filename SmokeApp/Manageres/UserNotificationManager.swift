@@ -20,6 +20,12 @@ protocol UserNotificationManagerProtocol: AnyObject {
 
 /// Class to manage user's notifications
 final class UserNotificationManager: UserNotificationManagerProtocol {
+    /// Types of notifications that is available to set
+    enum NotificationType: CaseIterable {
+        case reminderNotification
+        case limitExceededNotification
+    }
+    
     //MARK: Properties
     /// Current User Notification center
     private let notificationCenter: UNUserNotificationCenter

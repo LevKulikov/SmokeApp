@@ -8,11 +8,6 @@
 import Foundation
 
 protocol AccountViewModelProtocol: AnyObject {
-    //TODO: Set target update to bind
-    
-    /// Property to savety provide account data storage to push it in another View Model
-    var accountDataStorageToSet: AccountDataStorageProtocol { get }
-    
     /// Property to savety provide target storage to push it in another View Model
     var targetStorageToSet: TargetOwnerProtocol { get }
     
@@ -30,6 +25,21 @@ protocol AccountViewModelProtocol: AnyObject {
     
     /// Property to get image name, if it was set incorrectly (or it is unable to get data from image name) it provides default image name
     var accountImageData: Data? { get }
+    
+    /// Presents Account settings view
+    /// - Parameter presentationDelegate: Object to conform UIViewControllerPresentationDelegate
+    func toAccountSettings(presentationDelegate: UIViewControllerPresentationDelegate?)
+    
+    /// Pushes Target View Controller
+    func toTargetView()
+    
+    /// Presents Safari ViewController with provided URL String
+    /// - Parameter urlString: string that can be converted into URL
+    /// - Parameter failerHandler: Closer to handle failer request to open tab in Safari, clouser should accept String as a error message
+    func toSafariLink(urlString: String, failerHandler: ((String) -> Void)?)
+    
+    /// Pushes Notications Settings View
+    func toNotificationSettins()
 }
 
 final class AccountViewModel: AccountViewModelProtocol {
@@ -48,10 +58,6 @@ final class AccountViewModel: AccountViewModelProtocol {
     
     var accountImageData: Data? {
         return accountDataStorage.accountImageData
-    }
-    
-    var accountDataStorageToSet: AccountDataStorageProtocol {
-        return accountDataStorage
     }
     
     var targetStorageToSet: TargetOwnerProtocol {
@@ -74,19 +80,38 @@ final class AccountViewModel: AccountViewModelProtocol {
     /// Object to manage notifications
     private let notificationManager: UserNotificationManagerProtocol
     
+    /// Object that navigates through views
+    private let navigator: AccountNavigatorProtocol
+    
     //MARK: Initializer
     init(
         accountDataStorage: AccountDataStorageProtocol,
         dataStorage: DataStorageProtocol,
         targetStorage: TargetOwnerProtocol,
-        notificationManager: UserNotificationManagerProtocol
+        notificationManager: UserNotificationManagerProtocol,
+        navigator: AccountNavigatorProtocol
     ) {
         self.accountDataStorage = accountDataStorage
         self.dataStorage = dataStorage
         self.targetStorage = targetStorage
         self.notificationManager = notificationManager
+        self.navigator = navigator
     }
     
     //MARK: Methods
- 
+    func toAccountSettings(presentationDelegate: UIViewControllerPresentationDelegate?) {
+        navigator.toAccountSettings(presentationDelegate: presentationDelegate, accountDataStorage: accountDataStorage)
+    }
+    
+    func toTargetView() {
+        navigator.toTargetView(targetOwner: targetStorage, dataStorage: dataStorage)
+    }
+    
+    func toSafariLink(urlString: String, failerHandler: ((String) -> Void)?) {
+        navigator.toSafariLink(urlString: urlString, failerHandler: failerHandler)
+    }
+    
+    func toNotificationSettins() {
+        navigator.toNotificationSettins(notificationManager: notificationManager)
+    }
 }

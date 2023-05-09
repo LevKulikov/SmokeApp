@@ -119,13 +119,16 @@ final class Assembler {
         dataStorage: DataStorageProtocol,
         notificationManager: UserNotificationManagerProtocol
     ) -> UIViewController {
+        let navigator = AccountNavigator()
         let viewModel = AccountViewModel(
             accountDataStorage: accountDataStorage,
             dataStorage: dataStorage,
             targetStorage: targetOwner,
-            notificationManager: notificationManager
+            notificationManager: notificationManager,
+            navigator: navigator
         )
         let viewController = AccountViewController(viewModel: viewModel)
+        navigator.viewController = viewController
         return viewController
     }
     
@@ -135,6 +138,15 @@ final class Assembler {
     func buildMVVMAccountSettingsViewController(accountDataStorage: AccountDataStorageProtocol) -> UIViewController {
         let viewModel = AccountSettingsViewModel(accountDataStorage: accountDataStorage)
         let viewController = AccountSettingsViewController(viewModel: viewModel)
+        return viewController
+    }
+    
+    /// Creates Notification settings View Controller with set MVVM elements like viewModel and model
+    /// - Parameter notificationManager: Object that manages user's notifications
+    /// - Returns: MVVM Notification settings View Controller with configurated View Model
+    func buildMVVMNotificationViewController(notificationManager: UserNotificationManagerProtocol) -> UIViewController {
+        let viewModel = NotificationViewModel(notificationManager: notificationManager)
+        let viewController = NotificationViewController(viewModel: viewModel)
         return viewController
     }
 }
