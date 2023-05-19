@@ -116,6 +116,7 @@ final class CalendarViewController: UIViewController, CalendarViewControllerProt
         view.addSubview(collectionView)
         view.addSubview(scrollDownButton)
         view.bringSubviewToFront(scrollDownButton)
+        viewModel.setNavigator(CalendarNavigator(navigationController: navigationController))
         setBindingToViewModel()
         setNavigationItems()
     }
@@ -286,7 +287,6 @@ final class CalendarViewController: UIViewController, CalendarViewControllerProt
             case .created(let smokeItems):
                 let observer = BehaviorRelay(value: smokeItems)
                 observer
-                    .debug()
                     .throttle(.seconds(1), latest: true, scheduler: MainScheduler.instance)
                     .subscribe { event in
                     switch event {
@@ -405,23 +405,7 @@ extension CalendarViewController: UICollectionViewDataSource, UICollectionViewDe
     
     //MARK: UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        do {
-            let smokeItemArray = try viewModel.getDataItems()
-            let index = indexPath.row
-            guard index < smokeItemArray.count else { return }
-            let smokeItem = smokeItemArray[index]
-            let dataStorage = viewModel.dataStorageToPush
-            let dayViewController = Assembler.shared.buildMVVMDayViewController(
-                with: smokeItem,
-                dataStorage: dataStorage,
-                targetOwner: viewModel.targetOwner
-            )
-//            animateShowingCollectionView(showing: false) { [weak self] in }
-            navigationController?.pushViewController(dayViewController, animated: true)
-            
-        } catch {
-            //TODO: Handle error
-        }
+        viewModel.toSelectedDay(indexPath: indexPath, errorHandler: nil)
     }
     
     //MARK: UICollectionViewDelegateFlowLayout

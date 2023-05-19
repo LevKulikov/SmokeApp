@@ -15,44 +15,52 @@ protocol CalendarViewModelProtocol: AnyObject, DataManipulationProtocol {
     /// Convinient way to get data without calling method with context recalculation
     var savedData: [SmokeItem] { get }
     
-    /// Public instance to securly get Data Storage from View Model
-    var dataStorageToPush: DataStorageProtocol { get }
-    
-    /// Property to store target owner
-    var targetOwner: TargetOwnerProtocol { get }
-    
     /// Creates new DataItem for every new date
     func autoNewDateCreateItem()
+    
+    /// Sets navigator to ViewModel. Should be used after setting UINavigatoinController to ViewController
+    /// - Parameter navigator: Navigator object
+    func setNavigator(_ navigator: CalendarNavigatorProtocol)
+    
+    /// Pushes DayView with selected item
+    /// - Parameters:
+    ///   - indexPath: indexPath of CollectionView to identify with smokeItem is selected
+    ///   - errorHandler: Error handler, can be nil
+    func toSelectedDay(indexPath: IndexPath, errorHandler: ((Error) -> Void)?)
 }
 
 /// Calendar VIewModel class
 final class CalendarViewModel: CalendarViewModelProtocol {
     //MARK: Properties
-    public var updateViewData: ((UpdateType) -> Void)? {
+    var updateViewData: ((UpdateType) -> Void)? {
         didSet {
             updateViewData?(.viewModelInitialized)
         }
     }
     
-    public var savedData: [SmokeItem] {
+    var savedData: [SmokeItem] {
         get {
             return dataStorage.savedData
         }
     }
     
-    public var dataStorageToPush: DataStorageProtocol {
-        return dataStorage
-    }
-    
-    public let targetOwner: TargetOwnerProtocol
+    /// Object that owns and manages target
+    private let targetOwner: TargetOwnerProtocol
     
     /// DataStorage abstract object to coordinate data in storage
     private let dataStorage: DataStorageProtocol
     
+    /// Notification Manager to manage app notifications
+    private let notificationManager: UserNotificationManagerProtocol
+    
+    /// Navigator to manage showing next views
+    private var navigator: CalendarNavigatorProtocol?
+    
     //MARK: Initializer
-    public init(dataStorage: DataStorageProtocol, targetOwner: TargetOwnerProtocol) {
+    init(dataStorage: DataStorageProtocol, targetOwner: TargetOwnerProtocol, notificationManager: UserNotificationManagerProtocol) {
         self.dataStorage = dataStorage
         self.targetOwner = targetOwner
+        self.notificationManager = notificationManager
         autoNewDateCreateItem()
     }
     
@@ -121,7 +129,7 @@ final class CalendarViewModel: CalendarViewModelProtocol {
         }
     }
     
-    public func createItem(date: Date, count: Int16, targetLimit: Int16? = nil) throws {
+    func createItem(date: Date, count: Int16, targetLimit: Int16? = nil) throws {
         var limit: Int16? = nil
         if let userTarget = targetOwner.userTarget?.userTarget {
             switch userTarget {
@@ -141,7 +149,7 @@ final class CalendarViewModel: CalendarViewModelProtocol {
         }
     }
 
-    public func getDataItems() throws -> [SmokeItem] {
+    func getDataItems() throws -> [SmokeItem] {
         do {
             return try dataStorage.getDataItems()
         } catch {
@@ -149,7 +157,7 @@ final class CalendarViewModel: CalendarViewModelProtocol {
         }
     }
     
-    public func updateDataItem(_ item: SmokeItem, newDate: Date? = nil, newCount: Int16?, targetAmount: Int16? = nil) throws {
+    func updateDataItem(_ item: SmokeItem, newDate: Date? = nil, newCount: Int16?, targetAmount: Int16? = nil) throws {
         do {
             try dataStorage.updateDataItem(item, newDate: newDate, newCount: newCount, targetAmount: targetAmount)
             let items = try dataStorage.getDataItems()
@@ -159,7 +167,7 @@ final class CalendarViewModel: CalendarViewModelProtocol {
         }
     }
     
-    public func deleteItem(_ item: SmokeItem) throws {
+    func deleteItem(_ item: SmokeItem) throws {
         do {
             try dataStorage.deleteItem(item)
             let items = try dataStorage.getDataItems()
@@ -169,7 +177,7 @@ final class CalendarViewModel: CalendarViewModelProtocol {
         }
     }
     
-    public func autoNewDateCreateItem() {
+    func autoNewDateCreateItem() {
         guard let lastDataItem = try? dataStorage.getDataItems().last, let lastDate = lastDataItem.date else {
             do {
                 try createItem(date: Date.now, count: 0)
@@ -196,7 +204,28 @@ final class CalendarViewModel: CalendarViewModelProtocol {
         }
     }
     
-    public func deleteTargetForItem(_ item: SmokeItem) throws {
+    func setNavigator(_ navigator: CalendarNavigatorProtocol) {
+        self.navigator = navigator
+    }
+    
+    func toSelectedDay(indexPath: IndexPath, errorHandler: ((Error) -> Void)?) {
+        do {
+            let smokeItemArray = try getDataItems()
+            let index = indexPath.row
+            guard index < smokeItemArray.count else { return }
+            let smokeItem = smokeItemArray[index]
+            navigator?.toSelectedDay(
+                smokeItem: smokeItem,
+                dataStorage: dataStorage,
+                targetOwner: targetOwner,
+                notificationManager: notificationManager
+            )
+        } catch {
+            errorHandler?(error)
+        }
+    }
+    
+    func deleteTargetForItem(_ item: SmokeItem) throws {
         print("CalendarViewModel does not fulfil this mehtod")
     }
 }

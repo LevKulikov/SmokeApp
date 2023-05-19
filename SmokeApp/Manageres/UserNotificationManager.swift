@@ -10,79 +10,160 @@ import UserNotifications
 
 /// Protocol to manage user's notifications
 protocol UserNotificationManagerProtocol: AnyObject {
-    /// Checks status of notification permision
-    func checkForNotificationPermition()
+    /// Notifications are permited in phone settings
+    var isSystemAllowsNotifications: Bool { get }
+    
+    /// If user wants to get notifications
+    var isUserAllowsNotifications: Bool { get }
+    
+    /// Flag determines if user allows notifications about limit exceed
+    var allowLimitExceededNotification: Bool { get set }
+    
+    /// Flag determines if user allows reminding notifications
+    var allowReminderNotification: Bool { get set }
+    
+    /// Checks status of notification permision by a system
+    func checkForSystemNotificationPermition()
     
     /// Sends in the queue notification about limit exceeded
     /// - Parameter limit: set limit that was exceeded
     func dispatchLimitExceedNotification(limit: Int16?)
+    
+    /// Sends in the queue repeatable notification with reminder
+    func dispatchReminderNotification()
+    
+    /// Disables notifications
+    func disableNotifications()
+    
+    /// Asks user to allow app notification through phone system
+    func askForNotificationPermition()
+    
+    /// Properly enables app notifications through asking system for permition and asking user to provide permition if system provides that this setting is not determined or denied
+    /// - Parameter completionHandler: Handler that is executed after notifications are permitid, parameter of this closure determines if notifications are permited or not, and what is authorization status
+    func enableNotifications(completionHandler: ((Bool, UNAuthorizationStatus) -> Void)?)
 }
 
 /// Class to manage user's notifications
 final class UserNotificationManager: UserNotificationManagerProtocol {
     /// Types of notifications that is available to set
-    enum NotificationType: CaseIterable {
-        case reminderNotification
+    enum NotificationSettingsType: CaseIterable {
+        case allowDismisSetting
         case limitExceededNotification
+        case reminderNotification
     }
     
     //MARK: Properties
+    var isSystemAllowsNotifications: Bool {
+        guard let systemNotifPermition else { return false }
+        return systemNotifPermition
+    }
+    
+    var isUserAllowsNotifications: Bool {
+        return userNotifPermition
+    }
+    
+    var allowLimitExceededNotification: Bool {
+        didSet {
+            UserDefaults.standard.setValue(allowLimitExceededNotification, forKey: allowLimitExceededKey)
+            switch allowLimitExceededNotification {
+            case true:
+                break
+            case false:
+                notificationCenter.removePendingNotificationRequests(withIdentifiers: [limitExceedNotificationIdentifier])
+            }
+        }
+    }
+    
+    var allowReminderNotification: Bool {
+        didSet {
+            UserDefaults.standard.setValue(allowReminderNotification, forKey: allowReminderKey)
+            switch allowReminderNotification {
+            case true:
+                dispatchReminderNotification()
+            case false:
+                notificationCenter.removePendingNotificationRequests(withIdentifiers: [reminderNotificationIdentifier])
+            }
+        }
+    }
+    
+    /// Internal property to keep info if systems allows app notifications
+    private var systemNotifPermition: Bool?
+    
+    /// Internal property to keep info if user allows app notifications
+    private var userNotifPermition: Bool {
+        didSet {
+            UserDefaults.standard.setValue(userNotifPermition, forKey: userNotifPermitionKey)
+        }
+    }
+    
+    /// Key for userDefault to store user permition
+    private let userNotifPermitionKey = "userNotigPermitionKey"
+    
+    /// Key for userDefault to store limit exceeded permition
+    private let allowLimitExceededKey = "allowLimitExceededKey"
+    
+    /// Key for userDefault to store reminder notif permition
+    private let allowReminderKey = "allowReminderKey"
+    
     /// Current User Notification center
     private let notificationCenter: UNUserNotificationCenter
     
     /// Identifier for notification when limit is exceeded
     private let limitExceedNotificationIdentifier = "limitExceedNotificationIdentifier"
     
+    /// Identifier for notification reminder
+    private let reminderNotificationIdentifier = "reminderNotificationIdentifier"
+    
     //MARK: Initalizer
     init() {
         notificationCenter = UNUserNotificationCenter.current()
-//        checkForNotificationPermition()
+        userNotifPermition = UserDefaults.standard.bool(forKey: userNotifPermitionKey)
+        allowLimitExceededNotification = UserDefaults.standard.bool(forKey: allowLimitExceededKey)
+        allowReminderNotification = UserDefaults.standard.bool(forKey: allowReminderKey)
+        checkForSystemNotificationPermition()
     }
+    
     //MARK: Methods
-    func checkForNotificationPermition() {
+    func checkForSystemNotificationPermition() {
         notificationCenter.getNotificationSettings { [weak self] notificationSettings in
             switch notificationSettings.authorizationStatus {
             case .authorized:
-                self?.dispatchTestNotification()
-            case .notDetermined:
-                self?.notificationCenter.requestAuthorization(options: .alert) { didAllow, error in
-                    if didAllow {
-                        self?.dispatchTestNotification()
-                    }
-                }
+                self?.systemNotifPermition = true
             default:
-                return
+                self?.systemNotifPermition = false
             }
         }
     }
     
-    /// Dispatches test notification
-    func dispatchTestNotification() {
-        let title = "Test Notification"
-        let body = "Test body notification"
-        let identifier = "test-notification-id"
-        
-        let content = UNMutableNotificationContent()
-        content.title = title
-        content.body = body
-        content.sound = .default
-        
-        let hour = 10
-        let minute = 30
-        let isDaily = true
-        
-        var dateComponents = DateComponents(calendar: Calendar.current, timeZone: TimeZone.current)
-        dateComponents.hour = hour
-        dateComponents.minute = minute
-        
-        let triger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: isDaily)
-        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: triger)
-        
-        notificationCenter.removePendingNotificationRequests(withIdentifiers: [identifier])
-        notificationCenter.add(request)
+    func disableNotifications() {
+        userNotifPermition = false
+        notificationCenter.removeAllPendingNotificationRequests()
+    }
+    
+    func enableNotifications(completionHandler: ((Bool, UNAuthorizationStatus) -> Void)?) {
+        notificationCenter.getNotificationSettings { [weak self] notificationSettings in
+            switch notificationSettings.authorizationStatus {
+            case .authorized, .provisional:
+                self?.systemNotifPermition = true
+                self?.userNotifPermition = true
+                completionHandler?(true, .authorized)
+            case .denied:
+                self?.systemNotifPermition = false
+                self?.userNotifPermition = false
+                completionHandler?(false, .denied)
+            default:
+                self?.notificationCenter.requestAuthorization(options: .alert) { didAllow, error in
+                    self?.systemNotifPermition = didAllow
+                    self?.userNotifPermition = didAllow
+                    completionHandler?(didAllow, .notDetermined)
+                }
+            }
+        }
     }
     
     func dispatchLimitExceedNotification(limit: Int16? = nil) {
+        guard let systemNotifPermition, systemNotifPermition, userNotifPermition, allowLimitExceededNotification else { return }
+        
         let title = "You exceeded your limit"
         var body: String
         if let limit {
@@ -97,7 +178,8 @@ final class UserNotificationManager: UserNotificationManagerProtocol {
         content.sound = .default
         
         let date = Date.now
-        let dateComponents = Calendar.current.dateComponents([.hour, .minute], from: date)
+        var dateComponents = Calendar.current.dateComponents([.hour, .minute], from: date)
+        dateComponents.minute! += 10
         
         let triger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         let request = UNNotificationRequest(
@@ -108,5 +190,34 @@ final class UserNotificationManager: UserNotificationManagerProtocol {
         
         notificationCenter.removePendingNotificationRequests(withIdentifiers: [limitExceedNotificationIdentifier])
         notificationCenter.add(request)
+    }
+    
+    func dispatchReminderNotification() {
+        guard let systemNotifPermition, systemNotifPermition, userNotifPermition, allowReminderNotification else { return }
+        
+        let title = "You can do it!"
+        let body = "New day! Try to smoke less!"
+        
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = body
+        
+        let dateComponents = DateComponents(hour: 10, minute: 0)
+        let triger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        let request = UNNotificationRequest(
+            identifier: reminderNotificationIdentifier,
+            content: content,
+            trigger: triger
+        )
+        
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: [reminderNotificationIdentifier])
+        notificationCenter.add(request)
+    }
+    
+    /// Asks user to allow app notification through phone system
+    func askForNotificationPermition() {
+        notificationCenter.requestAuthorization(options: .alert) { [weak self] didAllow, error in
+            self?.systemNotifPermition = didAllow
+        }
     }
 }

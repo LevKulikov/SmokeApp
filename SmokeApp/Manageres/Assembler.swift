@@ -26,7 +26,11 @@ final class Assembler {
         let accountDataStorage = AccountDataStorage()
         let notificationManager = UserNotificationManager()
         
-        let calendarViewController = buildMVVMCalendarViewController(dataStorage: dataStorage, targetOwner: targetOwner)
+        let calendarViewController = buildMVVMCalendarViewController(
+            dataStorage: dataStorage,
+            targetOwner: targetOwner,
+            notificationManager: notificationManager
+        )
         let calendarNavCon = UINavigationController(rootViewController: calendarViewController)
         calendarNavCon.navigationBar.prefersLargeTitles = true
         calendarNavCon.navigationItem.largeTitleDisplayMode = .automatic
@@ -58,12 +62,15 @@ final class Assembler {
     
     /// Returns Calendar View Controller with set MVVM elements like viewModel and model
     /// - Parameter dataStorage: DataStorage to set in viewModel
+    /// - Parameter targetOwner: TargetOwner to set in ViewModel
+    /// - Parameter notificationManager: Object that manages user's notifications
     /// - Returns: MVVM View Controller (CalendarViewController)
     func buildMVVMCalendarViewController(
         dataStorage: DataStorageProtocol,
-        targetOwner: TargetOwnerProtocol
+        targetOwner: TargetOwnerProtocol,
+        notificationManager: UserNotificationManagerProtocol
     ) -> UIViewController {
-        let viewModel = CalendarViewModel(dataStorage: dataStorage, targetOwner: targetOwner)
+        let viewModel = CalendarViewModel(dataStorage: dataStorage, targetOwner: targetOwner, notificationManager: notificationManager)
         let viewController = CalendarViewController(viewModel: viewModel)
         return viewController
     }
@@ -86,13 +93,20 @@ final class Assembler {
     ///   - smokeItem: SmokeItem those information wil be displayed in DayViewContoller
     ///   - dataStorage: DataStorage from root ViewController to manipulate with data (update it)
     ///   - targetOwner: TargetOwner object to set in ViewModel
+    ///   - notificationManager: Object that manages user's notifications
     /// - Returns: MVVM Day View Controller with set View Model and DataStorage
     func buildMVVMDayViewController(
         with smokeItem: SmokeItem,
         dataStorage: DataStorageProtocol,
-        targetOwner: TargetOwnerProtocol
+        targetOwner: TargetOwnerProtocol,
+        notificationManager: UserNotificationManagerProtocol
     ) -> UIViewController {
-        let viewModel = DayViewModel(smokeItem: smokeItem, dataStorage: dataStorage, targetOwner: targetOwner)
+        let viewModel = DayViewModel(
+            smokeItem: smokeItem,
+            dataStorage: dataStorage,
+            targetOwner: targetOwner,
+            notificationManager: notificationManager
+        )
         let viewController = DayViewController(viewModel: viewModel)
         return viewController
     }

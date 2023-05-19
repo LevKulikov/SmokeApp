@@ -3,4 +3,69 @@
    uuid = "4A5307CF-CAB3-4510-B1D5-1B6D9F6306DC"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1B00E974-C5F7-4408-8F29-42BA2EB15FF0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SmokeApp/ViewModel/DayViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "dispatchLimitExceedNotification()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1B00E974-C5F7-4408-8F29-42BA2EB15FF0 - dc80d6a554a42b1c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmokeApp.DayViewModel.bindWithTargetOwner() -&gt; ()"
+                  moduleName = "SmokeApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/levkulikov/Library/Mobile%20Documents/com~apple~CloudDocs/Documents/xcodeprojects/testApps/SmokeApp/SmokeApp/ViewModel/DayViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "79"
+                  endingLineNumber = "79"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  uuid = "1B00E974-C5F7-4408-8F29-42BA2EB15FF0 - 5a400a36f998b825"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmokeApp.DayViewModel.dispatchLimitExceedNotification() -&gt; ()"
+                  moduleName = "SmokeApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/levkulikov/Library/Mobile%20Documents/com~apple~CloudDocs/Documents/xcodeprojects/testApps/SmokeApp/SmokeApp/ViewModel/DayViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "1B00E974-C5F7-4408-8F29-42BA2EB15FF0 - 5a400a36f998b825"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmokeApp.DayViewModel.dispatchLimitExceedNotification() -&gt; ()"
+                  moduleName = "SmokeApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/levkulikov/Library/Mobile%20Documents/com~apple~CloudDocs/Documents/xcodeprojects/testApps/SmokeApp/SmokeApp/ViewModel/DayViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "368">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

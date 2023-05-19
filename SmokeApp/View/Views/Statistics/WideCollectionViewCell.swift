@@ -28,9 +28,13 @@ final class WideCollectionViewCell: UICollectionViewCell {
     /// Dinamic in percentage
     private var smokesDynamic: Float = 0 {
         didSet {
-            let percentage = Float(Int(smokesDynamic * 1000))/10
+            let percentage = Int(smokesDynamic * 100)
             if percentage > 0 {
-                dynamicsLabel.text = "+\(percentage)%"
+                if percentage > 999 {
+                    dynamicsLabel.text = "+999%"
+                } else {
+                    dynamicsLabel.text = "+\(percentage)%"
+                }
                 dynamicsLabel.textColor = .systemRed
             } else {
                 dynamicsLabel.text = "\(percentage)%"

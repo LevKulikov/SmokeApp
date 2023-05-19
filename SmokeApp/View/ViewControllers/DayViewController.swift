@@ -30,6 +30,7 @@ final class DayViewController: UIViewController, DayViewControllerPotocol {
             limitWasExceeded(isExceeded: limitIsExceeded, animate: limitExceedingAnimationNeeded)
             if limitExceedingAnimationNeeded, limitIsExceeded {
                 HapticManagere.shared.impactVibration(style: .heavy)
+                viewModel.dispatchLimitExceedNotification()
             }
         }
     }

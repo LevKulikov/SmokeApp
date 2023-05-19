@@ -55,10 +55,10 @@ class AccountSettingsViewController: UIViewController, AccountSettingsViewContro
     private var birthLabelYConstant: CGFloat = 45
     
     /// Done button to dismiss view and save account data
-    private lazy var doneButton: UIButton = {
+    private lazy var saveButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Done", for: .normal)
+        button.setTitle("Save", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
         button.addTarget(self, action: #selector(dismissAndSave), for: .touchUpInside)
         return button
@@ -191,7 +191,7 @@ class AccountSettingsViewController: UIViewController, AccountSettingsViewContro
         super.viewDidLoad()
         view.backgroundColor = Constants.shared.viewControllerBackgroundColor
         view.addSubviews(
-            doneButton,
+            saveButton,
             accountImageView,
             nameTextField,
             genderLabel,
@@ -205,7 +205,7 @@ class AccountSettingsViewController: UIViewController, AccountSettingsViewContro
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setDoneButtonConstraints()
+        setSaveButtonConstraints()
         setAccountImageViewConstraints()
         setNameTextFieldConstraints()
         setGenderLabelConstraints()
@@ -224,13 +224,13 @@ class AccountSettingsViewController: UIViewController, AccountSettingsViewContro
     }
     
     //MARK: Methods
-    /// Sets constraints to doneButton
-    private func setDoneButtonConstraints() {
+    /// Sets constraints to saveButton
+    private func setSaveButtonConstraints() {
         NSLayoutConstraint.activate([
-            doneButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            doneButton.heightAnchor.constraint(equalToConstant: 30),
-            doneButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -5),
-            doneButton.widthAnchor.constraint(equalToConstant: 60)
+            saveButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            saveButton.heightAnchor.constraint(equalToConstant: 30),
+            saveButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -5),
+            saveButton.widthAnchor.constraint(equalToConstant: 60)
         ])
     }
     

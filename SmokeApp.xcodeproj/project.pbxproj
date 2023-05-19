@@ -55,6 +55,8 @@
 		73D8FB14298A47DA0084BE25 /* DayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FB13298A47DA0084BE25 /* DayViewController.swift */; };
 		73D8FB16298A4A670084BE25 /* DayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FB15298A4A670084BE25 /* DayViewModel.swift */; };
 		73DCCC522A0AF7BE00945B53 /* NotificationSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DCCC512A0AF7BE00945B53 /* NotificationSettingTableViewCell.swift */; };
+		73F617E42A16E2BE009BF09C /* CalendarNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F617E32A16E2BE009BF09C /* CalendarNavigator.swift */; };
+		73F617E72A16E918009BF09C /* MockUserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F617E62A16E918009BF09C /* MockUserNotificationManager.swift */; };
 		D7DA29D9B5928AE3E20A97D3 /* libPods-SmokeApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E6167177A572E2CB3B83415 /* libPods-SmokeApp.a */; };
 /* End PBXBuildFile section */
 
@@ -147,6 +149,8 @@
 		73D8FB13298A47DA0084BE25 /* DayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewController.swift; sourceTree = "<group>"; };
 		73D8FB15298A4A670084BE25 /* DayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewModel.swift; sourceTree = "<group>"; };
 		73DCCC512A0AF7BE00945B53 /* NotificationSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingTableViewCell.swift; sourceTree = "<group>"; };
+		73F617E32A16E2BE009BF09C /* CalendarNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarNavigator.swift; sourceTree = "<group>"; };
+		73F617E62A16E918009BF09C /* MockUserNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserNotificationManager.swift; sourceTree = "<group>"; };
 		A8C5959F8690267739B71705 /* Pods-SmokeAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmokeAppTests.release.xcconfig"; path = "Target Support Files/Pods-SmokeAppTests/Pods-SmokeAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		CC64047E8407C351FB0A343D /* Pods-SmokeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmokeApp.debug.xcconfig"; path = "Target Support Files/Pods-SmokeApp/Pods-SmokeApp.debug.xcconfig"; sourceTree = "<group>"; };
 		E5BE3E2BD3411E1D6949AB01 /* Pods-SmokeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SmokeApp.release.xcconfig"; path = "Target Support Files/Pods-SmokeApp/Pods-SmokeApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -220,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				73305FCE29FDE93F006C588C /* AccountNavigator.swift */,
+				73F617E32A16E2BE009BF09C /* CalendarNavigator.swift */,
 			);
 			path = Navigators;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				73D8FACE2987A1230084BE25 /* Info.plist */,
+				73F617E52A16E825009BF09C /* MockObjects */,
 				73D8FAFA2987AF200084BE25 /* DataStructure */,
 				73D8FAF82987AA120084BE25 /* Sources */,
 				73D8FAF32987A52C0084BE25 /* Manageres */,
@@ -381,6 +387,14 @@
 				732E801829DC86A00068959A /* AccountTableView */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		73F617E52A16E825009BF09C /* MockObjects */ = {
+			isa = PBXGroup;
+			children = (
+				73F617E62A16E918009BF09C /* MockUserNotificationManager.swift */,
+			);
+			path = MockObjects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -599,6 +613,7 @@
 				733B0F68299BB91F00E7EC6D /* WideCollectionViewCell.swift in Sources */,
 				73C8039A29D5A1A1007A20BC /* UserNotificationManager.swift in Sources */,
 				73B712A329A233D2001BF38C /* SmokeItem+CoreDataClass.swift in Sources */,
+				73F617E42A16E2BE009BF09C /* CalendarNavigator.swift in Sources */,
 				73D8FAC82987A1220084BE25 /* SmokeApp.xcdatamodeld in Sources */,
 				734AD6F929AFBAF500F92A0F /* HapticManagere.swift in Sources */,
 				7362749B29DAF37C0010F544 /* AccountDataStorage.swift in Sources */,
@@ -625,6 +640,7 @@
 				73D8FAC02987A1220084BE25 /* SceneDelegate.swift in Sources */,
 				73D8FB0A2987B04E0084BE25 /* CalendarViewModel.swift in Sources */,
 				73C8039629D5A092007A20BC /* AccountSettingsViewModel.swift in Sources */,
+				73F617E72A16E918009BF09C /* MockUserNotificationManager.swift in Sources */,
 				733B0F6E299BC12800E7EC6D /* Useful.swift in Sources */,
 				73D8FAF72987A8FD0084BE25 /* Constants.swift in Sources */,
 				73D8FB16298A4A670084BE25 /* DayViewModel.swift in Sources */,

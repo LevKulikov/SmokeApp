@@ -214,7 +214,7 @@ extension TableViewAdapter: UITableViewDataSource, UITableViewDelegate, UIViewCo
         case 0, 1:
             return 100
         case 2, 3:
-            return 40
+            return 50
         default:
             return 0
         }

@@ -20,6 +20,9 @@ protocol DayViewModelProtocol: AnyObject {
     /// Updates stored SmokeItem with provided count
     /// - Parameter count: count to set in SmokeItem
     func updateSmokeItemCount(with count: Int16)
+    
+    /// Send notification if limit is exeeded
+    func dispatchLimitExceedNotification()
 }
 
 /// View model for DayViewController
@@ -36,6 +39,9 @@ final class DayViewModel: DayViewModelProtocol {
         return smokeItem.amount > limit
     }
     
+    /// Flag that identifies that selected day is the latest one, default is false
+    private var isLatestDay: Bool = false
+    
     /// Public property to store TargetOwner, it is identified only in DayViewModel and not avalble through DayViewModelProtocol
     public let targetOwner: TargetOwnerProtocol
     
@@ -45,11 +51,15 @@ final class DayViewModel: DayViewModelProtocol {
     /// DataStorage abstract object to coordinate data in storage
     private let dataStorage: DataStorageProtocol
     
+    /// Object to manage notifications
+    private let notificationManager: UserNotificationManagerProtocol
+    
     //MARK: Initializer
-    required init(smokeItem: SmokeItem, dataStorage: DataStorageProtocol, targetOwner: TargetOwnerProtocol) {
+    required init(smokeItem: SmokeItem, dataStorage: DataStorageProtocol, targetOwner: TargetOwnerProtocol, notificationManager: UserNotificationManagerProtocol) {
         self.smokeItem = smokeItem
         self.dataStorage = dataStorage
         self.targetOwner = targetOwner
+        self.notificationManager = notificationManager
         checkIfTargetNeedToSet()
     }
     
@@ -61,6 +71,11 @@ final class DayViewModel: DayViewModelProtocol {
             //TODO: Handle error
             print(error)
         }
+    }
+    
+    func dispatchLimitExceedNotification() {
+        guard isLatestDay, let target = smokeItem.targetAmount as? Int16 else { return }
+        notificationManager.dispatchLimitExceedNotification(limit: target)
     }
     
     /// Set closer to TargetOwner to bind with
@@ -93,6 +108,7 @@ final class DayViewModel: DayViewModelProtocol {
         let smokeDate = calendar.dateComponents([.year, .month, .day], from: smokeItem.date!)
         guard currentDate == smokeDate else { return }
         bindWithTargetOwner()
+        isLatestDay = true
         
         guard let userTarget = targetOwner.userTarget?.userTarget else {
             try? dataStorage.deleteTargetForItem(smokeItem)
