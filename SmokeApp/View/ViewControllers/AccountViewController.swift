@@ -47,7 +47,7 @@ final class AccountViewController: UIViewController, AccountViewControllerProtoc
             ownerViewController: self,
             accountViewModel: viewModel
         )
-        
+        viewModel.setNavigator(AccountNavigator(navigationController: navigationController))
     }
     
     override func viewDidLayoutSubviews() {
@@ -243,6 +243,8 @@ extension TableViewAdapter: UITableViewDataSource, UITableViewDelegate, UIViewCo
             switch indexPath.row {
             case 0:
                 accountViewModel.toNotificationSettins()
+            case 1:
+                accountViewModel.toAppAppearance()
             default:
                 print("Settings section type does not exist")
             }

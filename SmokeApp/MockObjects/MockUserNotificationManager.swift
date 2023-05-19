@@ -8,7 +8,7 @@
 import Foundation
 import NotificationCenter
 
-final class MockUserNotificationManager: UserNotificationManagerProtocol {
+final class MockUserNotificationManager /*: UserNotificationManagerProtocol*/ {
     var isSystemAllowsNotifications: Bool
     
     var isUserAllowsNotifications: Bool

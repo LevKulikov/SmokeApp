@@ -28,6 +28,7 @@ class NotificationSettingTableViewCell: UITableViewCell {
     /// Closure to fulfil updates on switcher turns, provides data about cell type and switcher.isOn
     var switcherTurnUpdate: ((UserNotificationManager.NotificationSettingsType?, Bool) -> Void)?
     
+    /// Switcher to turn on or off notification preference
     private lazy var switcher: UISwitch = {
         let switcher = UISwitch()
         switcher.addAction(

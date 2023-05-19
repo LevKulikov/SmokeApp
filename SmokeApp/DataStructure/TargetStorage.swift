@@ -30,6 +30,9 @@ protocol TargetOwnerProtocol: AnyObject, TargetStorageProtocol, TargetManipulati
     
     /// Property to bind with TargetTableViewCell that indicates target is update
     var targetUpdateAccountCell: ((Target?) -> Void)? { get set }
+    
+    /// Property to bind with CalendarViewModel that indicates target is update
+    var targetUpdateCalendarView: ((Target?) -> Void)? { get set }
 }
 
 /// Class to store set by user target and push it to other View Models
@@ -42,6 +45,8 @@ final class TargetOwner: TargetOwnerProtocol {
     var targetUpdateDayView: ((Target?) -> Void)?
     
     var targetUpdateAccountCell: ((Target?) -> Void)?
+    
+    var targetUpdateCalendarView: ((Target?) -> Void)?
     
     /// Private propety to manipulate with target inside the class
     private var target: Target? {
@@ -61,13 +66,19 @@ final class TargetOwner: TargetOwnerProtocol {
     //MARK: Methods
     func setNewTarget(_ target: Target) {
         self.target = target
-        targetUpdateDayView?(target)
-        targetUpdateAccountCell?(target)
+        spreadTargetUpdate(with: target)
     }
     
     func deleteTarget() {
         self.target = nil
-        targetUpdateDayView?(nil)
-        targetUpdateAccountCell?(nil)
+        spreadTargetUpdate(with: nil)
+    }
+    
+    /// Spreads target update to all binding closures
+    /// - Parameter target: updated target value
+    private func spreadTargetUpdate(with target: Target?) {
+        targetUpdateDayView?(target)
+        targetUpdateAccountCell?(target)
+        targetUpdateCalendarView?(target)
     }
 }

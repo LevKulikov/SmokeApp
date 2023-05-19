@@ -61,6 +61,7 @@ final class CalendarViewModel: CalendarViewModelProtocol {
         self.dataStorage = dataStorage
         self.targetOwner = targetOwner
         self.notificationManager = notificationManager
+        bindWithTargetOwner()
         autoNewDateCreateItem()
     }
     
@@ -127,6 +128,17 @@ final class CalendarViewModel: CalendarViewModelProtocol {
                 break
             }
         }
+    }
+    
+    /// Set closer to TargetOwner to bind with
+    private func bindWithTargetOwner() {
+        let bindgingClosure: (Target?) -> Void = {[weak self] newTarget in
+            guard newTarget != nil else {
+                self?.notificationManager.undispatchLimitExeedNotifications()
+                return
+            }
+        }
+        targetOwner.targetUpdateCalendarView = bindgingClosure
     }
     
     func createItem(date: Date, count: Int16, targetLimit: Int16? = nil) throws {

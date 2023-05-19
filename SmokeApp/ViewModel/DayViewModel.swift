@@ -115,7 +115,17 @@ final class DayViewModel: DayViewModelProtocol {
             return
         }
         
-        if selectedSmokeItem.targetAmount == nil || (selectedSmokeItem.targetAmount as? Int)! < 0 {
+        var userTargetAmount: Int16
+        switch userTarget {
+        case .dayLimit(from: _, smokes: let amount):
+            userTargetAmount = amount
+        case .quitTime(from: _, days: _, initialLimit: let amount):
+            userTargetAmount = amount
+        }
+        
+        if selectedSmokeItem.targetAmount == nil
+            || (selectedSmokeItem.targetAmount as? Int)! < 0
+            || (selectedSmokeItem.targetAmount as? Int)! != userTargetAmount {
             switch userTarget {
             case .dayLimit(from: _, smokes: let limit):
                 try? dataStorage.updateDataItem(smokeItem, newDate: nil, newCount: nil, targetAmount: limit)

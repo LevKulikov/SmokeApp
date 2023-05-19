@@ -27,7 +27,7 @@ protocol CalendarNavigatorProtocol: AnyObject {
 final class CalendarNavigator: CalendarNavigatorProtocol {
     //MARK: Properties
     /// Navigation controller of the view to make pushes and pops
-    private let navigationController: UINavigationController?
+    unowned private let navigationController: UINavigationController?
     
     //MARK: Initializer
     init(navigationController: UINavigationController?) {

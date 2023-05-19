@@ -30,12 +30,20 @@ protocol AccountNavigatorProtocol {
     /// Pushes Notications Settings View
     /// - Parameter notificationManager: Object that manages notification rules
     func toNotificationSettins(notificationManager: UserNotificationManagerProtocol)
+    
+    /// Pushes AppAppearance View
+    func toAppAppearance()
 }
 
 final class AccountNavigator: AccountNavigatorProtocol {
     //MARK: Properties
     ///ViewController that is used to navigate
-    weak var viewController: UIViewController?
+    unowned private let navigationController: UINavigationController?
+    
+    //MARK: Initializer
+    init(navigationController: UINavigationController?) {
+        self.navigationController = navigationController
+    }
     
     //MARK: Methods
     func toAccountSettings(presentationDelegate: UIViewControllerPresentationDelegate?, accountDataStorage: AccountDataStorageProtocol) {
@@ -45,7 +53,7 @@ final class AccountNavigator: AccountNavigatorProtocol {
             )
         accountSettingsVC.presentationDelegate = presentationDelegate
         accountSettingsVC.modalPresentationStyle = .overFullScreen
-        viewController?.present(accountSettingsVC, animated: true)
+        navigationController?.viewControllers.first?.present(accountSettingsVC, animated: true)
     }
     
     func toTargetView(targetOwner: TargetOwnerProtocol, dataStorage: DataStorageProtocol) {
@@ -54,7 +62,7 @@ final class AccountNavigator: AccountNavigatorProtocol {
                 targetOwner: targetOwner,
                 dataStorage: dataStorage
             )
-        viewController?.navigationController?.pushViewController(targetVC, animated: true)
+        navigationController?.pushViewController(targetVC, animated: true)
     }
     
     func toSafariLink(urlString: String, failerHandler: ((String) -> Void)? = nil) {
@@ -65,7 +73,7 @@ final class AccountNavigator: AccountNavigatorProtocol {
         
         let safariVC = SFSafariViewController(url: url)
         safariVC.dismissButtonStyle = .close
-        viewController?.present(safariVC, animated: true)
+        navigationController?.viewControllers.first?.present(safariVC, animated: true)
     }
     
     func toNotificationSettins(notificationManager: UserNotificationManagerProtocol) {
@@ -73,6 +81,11 @@ final class AccountNavigator: AccountNavigatorProtocol {
             .buildMVVMNotificationViewController(
                 notificationManager: notificationManager
             )
-        viewController?.navigationController?.pushViewController(notificationVC, animated: true)
+        navigationController?.pushViewController(notificationVC, animated: true)
+    }
+    
+    func toAppAppearance() {
+        let appAppearanceVC = Assembler.shared.buildMVVMAppAppearanceViewController()
+        navigationController?.pushViewController(appAppearanceVC, animated: true)
     }
 }

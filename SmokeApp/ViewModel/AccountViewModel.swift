@@ -26,6 +26,10 @@ protocol AccountViewModelProtocol: AnyObject {
     /// Property to get image name, if it was set incorrectly (or it is unable to get data from image name) it provides default image name
     var accountImageData: Data? { get }
     
+    /// Sets navigator to ViewModel. Should be used after setting UINavigatoinController to ViewController
+    /// - Parameter navigator: Navigator object
+    func setNavigator(_ navigator: AccountNavigator)
+    
     /// Presents Account settings view
     /// - Parameter presentationDelegate: Object to conform UIViewControllerPresentationDelegate
     func toAccountSettings(presentationDelegate: UIViewControllerPresentationDelegate?)
@@ -40,6 +44,9 @@ protocol AccountViewModelProtocol: AnyObject {
     
     /// Pushes Notications Settings View
     func toNotificationSettins()
+    
+    /// Pushes AppAppearance View
+    func toAppAppearance()
 }
 
 final class AccountViewModel: AccountViewModelProtocol {
@@ -81,37 +88,43 @@ final class AccountViewModel: AccountViewModelProtocol {
     private let notificationManager: UserNotificationManagerProtocol
     
     /// Object that navigates through views
-    private let navigator: AccountNavigatorProtocol
+    private var navigator: AccountNavigatorProtocol?
     
     //MARK: Initializer
     init(
         accountDataStorage: AccountDataStorageProtocol,
         dataStorage: DataStorageProtocol,
         targetStorage: TargetOwnerProtocol,
-        notificationManager: UserNotificationManagerProtocol,
-        navigator: AccountNavigatorProtocol
+        notificationManager: UserNotificationManagerProtocol
     ) {
         self.accountDataStorage = accountDataStorage
         self.dataStorage = dataStorage
         self.targetStorage = targetStorage
         self.notificationManager = notificationManager
-        self.navigator = navigator
     }
     
     //MARK: Methods
+    func setNavigator(_ navigator: AccountNavigator) {
+        self.navigator = navigator
+    }
+    
     func toAccountSettings(presentationDelegate: UIViewControllerPresentationDelegate?) {
-        navigator.toAccountSettings(presentationDelegate: presentationDelegate, accountDataStorage: accountDataStorage)
+        navigator?.toAccountSettings(presentationDelegate: presentationDelegate, accountDataStorage: accountDataStorage)
     }
     
     func toTargetView() {
-        navigator.toTargetView(targetOwner: targetStorage, dataStorage: dataStorage)
+        navigator?.toTargetView(targetOwner: targetStorage, dataStorage: dataStorage)
     }
     
     func toSafariLink(urlString: String, failerHandler: ((String) -> Void)?) {
-        navigator.toSafariLink(urlString: urlString, failerHandler: failerHandler)
+        navigator?.toSafariLink(urlString: urlString, failerHandler: failerHandler)
     }
     
     func toNotificationSettins() {
-        navigator.toNotificationSettins(notificationManager: notificationManager)
+        navigator?.toNotificationSettins(notificationManager: notificationManager)
+    }
+    
+    func toAppAppearance() {
+        navigator?.toAppAppearance()
     }
 }

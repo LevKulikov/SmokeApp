@@ -35,6 +35,9 @@ protocol UserNotificationManagerProtocol: AnyObject {
     /// Disables notifications
     func disableNotifications()
     
+    /// Undispatches (but not disables) limit exeeded notifications. Use in case if you need to disable future notification about exeeding limit when target has been deleted after limit exeed
+    func undispatchLimitExeedNotifications()
+    
     /// Asks user to allow app notification through phone system
     func askForNotificationPermition()
     
@@ -93,6 +96,14 @@ final class UserNotificationManager: UserNotificationManagerProtocol {
     private var userNotifPermition: Bool {
         didSet {
             UserDefaults.standard.setValue(userNotifPermition, forKey: userNotifPermitionKey)
+            switch userNotifPermition {
+            case true:
+                if allowReminderNotification {
+                    dispatchReminderNotification()
+                }
+            case false:
+                notificationCenter.removeAllPendingNotificationRequests()
+            }
         }
     }
     
@@ -137,7 +148,10 @@ final class UserNotificationManager: UserNotificationManagerProtocol {
     
     func disableNotifications() {
         userNotifPermition = false
-        notificationCenter.removeAllPendingNotificationRequests()
+    }
+    
+    func undispatchLimitExeedNotifications() {
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: [limitExceedNotificationIdentifier])
     }
     
     func enableNotifications(completionHandler: ((Bool, UNAuthorizationStatus) -> Void)?) {
@@ -164,7 +178,7 @@ final class UserNotificationManager: UserNotificationManagerProtocol {
     func dispatchLimitExceedNotification(limit: Int16? = nil) {
         guard let systemNotifPermition, systemNotifPermition, userNotifPermition, allowLimitExceededNotification else { return }
         
-        let title = "You exceeded your limit"
+        let title = "🛑 You exceeded your limit"
         var body: String
         if let limit {
             body = "Your daily limit \(limit) is exceeded, try to stop smoking for today"
@@ -195,7 +209,7 @@ final class UserNotificationManager: UserNotificationManagerProtocol {
     func dispatchReminderNotification() {
         guard let systemNotifPermition, systemNotifPermition, userNotifPermition, allowReminderNotification else { return }
         
-        let title = "You can do it!"
+        let title = "🔆 You can do it!"
         let body = "New day! Try to smoke less!"
         
         let content = UNMutableNotificationContent()
