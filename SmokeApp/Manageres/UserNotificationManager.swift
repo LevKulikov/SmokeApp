@@ -38,9 +38,6 @@ protocol UserNotificationManagerProtocol: AnyObject {
     /// Undispatches (but not disables) limit exeeded notifications. Use in case if you need to disable future notification about exeeding limit when target has been deleted after limit exeed
     func undispatchLimitExeedNotifications()
     
-    /// Asks user to allow app notification through phone system
-    func askForNotificationPermition()
-    
     /// Properly enables app notifications through asking system for permition and asking user to provide permition if system provides that this setting is not determined or denied
     /// - Parameter completionHandler: Handler that is executed after notifications are permitid, parameter of this closure determines if notifications are permited or not, and what is authorization status
     func enableNotifications(completionHandler: ((Bool, UNAuthorizationStatus) -> Void)?)
@@ -128,9 +125,9 @@ final class UserNotificationManager: UserNotificationManagerProtocol {
     //MARK: Initalizer
     init() {
         notificationCenter = UNUserNotificationCenter.current()
-        userNotifPermition = UserDefaults.standard.bool(forKey: userNotifPermitionKey)
-        allowLimitExceededNotification = UserDefaults.standard.bool(forKey: allowLimitExceededKey)
-        allowReminderNotification = UserDefaults.standard.bool(forKey: allowReminderKey)
+        userNotifPermition = UserDefaults.standard.value(forKey: userNotifPermitionKey) as? Bool ?? true
+        allowLimitExceededNotification = UserDefaults.standard.value(forKey: allowLimitExceededKey) as? Bool ?? true
+        allowReminderNotification = UserDefaults.standard.value(forKey: allowReminderKey) as? Bool ?? true
         checkForSystemNotificationPermition()
     }
     
@@ -138,8 +135,12 @@ final class UserNotificationManager: UserNotificationManagerProtocol {
     func checkForSystemNotificationPermition() {
         notificationCenter.getNotificationSettings { [weak self] notificationSettings in
             switch notificationSettings.authorizationStatus {
-            case .authorized:
+            case .authorized, .provisional:
                 self?.systemNotifPermition = true
+            case .notDetermined:
+                self?.notificationCenter.requestAuthorization(options: .alert) { didAllow, _ in
+                    self?.systemNotifPermition = didAllow
+                }
             default:
                 self?.systemNotifPermition = false
             }
@@ -215,6 +216,7 @@ final class UserNotificationManager: UserNotificationManagerProtocol {
         let content = UNMutableNotificationContent()
         content.title = title
         content.body = body
+        content.sound = .default
         
         let dateComponents = DateComponents(hour: 10, minute: 0)
         let triger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
@@ -226,12 +228,5 @@ final class UserNotificationManager: UserNotificationManagerProtocol {
         
         notificationCenter.removePendingNotificationRequests(withIdentifiers: [reminderNotificationIdentifier])
         notificationCenter.add(request)
-    }
-    
-    /// Asks user to allow app notification through phone system
-    func askForNotificationPermition() {
-        notificationCenter.requestAuthorization(options: .alert) { [weak self] didAllow, error in
-            self?.systemNotifPermition = didAllow
-        }
     }
 }
