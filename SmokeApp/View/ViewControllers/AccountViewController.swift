@@ -245,6 +245,8 @@ extension TableViewAdapter: UITableViewDataSource, UITableViewDelegate, UIViewCo
                 accountViewModel.toNotificationSettins()
             case 1:
                 accountViewModel.toAppAppearance()
+            case 2:
+                accountViewModel.toDateManage()
             default:
                 print("Settings section type does not exist")
             }

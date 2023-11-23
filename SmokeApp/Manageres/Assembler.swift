@@ -168,4 +168,13 @@ final class Assembler {
         let viewController = AppAppearanceViewController(viewModel: viewModel)
         return viewController
     }
+    
+    /// Creates DataManage View Controller with set MVVM elements like viewModel and model
+    /// - Parameter dataStorage: DataStorage to set in viewModel
+    /// - Returns: MVVM DataManage View Controller with configurated View Model
+    func buildMVVMDataManageViewController(dataStorage: DataStorageProtocol) -> UIViewController {
+        let viewModel = DataManageViewModel(dataStorage: dataStorage)
+        let viewController = DataManageViewController(viewModel: viewModel)
+        return viewController
+    }
 }

@@ -58,6 +58,8 @@
 		73D8FB122987F3380084BE25 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FB112987F3380084BE25 /* CalendarCollectionViewCell.swift */; };
 		73D8FB14298A47DA0084BE25 /* DayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FB13298A47DA0084BE25 /* DayViewController.swift */; };
 		73D8FB16298A4A670084BE25 /* DayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D8FB15298A4A670084BE25 /* DayViewModel.swift */; };
+		73DB7FBB2B0FA8C1001B9696 /* DataManageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DB7FBA2B0FA8C1001B9696 /* DataManageViewModel.swift */; };
+		73DB7FBF2B0FAC37001B9696 /* DataManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DB7FBE2B0FAC37001B9696 /* DataManageViewController.swift */; };
 		73DCCC522A0AF7BE00945B53 /* NotificationSettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DCCC512A0AF7BE00945B53 /* NotificationSettingTableViewCell.swift */; };
 		73F617E42A16E2BE009BF09C /* CalendarNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F617E32A16E2BE009BF09C /* CalendarNavigator.swift */; };
 		73F617E72A16E918009BF09C /* MockUserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F617E62A16E918009BF09C /* MockUserNotificationManager.swift */; };
@@ -156,6 +158,8 @@
 		73D8FB112987F3380084BE25 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		73D8FB13298A47DA0084BE25 /* DayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewController.swift; sourceTree = "<group>"; };
 		73D8FB15298A4A670084BE25 /* DayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayViewModel.swift; sourceTree = "<group>"; };
+		73DB7FBA2B0FA8C1001B9696 /* DataManageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManageViewModel.swift; sourceTree = "<group>"; };
+		73DB7FBE2B0FAC37001B9696 /* DataManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManageViewController.swift; sourceTree = "<group>"; };
 		73DCCC512A0AF7BE00945B53 /* NotificationSettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingTableViewCell.swift; sourceTree = "<group>"; };
 		73F617E32A16E2BE009BF09C /* CalendarNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarNavigator.swift; sourceTree = "<group>"; };
 		73F617E62A16E918009BF09C /* MockUserNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserNotificationManager.swift; sourceTree = "<group>"; };
@@ -370,6 +374,7 @@
 				732E801F29DE27C80068959A /* AccountViewModel.swift */,
 				73305FCB29FDE4EE006C588C /* NotificationViewModel.swift */,
 				73BF29502A17E84D00F6ACE2 /* AppAppearanceViewModel.swift */,
+				73DB7FBA2B0FA8C1001B9696 /* DataManageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -385,6 +390,7 @@
 				732E802129DE2D700068959A /* AccountSettingsViewController.swift */,
 				73305FC929FDE1D2006C588C /* NotificationViewController.swift */,
 				73BF29522A17EBF900F6ACE2 /* AppAppearanceViewController.swift */,
+				73DB7FBE2B0FAC37001B9696 /* DataManageViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -623,6 +629,7 @@
 				73D8FAC22987A1220084BE25 /* CalendarViewController.swift in Sources */,
 				73305FC629F040F2006C588C /* TargetTableViewCell.swift in Sources */,
 				733B0F68299BB91F00E7EC6D /* WideCollectionViewCell.swift in Sources */,
+				73DB7FBB2B0FA8C1001B9696 /* DataManageViewModel.swift in Sources */,
 				73C8039A29D5A1A1007A20BC /* UserNotificationManager.swift in Sources */,
 				73B712A329A233D2001BF38C /* SmokeItem+CoreDataClass.swift in Sources */,
 				73F617E42A16E2BE009BF09C /* CalendarNavigator.swift in Sources */,
@@ -643,6 +650,7 @@
 				73305FCF29FDE93F006C588C /* AccountNavigator.swift in Sources */,
 				733F4442299FF43C002E2291 /* TargetViewModel.swift in Sources */,
 				732E801E29DC87920068959A /* LinksTableViewCell.swift in Sources */,
+				73DB7FBF2B0FAC37001B9696 /* DataManageViewController.swift in Sources */,
 				73B712A229A233D2001BF38C /* SmokeItem+CoreDataProperties.swift in Sources */,
 				732E801A29DC87540068959A /* AccountDetailsTableViewCell.swift in Sources */,
 				73D8FABE2987A1220084BE25 /* AppDelegate.swift in Sources */,
@@ -833,7 +841,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = SmokeApp/SmokeApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 7P2A9ACZ7S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SmokeApp/Info.plist;
@@ -869,7 +877,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = SmokeApp/SmokeApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 7P2A9ACZ7S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SmokeApp/Info.plist;

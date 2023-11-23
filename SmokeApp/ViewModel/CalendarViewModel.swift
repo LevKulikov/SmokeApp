@@ -189,6 +189,15 @@ final class CalendarViewModel: CalendarViewModelProtocol {
         }
     }
     
+    func deleteAllItems() throws {
+        do {
+            try dataStorage.deleteAllItems()
+            updateViewData?(.updated([]))
+        } catch {
+            throw error
+        }
+    }
+    
     func autoNewDateCreateItem() {
         guard let lastDataItem = try? dataStorage.getDataItems().last, let lastDate = lastDataItem.date else {
             do {

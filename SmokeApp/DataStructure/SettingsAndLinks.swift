@@ -21,7 +21,9 @@ enum ContactsAndLinks: String, CaseIterable {
 enum SettingsType: String, CaseIterable {
     case notifications = "Notifications"
     case appearance = "App appearance"
+    case dataManage = "Manage data"
     
     static let notificationsImage = UIImage(systemName: "bell.badge.fill")
     static let appearanceImage = UIImage(systemName: "paintbrush.pointed.fill")
+    static let dataManageImage = UIImage(systemName: "cylinder.split.1x2.fill")
 }

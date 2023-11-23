@@ -46,6 +46,10 @@ class SettingsTableViewCell: UITableViewCell {
             configuration.image = SettingsType.appearanceImage
             configuration.imageProperties.tintColor = .systemBlue
             configuration.text = SettingsType.appearance.rawValue
+        case .dataManage:
+            configuration.image = SettingsType.dataManageImage
+            configuration.imageProperties.tintColor = .orange
+            configuration.text = SettingsType.dataManage.rawValue
         }
         
         contentConfiguration = configuration

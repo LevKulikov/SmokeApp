@@ -47,6 +47,9 @@ protocol AccountViewModelProtocol: AnyObject {
     
     /// Pushes AppAppearance View
     func toAppAppearance()
+    
+    /// Pushes DataManage View
+    func toDateManage()
 }
 
 final class AccountViewModel: AccountViewModelProtocol {
@@ -126,5 +129,9 @@ final class AccountViewModel: AccountViewModelProtocol {
     
     func toAppAppearance() {
         navigator?.toAppAppearance()
+    }
+    
+    func toDateManage() {
+        navigator?.toDateManage(dataStorage: dataStorage)
     }
 }

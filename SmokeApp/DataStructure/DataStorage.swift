@@ -35,6 +35,9 @@ protocol DataManipulationProtocol {
     /// Deletes target for selected item
     /// - Parameter item: item where target should be deleted
     func deleteTargetForItem(_ item: SmokeItem) throws
+    
+    /// Deletes all saved items from storage
+    func deleteAllItems() throws
 }
 
 /// Protocol to define DataStorage structure
@@ -129,6 +132,19 @@ final class DataStorage: DataStorageProtocol {
             throw error
         }
         pushInformationInUpdateClosure()
+    }
+    
+    func deleteAllItems() throws {
+        do {
+            var lastSavedData = try getDataItems()
+            try updateDataItem(lastSavedData.removeLast(), newDate: nil, newCount: 0, targetAmount: nil)
+            lastSavedData.forEach { item in
+                context.delete(item)
+            }
+            try context.save()
+        } catch {
+            throw error
+        }
     }
     
     /// Method that removes duplicates from contex if there is any

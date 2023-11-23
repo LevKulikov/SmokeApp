@@ -33,6 +33,9 @@ protocol AccountNavigatorProtocol {
     
     /// Pushes AppAppearance View
     func toAppAppearance()
+    
+    /// Pushes DataManage View
+    func toDateManage(dataStorage: DataStorageProtocol)
 }
 
 final class AccountNavigator: AccountNavigatorProtocol {
@@ -87,5 +90,10 @@ final class AccountNavigator: AccountNavigatorProtocol {
     func toAppAppearance() {
         let appAppearanceVC = Assembler.shared.buildMVVMAppAppearanceViewController()
         navigationController?.pushViewController(appAppearanceVC, animated: true)
+    }
+    
+    func toDateManage(dataStorage: DataStorageProtocol) {
+        let dataManageVC = Assembler.shared.buildMVVMDataManageViewController(dataStorage: dataStorage)
+        navigationController?.pushViewController(dataManageVC, animated: true)
     }
 }
