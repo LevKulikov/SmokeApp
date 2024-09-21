@@ -21,6 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = tabBar
         window?.makeKeyAndVisible()
         AppAppearanceManager.shared.keyWindow = window
+        
+        presentWelcomeScreen()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -54,6 +56,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
 
-
+    private func presentWelcomeScreen() {
+        let didShowWelcomeKey = "didShowWelcomeScreen"
+        
+        if UserDefaults.standard.bool(forKey: didShowWelcomeKey) {
+            return
+        }
+        
+        UserDefaults.standard.set(true, forKey: didShowWelcomeKey)
+        
+        let welcomeView = WelcomeViewController()
+        welcomeView.modalPresentationStyle = .fullScreen
+        window?.rootViewController?.present(welcomeView, animated: true)
+    }
 }
 

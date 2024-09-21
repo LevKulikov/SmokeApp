@@ -307,13 +307,13 @@ extension StatisticsViewController: UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewCell.basicIdentifier, for: indexPath)
         switch indexPath.section {
         case 0:
             guard let cellChart = collectionView.dequeueReusableCell(
                 withReuseIdentifier: ChartCollectionViewCell.identifier,
                 for: indexPath
             ) as? ChartCollectionViewCell else {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewCell.basicIdentifier, for: indexPath)
                 return cell
             }
             cellChart.configureCell(chartsData: viewModel.getSmokeItems())
@@ -325,6 +325,7 @@ extension StatisticsViewController: UICollectionViewDataSource, UICollectionView
                 withReuseIdentifier: WideCollectionViewCell.identifier,
                 for: indexPath
             ) as? WideCollectionViewCell else {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewCell.basicIdentifier, for: indexPath)
                 return cell
             }
             
@@ -342,6 +343,7 @@ extension StatisticsViewController: UICollectionViewDataSource, UICollectionView
                 withReuseIdentifier: NarrowCollectionViewCell.identifier,
                 for: indexPath
             ) as? NarrowCollectionViewCell else {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewCell.basicIdentifier, for: indexPath)
                 return cell
             }
             
@@ -382,6 +384,7 @@ extension StatisticsViewController: UICollectionViewDataSource, UICollectionView
             return cellNarrow
             
         default:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UICollectionViewCell.basicIdentifier, for: indexPath)
             return cell
         }
     }

@@ -30,6 +30,7 @@
 		733F444429A01ADD002E2291 /* TargetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F444329A01ADD002E2291 /* TargetModel.swift */; };
 		733F444629A0210D002E2291 /* TargetStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733F444529A0210D002E2291 /* TargetStorage.swift */; };
 		734AD6F929AFBAF500F92A0F /* HapticManagere.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734AD6F829AFBAF500F92A0F /* HapticManagere.swift */; };
+		735653E42C9EFEF7000429FA /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735653E32C9EFEF7000429FA /* WelcomeViewController.swift */; };
 		7362749B29DAF37C0010F544 /* AccountDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7362749A29DAF37C0010F544 /* AccountDataStorage.swift */; };
 		73B7129A29A23293001BF38C /* SmokeItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B7129929A23293001BF38C /* SmokeItemData.swift */; };
 		73B712A229A233D2001BF38C /* SmokeItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B712A029A233D2001BF38C /* SmokeItem+CoreDataProperties.swift */; };
@@ -126,6 +127,7 @@
 		733F444329A01ADD002E2291 /* TargetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetModel.swift; sourceTree = "<group>"; };
 		733F444529A0210D002E2291 /* TargetStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetStorage.swift; sourceTree = "<group>"; };
 		734AD6F829AFBAF500F92A0F /* HapticManagere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManagere.swift; sourceTree = "<group>"; };
+		735653E32C9EFEF7000429FA /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		7362749A29DAF37C0010F544 /* AccountDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDataStorage.swift; sourceTree = "<group>"; };
 		73B7129929A23293001BF38C /* SmokeItemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeItemData.swift; sourceTree = "<group>"; };
 		73B712A029A233D2001BF38C /* SmokeItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SmokeItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 				73305FC929FDE1D2006C588C /* NotificationViewController.swift */,
 				73BF29522A17EBF900F6ACE2 /* AppAppearanceViewController.swift */,
 				73DB7FBE2B0FAC37001B9696 /* DataManageViewController.swift */,
+				735653E32C9EFEF7000429FA /* WelcomeViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				73DB7FBF2B0FAC37001B9696 /* DataManageViewController.swift in Sources */,
 				73B712A229A233D2001BF38C /* SmokeItem+CoreDataProperties.swift in Sources */,
 				732E801A29DC87540068959A /* AccountDetailsTableViewCell.swift in Sources */,
+				735653E42C9EFEF7000429FA /* WelcomeViewController.swift in Sources */,
 				73D8FABE2987A1220084BE25 /* AppDelegate.swift in Sources */,
 				73D8FB0C2987B6350084BE25 /* UpdateViewModel.swift in Sources */,
 				73B7129A29A23293001BF38C /* SmokeItemData.swift in Sources */,
@@ -841,7 +845,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = SmokeApp/SmokeApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7P2A9ACZ7S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SmokeApp/Info.plist;
@@ -856,7 +860,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = healthapps.SmokeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -877,7 +881,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = SmokeApp/SmokeApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7P2A9ACZ7S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SmokeApp/Info.plist;
@@ -892,7 +896,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = healthapps.SmokeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
